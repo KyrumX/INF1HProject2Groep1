@@ -1,2 +1,5 @@
 # INF1HProject2Groep1
-INF1H Groep 1, Project 2, een Game
+Dit is de repository van:
+Groep 1 - INF1H - Project 2
+
+
