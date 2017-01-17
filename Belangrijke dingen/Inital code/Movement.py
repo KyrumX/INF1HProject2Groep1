@@ -1,9 +1,7 @@
 """Copryright 2017, Project 2 Groep 1
 """
 
-import math
 import pygame
-
 
 class Player:
     def __init__(self, x, y, r):
@@ -44,29 +42,25 @@ def program():
     playerOne = Player(width * 0.2, height * 0.5, width * 0.1)
     playerTwo = Player(width * 0.8, height * 0.5, width * 0.1)
 
+    cp = 0
     while not process_events():
-        cnt = 0
-        while cnt >= 0 and cnt < 2:
-            print("Count:" + str(cnt))
-            if cnt == 0:
-                screen.fill((0,0,0))
-                playerOne.draw(screen)
-                playerTwo.draw(screen)
-                cnt += 1
-            elif cnt == 1:
-                pygame.event.wait()
-                screen.fill((0,0,0))
-                playerOne.draw(screen)
-                playerTwo.draw(screen)
-                playerOne.update()
-                cnt == 2
-            elif cnt == 2:
-                pygame.event.wait()
-                screen.fill((0,0,0))
-                playerOne.draw(screen)
-                playerTwo.draw(screen)
-                playerTwo.update()
-                cnt == 1
-            pygame.display.flip()
+        if cp == 0:
+            screen.fill((0, 0, 0))
+            playerOne.draw(screen)
+            playerTwo.draw(screen)
+            cp = 1
+        if cp == 1:
+            playerOne.update()
+            screen.fill((0, 0, 0))
+            playerOne.draw(screen)
+            playerTwo.draw(screen)
+            cp = 2
+        if cp == 2:
+            playerTwo.update()
+            screen.fill((0, 0, 0))
+            playerOne.draw(screen)
+            playerTwo.draw(screen)
+            cp = 1
+        pygame.display.flip()
 
 program()
