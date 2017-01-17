@@ -20,7 +20,8 @@ class Player:
         self.r = r
 
     def update(self):
-            self.y -= 50
+        self.y -= 50
+
 
     def makequestion(question, array):
         useranswer = input("{}".format(array[c]))
@@ -57,6 +58,11 @@ def program():
     cp = 0
     while not process_events():
         print(cp)
+        if playerOne.y < 0 or playerTwo.y < 0 or playerThree.y < 0 or playerFour.y < 0:
+            screen.fill((255, 255, 255))
+            pygame.display.flip()
+            time.sleep(5)
+            pygame.quit()
         if cp == 0:
             screen.fill((0, 0, 0))
             playerOne.draw(screen)
