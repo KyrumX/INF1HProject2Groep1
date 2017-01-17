@@ -42,25 +42,12 @@ def program():
     playerOne = Player(width * 0.2, height * 0.5, width * 0.1)
     playerTwo = Player(width * 0.8, height * 0.5, width * 0.1)
 
-    cp = 0
     while not process_events():
-        if cp == 0:
-            screen.fill((0, 0, 0))
-            playerOne.draw(screen)
-            playerTwo.draw(screen)
-            cp = 1
-        if cp == 1:
-            playerOne.update()
-            screen.fill((0, 0, 0))
-            playerOne.draw(screen)
-            playerTwo.draw(screen)
-            cp = 2
-        if cp == 2:
-            playerTwo.update()
-            screen.fill((0, 0, 0))
-            playerOne.draw(screen)
-            playerTwo.draw(screen)
-            cp = 1
+        playerOne.update()
+        playerTwo.update()
+        screen.fill((0, 0, 0))
+        playerOne.draw(screen)
+        playerTwo.draw(screen)
         pygame.display.flip()
 
 program()
