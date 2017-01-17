@@ -48,25 +48,26 @@ def program():
     while not process_events():
         cnt = 0
         while cnt >= 0 and cnt < 2:
+            print("Count:" + str(cnt))
             if cnt == 0:
                 screen.fill((0,0,0))
                 playerOne.draw(screen)
                 playerTwo.draw(screen)
                 cnt += 1
             elif cnt == 1:
+                pygame.event.wait()
                 screen.fill((0,0,0))
                 playerOne.draw(screen)
                 playerTwo.draw(screen)
                 playerOne.update()
-                cnt += 1
+                cnt == 2
             elif cnt == 2:
+                pygame.event.wait()
                 screen.fill((0,0,0))
                 playerOne.draw(screen)
                 playerTwo.draw(screen)
                 playerTwo.update()
-                cnt = 1
-            print(cnt)
-
+                cnt == 1
             pygame.display.flip()
 
 program()
