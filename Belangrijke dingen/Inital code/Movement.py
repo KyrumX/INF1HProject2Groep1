@@ -1,5 +1,4 @@
-"""Kickoff PyGame example
-Copyright 2016, Sjors van Gelderen
+"""Copryright 2017, Project 2 Groep 1
 """
 
 import math
