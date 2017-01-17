@@ -1,8 +1,10 @@
 """Copryright 2017, Project 2 Groep 1"""
 
 import pygame
-
+c= 0
 b = 0
+questions = ["a", "b", "c"]
+answers = ["a", "b", "c"]
 levels = [0, 100, 200]
 
 class Tower:
@@ -23,7 +25,11 @@ class Player:
             self.y -= 1
         else:
             self.x += 0
-
+    def makequestion(question, array):
+        useranswer = input("{}".format(array[c]))
+        if useranswer == array[c]:
+            c += 1
+        
     def draw(self, screen):
         pygame.draw.circle(screen, (0, 255, 0), (int(self.x), int(self.y)), int(self.r))
 
