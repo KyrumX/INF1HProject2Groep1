@@ -1,6 +1,7 @@
 """Copryright 2017, Project 2 Groep 1"""
 
 import pygame
+from pygame.locals import *
 import time
 clock = pygame.time.Clock()
 
@@ -15,7 +16,6 @@ class Player:
 
     def draw(self, screen):
         screen.blit(self.image, (self.x, self.y))
-
 
 
 def program(maxp):
@@ -51,7 +51,9 @@ def program(maxp):
 
     mainloop = True
     while mainloop:
-
+        k = pygame.key.get_pressed()
+        if k[K_ESCAPE]:
+            mainloop = False
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 mainloop = False
