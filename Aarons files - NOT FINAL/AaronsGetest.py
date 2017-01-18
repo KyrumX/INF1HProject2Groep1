@@ -23,6 +23,7 @@ def program():
     width = 1920
     height = 1080
     size = (width, height)
+    background = pygame.image.load("Afbeeldingen/random.jpg")
 
     pygame.init()
 
@@ -67,7 +68,7 @@ def program():
                         playerFour.update()
                         cp -= 3
         print(cp)
-        screen.fill((0, 0, 0))
+        screen.blit(background, (0,0))
         playerOne.draw(screen)
         playerTwo.draw(screen)
         playerThree.draw(screen)
