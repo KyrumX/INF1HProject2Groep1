@@ -23,7 +23,7 @@ def program():
     width = 1920
     height = 1080
     size = (width, height)
-    background = pygame.image.load("Afbeeldingen/random.jpg")
+    background = pygame.image.load("Afbeeldingen/menuscreen.png")
 
     pygame.init()
 
@@ -44,29 +44,28 @@ def program():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 mainloop = False
-            elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE:
-                    print("Spatie")
-                    # playerAnt = input("Antwoord")
-                    # if playerAnt == ant:
-                    if cp == 1:
-                        playerOne.update()
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                print("Spatie")
+                # playerAnt = input("Antwoord")
+                # if playerAnt == ant:
+                if cp == 1:
+                    playerOne.update()
+                    cp += 1
+                elif cp == 2:
+                    playerTwo.update()
+                    if maxp > 2:
                         cp += 1
-                    elif cp == 2:
-                        playerTwo.update()
-                        if maxp > 2:
-                            cp += 1
-                        else:
-                            cp -= 1
-                    elif cp == 3:
-                        playerThree.update()
-                        if maxp > 3:
-                            cp += 1
-                        else:
-                            cp -= 2
-                    elif cp == 4:
-                        playerFour.update()
-                        cp -= 3
+                    else:
+                        cp -= 1
+                elif cp == 3:
+                    playerThree.update()
+                    if maxp > 3:
+                        cp += 1
+                    else:
+                        cp -= 2
+                elif cp == 4:
+                    playerFour.update()
+                    cp -= 3
         print(cp)
         screen.blit(background, (0,0))
         playerOne.draw(screen)
