@@ -6,16 +6,16 @@ clock = pygame.time.Clock()
 maxp = int(input("SELECTEER MAX AANTAL SPELERS"))
 
 class Player:
-    def __init__(self, x, y, r):
+    def __init__(self, x, y, image):
         self.x = x
         self.y = y
-        self.r = r
+        self.image = image
 
     def update(self):
         self.y -= 50
 
     def draw(self, screen):
-        pygame.draw.circle(screen, (0, 255, 0), (int(self.x), int(self.y)), int(self.r))
+        screen.blit(self.image, (self.x, self.y))
 
 
 
@@ -24,16 +24,20 @@ def program():
     height = 1080
     size = (width, height)
     background = pygame.image.load("Afbeeldingen/menuscreen.png")
+    img1 = pygame.image.load("Afbeeldingen/SP1.png")
+    img2 = pygame.image.load("Afbeeldingen/SP2.png")
+    img3 = pygame.image.load("Afbeeldingen/SP3.png")
+    img4 = pygame.image.load("Afbeeldingen/SP4.png")
 
     pygame.init()
 
     screen = pygame.display.set_mode(size, pygame.FULLSCREEN)
     font = pygame.font.Font(None, 30)
 
-    playerOne = Player(width * 0.2, height * 0.9, width * 0.1)
-    playerTwo = Player(width * 0.4, height * 0.9, width * 0.1)
-    playerThree = Player(width * 0.6, height * 0.9, width * 0.1)
-    playerFour = Player(width * 0.8, height * 0.9, width * 0.1)
+    playerOne = Player(width * 0.2, 900, img1)
+    playerTwo = Player(width * 0.4, 900, img2)
+    playerThree = Player(width * 0.6, 900, img3)
+    playerFour = Player(width * 0.8, 900, img4)
     ant = "1999"
     cp = 1
 
