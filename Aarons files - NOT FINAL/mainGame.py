@@ -3,7 +3,6 @@
 import pygame
 import time
 clock = pygame.time.Clock()
-maxp = int(input("SELECTEER MAX AANTAL SPELERS"))
 
 class Player:
     def __init__(self, x, y, image):
@@ -19,7 +18,7 @@ class Player:
 
 
 
-def program():
+def program(maxp):
     width = 1920
     height = 1080
     size = (width, height)
@@ -95,5 +94,3 @@ def program():
         clock.tick(60)
         pygame.display.flip()
 
-
-program()
