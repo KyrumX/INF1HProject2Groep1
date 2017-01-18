@@ -34,10 +34,18 @@ def program():
     screen = pygame.display.set_mode(size, pygame.FULLSCREEN)
     font = pygame.font.Font(None, 30)
 
-    playerOne = Player(width * 0.2, 900, img1)
-    playerTwo = Player(width * 0.4, 900, img2)
-    playerThree = Player(width * 0.6, 900, img3)
-    playerFour = Player(width * 0.8, 900, img4)
+    if maxp <= 2:
+        playerOne = Player(width * 0.2, 875, img1)
+        playerTwo = Player(width * 0.4, 875, img2)
+    elif maxp == 3:
+        playerOne = Player(width * 0.2, 875, img1)
+        playerTwo = Player(width * 0.4, 875, img2)
+        playerThree = Player(width * 0.6, 875, img3)
+    else:
+        playerOne = Player(width * 0.2, 875, img1)
+        playerTwo = Player(width * 0.4, 875, img2)
+        playerThree = Player(width * 0.6, 875, img3)
+        playerFour = Player(width * 0.8, 875, img4)
     ant = "1999"
     cp = 1
 
@@ -72,10 +80,18 @@ def program():
                     cp -= 3
         print(cp)
         screen.blit(background, (0,0))
-        playerOne.draw(screen)
-        playerTwo.draw(screen)
-        playerThree.draw(screen)
-        playerFour.draw(screen)
+        if maxp <= 2:
+            playerOne.draw(screen)
+            playerTwo.draw(screen)
+        elif maxp == 3:
+            playerOne.draw(screen)
+            playerTwo.draw(screen)
+            playerThree.draw(screen)
+        else:
+            playerOne.draw(screen)
+            playerTwo.draw(screen)
+            playerThree.draw(screen)
+            playerFour.draw(screen)
         clock.tick(60)
         pygame.display.flip()
 
