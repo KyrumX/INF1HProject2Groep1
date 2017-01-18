@@ -20,6 +20,39 @@ label2 = myfont.render('Spel sluiten', True, white)
 label3 = myfont2.render('Het Euromast spel', True, white)
 playgametext = myfont.render('Hier wordt het spel gespeeld!', True, white)
 
+class Button: # Button class. Nog toe te voegen: klik functie
+    def __init__(self, msg, fontsize, x, y, rectanglecolor=green, textcolor=black, h=100, w=600): # Optionele waardes hier zijn rectanglecolor, textcolor en de dimensies van de rectangle
+        self.msg = msg
+        self.fonttype = "Comic Sans MS"
+        self.textcolor = textcolor
+        self.rectanglecolor = rectanglecolor
+        self.fontsize = fontsize
+        self.x = x
+        self.y = y
+        self.w = w
+        self.h = h
+
+    def button(self): # de button functie zorgt ervoor dat de button getekend word met gecentreerde text
+        design = pygame.draw.rect(screen, self.rectanglecolor, [self.x, self.y, self.w, self.h])
+        myfont = pygame.font.SysFont(self.fonttype, self.fontsize)
+        label = myfont.render(self.msg, True, self.textcolor)
+        xcalc = ((design.right - design.left) / 2) + design.left
+        ycalc = -0.5 * self.fontsize + 40
+        if self.fontsize < 70:
+            y_is = design.top + ycalc
+        else:
+            ycalc = -1 * self.fontsize + 70
+            y_is = design.top + ycalc
+        div = int(myfont.size(self.msg)[0] / 2)
+        finalx = xcalc - div
+        labelpos = (finalx, y_is)
+        screen.blit(label, labelpos)
+
+
+def box(color, x, y, w, h): # Een box sprite
+    c = pygame.draw.rect(screen, color, [x, y, w, h])
+    return c
+
 def button(msg, x, y, w, h, ic, ac, action=None):
     mouse = pygame.mouse.get_ps()
     click = pygame.mouse.get_pressed()
@@ -43,6 +76,7 @@ while True:
         pygame.quit()
         sys.exit()
     if menu == True:
+        Button("Test Button Class", 70, 650, 780, black, white).button() # Om de button class te testen
         screen.blit(label3, (540,210))
         a = pygame.draw.rect(screen, (0, 255, 0), [650, 450, 600, 100])
         screen.blit(label, (830, 440))
