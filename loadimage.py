@@ -1,27 +1,22 @@
-import pygame, sys
+import pygame
 
-pygame.init()
-heigth = 640
-length = 480
-size = (length, heigth)
-DISPLAYSURF = pygame.display.set_mode(size, pygame.FULLSCREEN)
-
-
-black = (0,0,0)
 img = pygame.image.load('2sprites.png')
-imgx = 10
-imgy = 10
 
+black = (0, 0, 0)
+width = 640
+heigth = 480
+size = (width, heigth)
+screen = pygame.display.set_mode(size)
+screen.fill((black))
+running = 1
 
-while True:
-    DISPLAYSURF.fill(black)
-
-    DISPLAYSURF.blit(img, (imgx, imgy))
+while running:
+    screen.fill((black))
+    screen.blit(img,(0,0))
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
 
     pygame.display.flip()
-
 
