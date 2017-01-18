@@ -2,16 +2,8 @@
 
 import pygame
 import time
-c= 0
-b = 0
-questions = ["a", "b", "c"]
-answers = ["a", "b", "c"]
-levels = [0, 100, 200]
-
-class Tower:
-    def __init__(self):
-        self.levels[b]
-
+clock = pygame.time.Clock()
+maxp = int(input("SELECTEER MAX AANTAL SPELERS"))
 
 class Player:
     def __init__(self, x, y, r):
@@ -22,32 +14,19 @@ class Player:
     def update(self):
         self.y -= 50
 
-
-    def makequestion(question, array):
-        useranswer = input("{}".format(array[c]))
-        if useranswer == array[c]:
-            c += 1
-
     def draw(self, screen):
         pygame.draw.circle(screen, (0, 255, 0), (int(self.x), int(self.y)), int(self.r))
 
 
-def process_events():
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            # Give the signal to quit
-            return True
-
-    return False
 
 def program():
-    width = 640
-    height = 480
+    width = 1920
+    height = 1080
     size = (width, height)
 
     pygame.init()
 
-    screen = pygame.display.set_mode(size)
+    screen = pygame.display.set_mode(size, pygame.FULLSCREEN)
     font = pygame.font.Font(None, 30)
 
     playerOne = Player(width * 0.2, height * 0.9, width * 0.1)
@@ -55,59 +34,49 @@ def program():
     playerThree = Player(width * 0.6, height * 0.9, width * 0.1)
     playerFour = Player(width * 0.8, height * 0.9, width * 0.1)
     ant = "1999"
-    cp = 0
-    while not process_events():
+    cp = 1
+
+
+    mainloop = True
+    while mainloop:
+
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                # Give the signal to quit
+                mainloop = False
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    print("Spatie")
+                    if cp == 1:
+                        playerOne.update()
+                        cp += 1
+                    elif cp == 2:
+                        playerTwo.update()
+                        if maxp > 2:
+                            cp += 1
+                        else:
+                            cp -= 1
+                    elif cp == 3:
+                        playerThree.update()
+                        if maxp > 3:
+                            cp += 1
+                        else:
+                            cp -= 2
+                    elif cp == 4:
+                        playerFour.update()
+                        cp -= 3
+
+
+
+
+
         print(cp)
-        if playerOne.y < 0 or playerTwo.y < 0 or playerThree.y < 0 or playerFour.y < 0:
-            screen.fill((255, 255, 255))
-            pygame.display.flip()
-            time.sleep(5)
-            pygame.quit()
-        if cp == 0:
-            screen.fill((0, 0, 0))
-            playerOne.draw(screen)
-            playerTwo.draw(screen)
-            playerThree.draw(screen)
-            playerFour.draw(screen)
-            cp = 1
-        elif cp == 1:
-            #vraagAnt = input("Wat is het jaar waarin Aaron geboren is?")
-            #if vraagAnt == ant:
-            time.sleep(2)
-            playerOne.update()
-            screen.fill((0, 0, 0))
-            playerOne.draw(screen)
-            playerTwo.draw(screen)
-            playerThree.draw(screen)
-            playerFour.draw(screen)
-            cp = 2
-        elif cp == 2:
-            time.sleep(2)
-            playerTwo.update()
-            screen.fill((0, 0, 0))
-            playerOne.draw(screen)
-            playerTwo.draw(screen)
-            playerThree.draw(screen)
-            playerFour.draw(screen)
-            cp = 3
-        elif cp == 3:
-            time.sleep(2)
-            playerThree.update()
-            screen.fill((0, 0, 0))
-            playerOne.draw(screen)
-            playerTwo.draw(screen)
-            playerThree.draw(screen)
-            playerFour.draw(screen)
-            cp = 4
-        elif cp == 4:
-            time.sleep(2)
-            playerFour.update()
-            screen.fill((0, 0, 0))
-            playerOne.draw(screen)
-            playerTwo.draw(screen)
-            playerThree.draw(screen)
-            playerFour.draw(screen)
-            cp = 1
+        screen.fill((0, 0, 0))
+        playerOne.draw(screen)
+        playerTwo.draw(screen)
+        playerThree.draw(screen)
+        playerFour.draw(screen)
+        clock.tick(60)
         pygame.display.flip()
 
 
