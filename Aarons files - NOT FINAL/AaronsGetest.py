@@ -42,11 +42,12 @@ def program():
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                # Give the signal to quit
                 mainloop = False
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     print("Spatie")
+                    # playerAnt = input("Antwoord")
+                    # if playerAnt == ant:
                     if cp == 1:
                         playerOne.update()
                         cp += 1
@@ -65,11 +66,6 @@ def program():
                     elif cp == 4:
                         playerFour.update()
                         cp -= 3
-
-
-
-
-
         print(cp)
         screen.fill((0, 0, 0))
         playerOne.draw(screen)
