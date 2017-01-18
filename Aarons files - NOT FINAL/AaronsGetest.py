@@ -12,7 +12,7 @@ class Player:
         self.image = image
 
     def update(self):
-        self.y -= 50
+        self.y -= 67
 
     def draw(self, screen):
         screen.blit(self.image, (self.x, self.y))
@@ -23,7 +23,7 @@ def program():
     width = 1920
     height = 1080
     size = (width, height)
-    background = pygame.image.load("Afbeeldingen/menuscreen.png")
+    background = pygame.image.load("Afbeeldingen/gamebackground.png")
     img1 = pygame.image.load("Afbeeldingen/SP1.png")
     img2 = pygame.image.load("Afbeeldingen/SP2.png")
     img3 = pygame.image.load("Afbeeldingen/SP3.png")
@@ -35,17 +35,17 @@ def program():
     font = pygame.font.Font(None, 30)
 
     if maxp <= 2:
-        playerOne = Player(width * 0.2, 875, img1)
-        playerTwo = Player(width * 0.4, 875, img2)
+        playerOne = Player(550, 875, img1)
+        playerTwo = Player(550, 875, img2)
     elif maxp == 3:
-        playerOne = Player(width * 0.2, 875, img1)
-        playerTwo = Player(width * 0.4, 875, img2)
-        playerThree = Player(width * 0.6, 875, img3)
+        playerOne = Player(550, 875, img1)
+        playerTwo = Player(550, 875, img2)
+        playerThree = Player(550, 875, img3)
     else:
-        playerOne = Player(width * 0.2, 875, img1)
-        playerTwo = Player(width * 0.4, 875, img2)
-        playerThree = Player(width * 0.6, 875, img3)
-        playerFour = Player(width * 0.8, 875, img4)
+        playerOne = Player(550, 875, img1)
+        playerTwo = Player(550, 875, img2)
+        playerThree = Player(550, 875, img3)
+        playerFour = Player(550, 875, img4)
     ant = "1999"
     cp = 1
 
