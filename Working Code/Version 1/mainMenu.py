@@ -70,16 +70,16 @@ while True:
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
-        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1187 and mouse[0] < 1496 and mouse[1] > 285 and mouse[1] < 385 and menu == True:
+        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1310 and mouse[0] < 1645 and mouse[1] > 333 and mouse[1] < 420 and menu == True:
             menu = False
-        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1187 and mouse[0] < 1496 and mouse[1] > 430 and mouse[1] < 530 and menu == True:
+        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1310 and mouse[0] < 1645 and mouse[1] > 509 and mouse[1] < 599 and menu == True:
             pygame.quit()
             sys.exit()
-        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1168 and mouse[0] < 1235 and mouse[1] > 532 and mouse[1] < 591 and menu == False:
+        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1384 and mouse[0] < 1461 and mouse[1] > 617 and mouse[1] < 686 and menu == False:
             program(2)
-        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1291 and mouse[0] < 1363 and mouse[1] > 532 and mouse[1] < 591 and menu == False:
+        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1534 and mouse[0] < 1609 and mouse[1] > 617 and mouse[1] < 686 and menu == False:
             program(3)
-        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1419 and mouse[0] < 1489 and mouse[1] > 532 and mouse[1] < 591 and menu == False:
+        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1684 and mouse[0] < 1761 and mouse[1] > 617 and mouse[1] < 688 and menu == False:
             program(4)
     k = pygame.key.get_pressed()
     if k[K_ESCAPE]:
@@ -87,12 +87,12 @@ while True:
         sys.exit()
     if menu == True:
         background = pygame.image.load('Afbeeldingen/Menuscreen.png')
-        background = pygame.transform.scale(background, (1620, 900))
-        screen.blit(background, (100, 20))
-        Button("Spelen", 60, 1192, 284, green, darkgrey, h=102, w=309).button(35) # Om de button class te testen
-        Button("Afsluiten", 60, 1192, 432, green, darkgrey, h=102, w=309).button(35)  # Om de button class te testen
+        background = pygame.transform.scale(background, (1920, 1080))
+        screen.blit(background, (0, 0))
+        Button("Spelen", 60, 1310, 332, green, darkgrey, h=92, w=335).button(35) # Om de button class te testen
+        Button("Afsluiten", 60, 1310, 509, green, darkgrey, h=92, w=335).button(35)  # Om de button class te testen
     else:
         background = pygame.image.load('Afbeeldingen/playercount.png')
-        background = pygame.transform.scale(background, (1620, 900))
-        screen.blit(background, (0, 20))
+        background = pygame.transform.scale(background, (1920, 1080))
+        screen.blit(background, (0, 0))
     pygame.display.update()

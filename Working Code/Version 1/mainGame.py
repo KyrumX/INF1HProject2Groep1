@@ -7,6 +7,10 @@ import pygame
 from pygame.locals import *
 import time
 clock = pygame.time.Clock()
+# Fix voor het voorkomen van stretchen wat je resolutie verpest
+user32 = ctypes.windll.user32
+user32.SetProcessDPIAware()
+
 
 class Player:
     def __init__(self, x, y, image):
@@ -22,9 +26,6 @@ class Player:
 
 
 def program(maxp):
-    # Fix voor het voorkomen van stretchen wat je resolutie verpest
-    user32 = ctypes.windll.user32
-    user32.SetProcessDPIAware()
     width = 1920
     height = 1080
     size = (width, height)
