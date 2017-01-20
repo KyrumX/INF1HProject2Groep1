@@ -5,6 +5,8 @@ import pygame
 from pygame.locals import *
 import time
 import random
+import psycopg2
+from database import *
 
 clock = pygame.time.Clock()
 # Fix voor het voorkomen van stretchen wat je resolutie verpest
@@ -58,22 +60,31 @@ def program(maxp):
         playerThree = Player(981, 1007, img3)
     if maxp == 4:
         playerFour = Player(1062, 1007, img4)
-    screen.blit(main, (0, 0))
 
-    ant = "1999"
+    screen.blit(main, (0, 0))
     cp = 1
 
 
 
     mainloop = True
     while mainloop:
+        keuze = 16
+        black = (0, 0, 0)
+        labelvraag = font.render("Vraag:", True, black)
+        screen.blit(labelvraag, (7, 7))
+        vraag = str(interact_with_database("SELECT Question FROM QnA WHERE Question_ID = {}".format(keuze)))
+        labelshowvraag = font.render(vraag, True, black)
+        screen.blit(labelshowvraag, (7, 30))
         mouse = pygame.mouse.get_pos()
+
+        #Mainloop code for input
         k = pygame.key.get_pressed()
         if k[K_ESCAPE]:
             mainloop = False
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 mainloop = False
+            #elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 64 and mouse[0] < 188 and mouse[1] > 841 and mouse[1] < 958:
             elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1539 and mouse[0] < 1776 and mouse[1] > 434 and mouse[1] < 662:
                 cg = diceThrow()
                 if cg == 1:
@@ -82,8 +93,6 @@ def program(maxp):
                     screen.blit(background2, (0, 0))
                 else:
                     screen.blit(background3, (0, 0))
-                # playerAnt = input("Antwoord")
-                # if playerAnt == ant:
                 if cp == 1:
                     playerOne.update(cg)
                     # if playerOne.y == 5:
