@@ -5,7 +5,6 @@ import pygame
 from pygame.locals import *
 import time
 import random
-import textbox
 
 clock = pygame.time.Clock()
 # Fix voor het voorkomen van stretchen wat je resolutie verpest
