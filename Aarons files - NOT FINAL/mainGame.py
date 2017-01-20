@@ -24,7 +24,12 @@ class Player:
         self.image = image
 
     def update(self, cg):
-        self.y -= (69 * cg)
+        while cg > 0:
+            if self.y <= 386:
+
+                self.x = 940
+            self.y -= 69
+            cg -= 1
 
     def draw(self, screen):
         screen.blit(self.image, (self.x, self.y))
@@ -34,7 +39,10 @@ def program(maxp):
     width = 1920
     height = 1080
     size = (width, height)
-    background = pygame.image.load("Afbeeldingen/gameboard.png")
+    background1 = pygame.image.load("Afbeeldingen/gameboard.png")
+    background2 = pygame.image.load("Afbeeldingen/gameboard2.png")
+    background3 = pygame.image.load("Afbeeldingen/gameboard3.png")
+    main = pygame.image.load("Afbeeldingen/gameboardMain.png")
     img1 = pygame.image.load("Afbeeldingen/SP1.png")
     img2 = pygame.image.load("Afbeeldingen/SP2.png")
     img3 = pygame.image.load("Afbeeldingen/SP3.png")
@@ -51,6 +59,7 @@ def program(maxp):
         playerThree = Player(981, 1007, img3)
     if maxp == 4:
         playerFour = Player(1062, 1007, img4)
+    screen.blit(main, (0, 0))
 
     ant = "1999"
     cp = 1
@@ -66,8 +75,14 @@ def program(maxp):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 mainloop = False
-            elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1482 and mouse[0] < 1733 and mouse[1] > 425 and mouse[1] < 646:
+            elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1539 and mouse[0] < 1776 and mouse[1] > 434 and mouse[1] < 662:
                 cg = diceThrow()
+                if cg == 1:
+                    screen.blit(background1, (0, 0))
+                elif cg == 2:
+                    screen.blit(background2, (0, 0))
+                else:
+                    screen.blit(background3, (0, 0))
                 # playerAnt = input("Antwoord")
                 # if playerAnt == ant:
                 if cp == 1:
@@ -91,7 +106,6 @@ def program(maxp):
                     playerFour.update(cg)
                     cp -= 3
         print(cp)
-        screen.blit(background, (0,0))
         if maxp <= 2:
             playerOne.draw(screen)
             playerTwo.draw(screen)
