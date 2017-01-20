@@ -24,7 +24,7 @@ class Player:
         self.image = image
 
     def update(self, cg):
-        self.y -= (67 * cg)
+        self.y -= (69 * cg)
 
     def draw(self, screen):
         screen.blit(self.image, (self.x, self.y))
@@ -34,7 +34,7 @@ def program(maxp):
     width = 1920
     height = 1080
     size = (width, height)
-    background = pygame.image.load("Afbeeldingen/background.png")
+    background = pygame.image.load("Afbeeldingen/gameboard.png")
     img1 = pygame.image.load("Afbeeldingen/SP1.png")
     img2 = pygame.image.load("Afbeeldingen/SP2.png")
     img3 = pygame.image.load("Afbeeldingen/SP3.png")
@@ -44,18 +44,14 @@ def program(maxp):
     screen = pygame.display.set_mode(size, pygame.FULLSCREEN)
     font = pygame.font.Font(None, 30)
 
-    if maxp <= 2:
-        playerOne = Player(680, 1010, img1)
-        playerTwo = Player(851, 1010, img2)
-    elif maxp == 3:
-        playerOne = Player(680, 1010, img1)
-        playerTwo = Player(851, 1010, img2)
-        playerThree = Player(1036, 1010, img3)
-    else:
-        playerOne = Player(680, 1010, img1)
-        playerTwo = Player(851, 1010, img2)
-        playerThree = Player(1036, 1010, img3)
-        playerFour = Player(1213, 1010, img4)
+    if maxp >= 2:
+        playerOne = Player(819, 1007, img1)
+        playerTwo = Player(900, 1007, img2)
+    if maxp >= 3:
+        playerThree = Player(981, 1007, img3)
+    if maxp == 4:
+        playerFour = Player(1062, 1007, img4)
+
     ant = "1999"
     cp = 1
 
@@ -70,7 +66,7 @@ def program(maxp):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 mainloop = False
-            elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1486 and mouse[0] < 1736 and mouse[1] > 422 and mouse[1] < 651:
+            elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1482 and mouse[0] < 1733 and mouse[1] > 425 and mouse[1] < 646:
                 cg = diceThrow()
                 # playerAnt = input("Antwoord")
                 # if playerAnt == ant:
