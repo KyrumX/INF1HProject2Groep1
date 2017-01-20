@@ -5,6 +5,7 @@ import pygame
 from pygame.locals import *
 import time
 import random
+import textbox
 
 clock = pygame.time.Clock()
 # Fix voor het voorkomen van stretchen wat je resolutie verpest
@@ -57,6 +58,7 @@ def program(maxp):
         playerFour = Player(1213, 1010, img4)
     ant = "1999"
     cp = 1
+
 
 
     mainloop = True
