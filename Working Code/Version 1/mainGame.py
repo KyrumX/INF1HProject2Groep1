@@ -43,7 +43,7 @@ class Player:
         win3 = pygame.image.load("Afbeeldingen/SP3winner.png")
         win4 = pygame.image.load("Afbeeldingen/SP4winner.png")
 
-        if self.y < 50:
+        if self.y < 41:
             if self.player == 1:
                 self.image = win1
             elif self.player == 2:
