@@ -33,8 +33,23 @@ class Player:
             cg -= 1
 
     def draw(self, screen):
-        screen.blit(self.image, (self.x, self.y))
+        img1 = pygame.image.load("Afbeeldingen/SP1.png")
+        img2 = pygame.image.load("Afbeeldingen/SP2.png")
+        img3 = pygame.image.load("Afbeeldingen/SP3.png")
+        img4 = pygame.image.load("Afbeeldingen/SP4.png")
 
+        win1 = pygame.image.load("Afbeeldingen/SP1winner.png")
+        win2 = pygame.image.load("Afbeeldingen/SP2winner.png")
+        win3 = pygame.image.load("Afbeeldingen/SP3winner.png")
+        win4 = pygame.image.load("Afbeeldingen/SP4winner.png")
+
+        if self.y < 50:
+            if self.player == 1:
+                self.image = win1
+            elif self.player == 2:
+                self.image = win2
+                print("Yes")
+        screen.blit(self.image, (self.x, self.y))
 
 def program(maxp):
     width = 1920
