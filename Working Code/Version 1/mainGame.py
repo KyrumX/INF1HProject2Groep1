@@ -22,6 +22,7 @@ class Player:
     def __init__(self, x, y, image, player):
         self.x = x
         self.y = y
+        self.player = player
         self.image = image
 
     def update(self, cg):
