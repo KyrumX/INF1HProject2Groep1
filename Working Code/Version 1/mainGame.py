@@ -19,7 +19,7 @@ def diceThrow():
     return throw
 
 class Player:
-    def __init__(self, x, y, image):
+    def __init__(self, x, y, image, player):
         self.x = x
         self.y = y
         self.image = image
@@ -48,7 +48,10 @@ class Player:
                 self.image = win1
             elif self.player == 2:
                 self.image = win2
-                print("Yes")
+            elif self.player == 3:
+                self.image = win3
+            else:
+                self.image = win4
         screen.blit(self.image, (self.x, self.y))
 
 def program(maxp):
@@ -69,12 +72,12 @@ def program(maxp):
     font = pygame.font.Font(None, 30)
 
     if maxp >= 2:
-        playerOne = Player(819, 1007, img1)
-        playerTwo = Player(900, 1007, img2)
+        playerOne = Player(819, 1007, img1, 1)
+        playerTwo = Player(900, 1007, img2, 2)
     if maxp >= 3:
-        playerThree = Player(981, 1007, img3)
+        playerThree = Player(981, 1007, img3, 3)
     if maxp == 4:
-        playerFour = Player(1062, 1007, img4)
+        playerFour = Player(1062, 1007, img4, 4)
 
     screen.blit(main, (0, 0))
     cp = 1
