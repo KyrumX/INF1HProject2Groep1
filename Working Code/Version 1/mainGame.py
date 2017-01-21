@@ -46,13 +46,16 @@ class Player:
         if self.y < 41:
             if self.player == 1:
                 self.image = win1
+                print(self.y)
             elif self.player == 2:
                 self.image = win2
+                print(self.y)
             elif self.player == 3:
                 self.image = win3
             else:
                 self.image = win4
         screen.blit(self.image, (self.x, self.y))
+
 
 def program(maxp):
     width = 1920
@@ -71,6 +74,12 @@ def program(maxp):
     screen = pygame.display.set_mode(size, pygame.FULLSCREEN)
     font = pygame.font.Font(None, 30)
 
+    def text(msg, pos, size=30):
+        black = (0, 0, 0)
+        font = pygame.font.Font(None, size)
+        label = font.render(msg, True, black)
+        screen.blit(label, pos)
+
     if maxp >= 2:
         playerOne = Player(819, 1007, img1, 1)
         playerTwo = Player(900, 1007, img2, 2)
@@ -83,18 +92,35 @@ def program(maxp):
     cp = 1
 
 
-
+    winnerfound = False
     mainloop = True
     while mainloop:
-        keuze = 16
-        black = (0, 0, 0)
-        labelvraag = font.render("Vraag:", True, black)
-        screen.blit(labelvraag, (7, 7))
-        vraag = str(interact_with_database("SELECT Question FROM QnA WHERE Question_ID = {}".format(keuze)))
-        labelshowvraag = font.render(vraag, True, black)
-        screen.blit(labelshowvraag, (7, 30))
+        if winnerfound == False:
+            keuze = 16
+            black = (0, 0, 0)
+            labelvraag = font.render("Vraag:", True, black)
+            screen.blit(labelvraag, (7, 7))
+            vraag = interact_with_database("SELECT Question FROM QnA WHERE Question_ID = {}".format(keuze))
+            vraag = str(vraag[0][0])
+            labelshowvraag = font.render(vraag, True, black)
+            screen.blit(labelshowvraag, (7, 30))
+        else:
+            text("De winnaar is {}!".format(winner), (7, 7), 60)
+            mainbutton = pygame.image.load("Afbeeldingen/mainbutton.png")
+            screen.blit(mainbutton, (1500, 50))
+            print(mouse)
+            for event in pygame.event.get():
+                if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1502 and mouse[0] < 1798 and mouse[1] > 53 and mouse[1] < 149:
+                    winnerfound = False
+                    if maxp >= 2:
+                        playerOne = Player(819, 1007, img1, 1)
+                        playerTwo = Player(900, 1007, img2, 2)
+                    if maxp >= 3:
+                        playerThree = Player(981, 1007, img3, 3)
+                    if maxp == 4:
+                        playerFour = Player(1062, 1007, img4, 4)
+                    screen.blit(main, (0, 0))
         mouse = pygame.mouse.get_pos()
-
         #Mainloop code for input
         k = pygame.key.get_pressed()
         if k[K_ESCAPE]:
@@ -104,33 +130,45 @@ def program(maxp):
                 mainloop = False
             #elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 64 and mouse[0] < 188 and mouse[1] > 841 and mouse[1] < 958:
             elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1539 and mouse[0] < 1776 and mouse[1] > 434 and mouse[1] < 662:
-                cg = diceThrow()
-                if cg == 1:
-                    screen.blit(background1, (0, 0))
-                elif cg == 2:
-                    screen.blit(background2, (0, 0))
-                else:
-                    screen.blit(background3, (0, 0))
-                if cp == 1:
-                    playerOne.update(cg)
-                    # if playerOne.y == 5:
-                    #     mainloop = False
-                    cp += 1
-                elif cp == 2:
-                    playerTwo.update(cg)
-                    if maxp > 2:
-                        cp += 1
+                if winnerfound == False:
+                    cg = diceThrow()
+                    if cg == 1:
+                        screen.blit(background1, (0, 0))
+                    elif cg == 2:
+                        screen.blit(background2, (0, 0))
                     else:
-                        cp -= 1
-                elif cp == 3:
-                    playerThree.update(cg)
-                    if maxp > 3:
+                        screen.blit(background3, (0, 0))
+                    if cp == 1:
+                        playerOne.update(cg)
                         cp += 1
-                    else:
-                        cp -= 2
-                elif cp == 4:
-                    playerFour.update(cg)
-                    cp -= 3
+                        if playerOne.y < 41:
+                            winner = "Player 1"
+                            winnerfound = True
+                    elif cp == 2:
+                        playerTwo.update(cg)
+                        if maxp > 2:
+                            cp += 1
+                        else:
+                            cp -= 1
+                        if playerTwo.y < 41:
+                            winner = "Player 2"
+                            winnerfound = True
+                    elif cp == 3:
+                        playerThree.update(cg)
+                        if maxp > 3:
+                            cp += 1
+                        else:
+                            cp -= 2
+                        if playerThree.y < 41:
+                            winnerfound = True
+                            winner = "Player 3"
+                    elif cp == 4:
+                        playerFour.update(cg)
+                        cp -= 3
+                        if playerFour.y < 41:
+                            winner = "Player 4"
+                            winnerfound = True
+
         print(cp)
         if maxp <= 2:
             playerOne.draw(screen)
