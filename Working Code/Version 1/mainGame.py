@@ -26,9 +26,8 @@ class Player:
         self.image = image
 
     def update(self, cg):
-        while cg > 0:
+        while cg > 0 and self.y > 0:
             if self.y <= 386:
-
                 self.x = 940
             self.y -= 69
             cg -= 1
