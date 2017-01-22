@@ -5,12 +5,13 @@ from pygame.locals import *
 pygame.init()
 pygame.font.init()
 black = (0, 0, 0)
-green = (0, 255, 0)
+green = (47, 214, 127)
 red = (255, 0, 0)
 white = (255, 255, 255)
+darkgrey = (95, 77, 77)
 
 resolution = (1920, 1080)
-screen = pygame.display.set_mode(resolution, pygame.FULLSCREEN)
+screen = pygame.display.set_mode(resolution, pygame.HWSURFACE | pygame.DOUBLEBUF | pygame.RESIZABLE)
 pygame.display.set_caption("Euromast Spel")
 
 myfont = pygame.font.SysFont('Comic Sans MS', 70)
@@ -32,12 +33,12 @@ class Button: # Button class. Nog toe te voegen: klik functie
         self.w = w
         self.h = h
 
-    def button(self): # de button functie zorgt ervoor dat de button getekend word met gecentreerde text
+    def button(self, scalehelper=40): # de button functie zorgt ervoor dat de button getekend word met gecentreerde text
         design = pygame.draw.rect(screen, self.rectanglecolor, [self.x, self.y, self.w, self.h])
         myfont = pygame.font.SysFont(self.fonttype, self.fontsize)
         label = myfont.render(self.msg, True, self.textcolor)
         xcalc = ((design.right - design.left) / 2) + design.left
-        ycalc = -0.5 * self.fontsize + 40
+        ycalc = -0.5 * self.fontsize + scalehelper
         if self.fontsize < 70:
             y_is = design.top + ycalc
         else:
@@ -48,10 +49,11 @@ class Button: # Button class. Nog toe te voegen: klik functie
         labelpos = (finalx, y_is)
         screen.blit(label, labelpos)
 
-
-def box(color, x, y, w, h): # Een box sprite
-    c = pygame.draw.rect(screen, color, [x, y, w, h])
-    return c
+def drawtext(msg, fontsize, textcolor, x, y):
+    myfont = pygame.font.SysFont("Comic Sans MS", fontsize)
+    label = myfont.render(msg, True, textcolor)
+    labelpos = (x, y)
+    screen.blit(label, labelpos)
 
 def button(msg, x, y, w, h, ic, ac, action=None):
     mouse = pygame.mouse.get_ps()
@@ -66,24 +68,28 @@ while True:
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
-        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 650 and mouse[0] < 1250 and mouse[1] > 650 and mouse[1] < 750:
+        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1310 and mouse[0] < 1645 and mouse[1] > 332 and mouse[1] < 423 and menu == True:
+            menu = False
+        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1310 and mouse[0] < 1645 and mouse[1] > 510 and mouse[1] < 601 and menu == True:
             pygame.quit()
             sys.exit()
-        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 650 and mouse[0] < 1250 and mouse[1] > 450 and mouse[1] < 550:
-            menu = False
+        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1382 and mouse[0] < 1461 and mouse[1] > 612 and mouse[1] < 690 and menu == False:
+            maxp = 2
+        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1530 and mouse[0] < 1614 and mouse[1] > 612 and mouse[1] < 690 and menu == False:
+            maxp = 3
+        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1680 and mouse[0] < 1764 and mouse[1] > 612 and mouse[1] < 690 and menu == False:
+            maxp = 4
     k = pygame.key.get_pressed()
     if k[K_ESCAPE]:
         pygame.quit()
         sys.exit()
     if menu == True:
-        Button("Test Button Class", 70, 650, 780, black, white).button() # Om de button class te testen
-        screen.blit(label3, (540,210))
-        a = pygame.draw.rect(screen, (0, 255, 0), [650, 450, 600, 100])
-        screen.blit(label, (830, 440))
-        b = pygame.draw.rect(screen, red, [650, 650, 600, 100])
-        screen.blit(label2, (760, 640))
+        background = pygame.image.load('Menuscreen.png')
+        background = pygame.transform.scale(background, (1920, 1080))
+        screen.blit(background, (0, 0))
+        Button("Spelen", 60, 1294, 316, green, darkgrey, h=122, w=366).button(40) # Om de button class te testen
+        Button("Afsluiten", 60, 1294, 494, green, darkgrey, h=122, w=366).button(50)  # Om de button class te testen
     else:
-        screen.fill(green)
-        screen.blit(playgametext, (540, 210))
-
+        background = pygame.image.load('playercount.png')
+        screen.blit(background, (0, 0))
     pygame.display.update()

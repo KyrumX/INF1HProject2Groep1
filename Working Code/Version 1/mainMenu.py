@@ -72,8 +72,6 @@ menu = True
 clicked = False
 while True:
     mouse = pygame.mouse.get_pos()
-    print(mouse)
-
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
