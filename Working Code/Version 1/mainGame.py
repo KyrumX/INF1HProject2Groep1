@@ -18,6 +18,12 @@ def diceThrow():
     throw = random.choice(gooi)
     return throw
 
+def getQuestion():
+    questionList = get_questions()
+    questionPicked = random.choice(questionList)
+    questionID = questionPicked[0]
+    return questionID
+
 class Player:
     def __init__(self, x, y, image, player):
         self.x = x
@@ -54,6 +60,7 @@ class Player:
 
 
 def program(maxp):
+    black = (0, 0, 0)
     width = 1920
     height = 1080
     size = (width, height)
@@ -116,6 +123,7 @@ def program(maxp):
                         winnerfound = False
                         program(maxp)
                 pygame.display.update()
+
         #Questions
         # Dit moet er gebeuren:
         # 1. check categorie van de speler
@@ -136,14 +144,21 @@ def program(maxp):
         #         #
         #en dan de andere spelers
 
-        keuze = 16
-        black = (0, 0, 0)
         labelvraag = font.render("Vraag:", True, black)
-        screen.blit(labelvraag, (7, 7))
-        vraag = interact_with_database("SELECT Question FROM QnA WHERE Question_ID = {}".format(keuze))
-        vraag = str(vraag[0][0])
+        randomQuestionID = getQuestion()
+        vraag = interact_with_database("SELECT Question FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
         labelshowvraag = font.render(vraag, True, black)
+        optie1 = interact_with_database("SELECT awnser1 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
+        optie2 = interact_with_database("SELECT awnser2 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
+        optie3 = interact_with_database("SELECT awnser3 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
+        labelOptie1 = font.render(optie1, True, black)
+        labelOptie2 = font.render(optie2, True, black)
+        labelOptie3 = font.render(optie3, True, black)
+        screen.blit(labelvraag, (7, 7))
         screen.blit(labelshowvraag, (7, 30))
+        screen.blit(labelOptie1, (7, 380))
+        screen.blit(labelOptie2, (7, 410))
+        screen.blit(labelOptie3, (7, 440))
         antwoord = "Karel"
         ant = "Karel"
         dobbelloop = False
@@ -170,6 +185,8 @@ def program(maxp):
                 cp -= 3
         else:
             dobbelloop = True
+
+
 
         #Unlock de dobbelsteen
         while dobbelloop == True:

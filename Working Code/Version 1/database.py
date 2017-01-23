@@ -1,5 +1,5 @@
 import psycopg2
-
+import random
 
 # Use the database
 def interact_with_database(command):
@@ -54,3 +54,55 @@ def login():
         print("De ingevoerde wachtwoord is verkeerd")
     else:
         print("Je bent ingelogd!")
+
+
+def interact_with_database2(command):
+    # Connect and set up cursor
+    connection = psycopg2.connect("dbname=sjors user=sjors")
+    cursor = connection.cursor()
+
+    # Execute the command
+    cursor.execute(command)
+    connection.commit()
+
+    # Save results
+    results = None
+    try:
+        results = cursor.fetchall()
+    except psycopg2.ProgrammingError:
+        # Nothing to fetch
+        pass
+
+    # Close connection
+    cursor.close()
+    connection.close()
+
+    return results
+
+    # !/usr/bin/python
+    # import the desired package
+
+
+
+def get_questions():
+    # Open database connection
+    db = psycopg2.connect("dbname='project2' user='postgres' host='localhost' password='kaas123'")
+
+    # prepare a cursor object using cursor() method
+    cursor = db.cursor()
+
+    # execute SQL query using execute() method.
+    cursor.execute("SELECT Question_ID FROM qna WHERE Question_ID >= 16 AND Question_ID < 44")
+
+
+    # OR use fetchall() method to fetch multiple rows and store the result in a list variable.
+    data = cursor.fetchall()
+
+    return data
+
+    # disconnect from server
+    db.close()
+
+
+
+
