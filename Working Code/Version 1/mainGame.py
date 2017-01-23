@@ -61,6 +61,8 @@ class Player:
 
 def program(maxp):
     black = (0, 0, 0)
+    red = (255, 0, 0)
+    green = (0, 255, 0)
     width = 1920
     height = 1080
     size = (width, height)
@@ -125,27 +127,18 @@ def program(maxp):
                         program(maxp)
                 pygame.display.update()
 
-        #Questions
-        # Dit moet er gebeuren:
-        # 1. check categorie van de speler
-        # 2. pak een random vraag
-        # 3. pak de 3 antwoorden die bij de vraag horen
-        # 4. print de vraag
-        # 5. check of de speler A, B, C klikt
-        # 6. check of goedAnt = playerAnt
-        # 7. Proceed
-        # if cp == 1:
-        #     if playerOne.cat == ...
-        #         #Roep lijst aan van alle vragen van die categorie
-        #     elif playerOne.cat == ...
-        #         #
-        #     elif playerOne.cat == ...
-        #         #
-        #     else:
-        #         #
-        #en dan de andere spelers
+        if cp == 1:
+            questionCat = "Sport"
+        elif cp == 2:
+            questionCat = "Entertainment"
+        elif cp == 3:
+            questionCat = "History"
+        else:
+            questionCat = "Geography"
 
-        labelvraag = font.render("Vraag:", True, black)
+        labelCP = font.render("Speler " + str(cp) + " is.", True, black)
+        labelCat = font.render("De categorie is: " + questionCat, True, black)
+        labelQw = font.render("Beantwoord de onderstaande vraag correct:", True, black)
         randomQuestionID = getQuestion()
         vraag = interact_with_database("SELECT Question FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
         labelshowvraag = font.render(vraag, True, black)
@@ -156,8 +149,10 @@ def program(maxp):
         labelOptie2 = font.render(optie2, True, black)
         labelOptie3 = font.render(optie3, True, black)
         screen.blit(main, (0, 0))
-        screen.blit(labelvraag, (7, 7))
-        screen.blit(labelshowvraag, (7, 30))
+        screen.blit(labelCP, (7, 7))
+        screen.blit(labelCat, (7, 30))
+        screen.blit(labelQw, (7, 80))
+        screen.blit(labelshowvraag, (7, 100))
         screen.blit(labelOptie1, (7, 380))
         screen.blit(labelOptie2, (7, 410))
         screen.blit(labelOptie3, (7, 440))
@@ -202,6 +197,10 @@ def program(maxp):
 
 
         if questionCorrect != cpKeuze:
+            questionFalse = font.render("Uw keuze was incorrect.", True, red)
+            screen.blit(questionFalse, (7, 500))
+            pygame.display.update()
+            time.sleep(3)
             if cp == 1:
                 cp += 1
             elif cp == 2:
@@ -217,6 +216,11 @@ def program(maxp):
             elif cp == 4:
                 cp -= 3
         else:
+            questionTrue = font.render("Uw keuze was correct.", True, green)
+            continueDobbel = font.render("U kunt nu de dobbelsteen gooien.", True, black)
+            screen.blit(questionTrue, (7, 500))
+            screen.blit(continueDobbel, (7, 525))
+            pygame.display.update()
             dobbelloop = True
 
 
