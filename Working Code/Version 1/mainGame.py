@@ -162,10 +162,18 @@ def program(maxp):
         screen.blit(labelOptie2, (7, 410))
         screen.blit(labelOptie3, (7, 440))
         dobbelloop = False
-        playerOne.draw(screen)
-        playerTwo.draw(screen)
-        playerThree.draw(screen)
-        playerFour.draw(screen)
+        if maxp <= 2:
+            playerOne.draw(screen)
+            playerTwo.draw(screen)
+        elif maxp == 3:
+            playerOne.draw(screen)
+            playerTwo.draw(screen)
+            playerThree.draw(screen)
+        else:
+            playerOne.draw(screen)
+            playerTwo.draw(screen)
+            playerThree.draw(screen)
+            playerFour.draw(screen)
         pygame.display.update()
         questionCorrect = interact_with_database("SELECT correct_awnser FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
         questionABC = True
