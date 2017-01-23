@@ -18,8 +18,8 @@ def diceThrow():
     throw = random.choice(gooi)
     return throw
 
-def getQuestion():
-    questionList = get_questions()
+def getQuestion(questionCat):
+    questionList = get_questions(questionCat)
     questionPicked = random.choice(questionList)
     questionID = questionPicked[0]
     return questionID
@@ -139,7 +139,7 @@ def program(maxp):
         labelCP = font.render("Speler " + str(cp) + " is.", True, black)
         labelCat = font.render("De categorie is: " + questionCat, True, black)
         labelQw = font.render("Beantwoord de onderstaande vraag correct:", True, black)
-        randomQuestionID = getQuestion()
+        randomQuestionID = getQuestion(questionCat)
         vraag = interact_with_database("SELECT Question FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
         labelshowvraag = font.render(vraag, True, black)
         optie1 = interact_with_database("SELECT awnser1 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))

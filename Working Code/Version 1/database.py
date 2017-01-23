@@ -84,15 +84,15 @@ def interact_with_database2(command):
 
 
 
-def get_questions():
+def get_questions(questionCat):
     # Open database connection
-    db = psycopg2.connect("dbname='project2' user='postgres' host='localhost' password='kaas123'")
+    db = psycopg2.connect("dbname='project22' user='postgres' host='localhost' password='kaas123'")
 
     # prepare a cursor object using cursor() method
     cursor = db.cursor()
 
     # execute SQL query using execute() method.
-    cursor.execute("SELECT Question_ID FROM qna WHERE Question_ID >= 16 AND Question_ID < 44")
+    cursor.execute("SELECT Question_ID FROM test WHERE question_catagory = '{}'" .format(questionCat))
 
 
     # OR use fetchall() method to fetch multiple rows and store the result in a list variable.
