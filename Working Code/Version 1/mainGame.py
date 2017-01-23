@@ -24,6 +24,7 @@ def getQuestion(questionCat):
     questionID = questionPicked[0]
     return questionID
 
+
 class Player:
     def __init__(self, x, y, image, player):
         self.x = x
@@ -173,8 +174,13 @@ def program(maxp):
         questionCorrect = interact_with_database("SELECT correct_awnser FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
         questionABC = True
 
+
+
+        #Start timer
+        start_ticks = pygame.time.get_ticks()
         #Check gebruikers antwoord bij MEERKEUZEvraag
         while questionABC == True:
+            seconds = (pygame.time.get_ticks() - start_ticks) / 1000
             mouse = pygame.mouse.get_pos()
             for event in pygame.event.get():
                 print(mouse)
@@ -192,6 +198,27 @@ def program(maxp):
                     print("C")
                     cpKeuze = "C"
                     questionABC = False
+            if seconds > 50:
+                cpKeuze = " "
+                questionABC = False
+            elif seconds <= 50:
+                screen.blit(main, (0, 0))
+                screen.blit(labelCP, (7, 7))
+                screen.blit(labelCat, (7, 30))
+                screen.blit(labelQw, (7, 80))
+                screen.blit(labelshowvraag, (7, 100))
+                screen.blit(labelOptie1, (7, 380))
+                screen.blit(labelOptie2, (7, 410))
+                screen.blit(labelOptie3, (7, 440))
+                playerOne.draw(screen)
+                playerTwo.draw(screen)
+                playerThree.draw(screen)
+                playerFour.draw(screen)
+                timerLabel = font.render("Timer: "+ str(seconds), True, black)
+                screen.blit(timerLabel, (7, 330))
+                pygame.display.update()
+
+
 
 
 
