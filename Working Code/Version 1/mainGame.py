@@ -98,6 +98,7 @@ def program(maxp):
     winnerfound = False
     mainloop = True
     x = True
+    questionAnswered = False
 
     while mainloop:
         #Exit:
@@ -154,21 +155,45 @@ def program(maxp):
         labelOptie1 = font.render(optie1, True, black)
         labelOptie2 = font.render(optie2, True, black)
         labelOptie3 = font.render(optie3, True, black)
+        screen.blit(main, (0, 0))
         screen.blit(labelvraag, (7, 7))
         screen.blit(labelshowvraag, (7, 30))
         screen.blit(labelOptie1, (7, 380))
         screen.blit(labelOptie2, (7, 410))
         screen.blit(labelOptie3, (7, 440))
-        antwoord = "Karel"
-        ant = "Karel"
         dobbelloop = False
         playerOne.draw(screen)
         playerTwo.draw(screen)
         playerThree.draw(screen)
         playerFour.draw(screen)
         pygame.display.update()
+        questionCorrect = interact_with_database("SELECT correct_awnser FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
+        questionABC = True
 
-        if antwoord != ant:
+        #Check gebruikers antwoord bij MEERKEUZEvraag
+        while questionABC == True:
+            mouse = pygame.mouse.get_pos()
+            for event in pygame.event.get():
+                print(mouse)
+                if event.type == pygame.QUIT:
+                    mainloop = False
+                elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 65 and mouse[0] < 190 and mouse[1] > 842 and mouse[1] < 959:
+                    print("A")
+                    cpKeuze = "A"
+                    questionABC = False
+                elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 211 and mouse[0] < 332 and mouse[1] > 842 and mouse[1] < 959:
+                    print("B")
+                    cpKeuze = "B"
+                    questionABC = False
+                elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 357 and mouse[0] < 482 and mouse[1] > 842 and mouse[1] < 959:
+                    print("C")
+                    cpKeuze = "C"
+                    questionABC = False
+
+
+
+
+        if questionCorrect != cpKeuze:
             if cp == 1:
                 cp += 1
             elif cp == 2:
@@ -190,12 +215,12 @@ def program(maxp):
 
         #Unlock de dobbelsteen
         while dobbelloop == True:
-            mouse = pygame.mouse.get_pos()
             #Mainloop code for input
             k = pygame.key.get_pressed()
             if k[K_ESCAPE]:
                 mainloop = False
             for event in pygame.event.get():
+                mouse = pygame.mouse.get_pos()
                 if event.type == pygame.QUIT:
                     mainloop = False
                 #elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 64 and mouse[0] < 188 and mouse[1] > 841 and mouse[1] < 958:
