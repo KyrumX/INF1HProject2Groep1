@@ -8,6 +8,7 @@ import random
 import psycopg2
 from database import *
 import sys
+from multipleLines import *
 
 clock = pygame.time.Clock()
 # Fix voor het voorkomen van stretchen wat je resolutie verpest
@@ -150,6 +151,26 @@ def program(maxp):
         screen.blit(labelCP, (7, 7))
         screen.blit(labelCat, (7, 30))
         screen.blit(labelQw, (7, 80))
+
+        # rip = "Na 1872 is de stad Rotterdam snel groot geworden, Pieter Caland had een plan om Rotterdam met de zee te verbinden. Hoe noemde hij die verbinding?"
+        # x = wrapline(rip, font, 500)
+        # lenx = len(x)
+        # if lenx > 0:
+        #     g = font.render(x[0], True, red)
+        #     screen.blit(g, (7, 7))
+        #     pygame.display.update()
+        #     if lenx > 1:
+        #         g = font.render(x[1], True, red)
+        #         screen.blit(g, (7, 25))
+        #         pygame.display.update()
+        #         if lenx > 2:
+        #             g = font.render(x[2], True, red)
+        #             screen.blit(g, (7, 42))
+        #             pygame.display.update()
+
+
+
+
         if maxp <= 2:
             playerOne.draw(screen)
             playerTwo.draw(screen)
