@@ -1,6 +1,9 @@
 from itertools import chain
 import pygame
 
+""" Dit is een script gemaakt door iemand anders, niet door ons.
+"""
+
 clock = pygame.time.Clock()
 def truncline(text, font, maxwidth):
         real=len(text)       
