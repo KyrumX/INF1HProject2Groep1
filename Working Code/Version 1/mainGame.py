@@ -101,7 +101,9 @@ def program(maxp):
     winnerfound = False
     mainloop = True
     x = True
-    questionAnswered = False
+    dobbelloop = True
+    questionABC = False
+
 
     while mainloop:
         #Exit:
@@ -140,24 +142,10 @@ def program(maxp):
         labelCP = font.render("Speler " + str(cp) + " is.", True, black)
         labelCat = font.render("De categorie is: " + questionCat, True, black)
         labelQw = font.render("Beantwoord de onderstaande vraag correct:", True, black)
-        randomQuestionID = getQuestion(questionCat)
-        vraag = interact_with_database("SELECT Question FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
-        labelshowvraag = font.render(vraag, True, black)
-        optie1 = interact_with_database("SELECT awnser1 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
-        optie2 = interact_with_database("SELECT awnser2 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
-        optie3 = interact_with_database("SELECT awnser3 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
-        labelOptie1 = font.render(optie1, True, black)
-        labelOptie2 = font.render(optie2, True, black)
-        labelOptie3 = font.render(optie3, True, black)
         screen.blit(main, (0, 0))
         screen.blit(labelCP, (7, 7))
         screen.blit(labelCat, (7, 30))
         screen.blit(labelQw, (7, 80))
-        screen.blit(labelshowvraag, (7, 100))
-        screen.blit(labelOptie1, (7, 380))
-        screen.blit(labelOptie2, (7, 410))
-        screen.blit(labelOptie3, (7, 440))
-        dobbelloop = False
         if maxp <= 2:
             playerOne.draw(screen)
             playerTwo.draw(screen)
@@ -171,9 +159,100 @@ def program(maxp):
             playerThree.draw(screen)
             playerFour.draw(screen)
         pygame.display.update()
-        questionCorrect = interact_with_database("SELECT correct_awnser FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
-        questionABC = True
 
+
+        #Unlock de dobbelsteen
+        while dobbelloop == True:
+            #Mainloop code for input
+            k = pygame.key.get_pressed()
+            if k[K_ESCAPE]:
+                mainloop = False
+            for event in pygame.event.get():
+                mouse = pygame.mouse.get_pos()
+                if event.type == pygame.QUIT:
+                    mainloop = False
+                #elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 64 and mouse[0] < 188 and mouse[1] > 841 and mouse[1] < 958:
+                elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1539 and mouse[0] < 1776 and mouse[1] > 434 and mouse[1] < 662:
+                    if winnerfound == False:
+                        cg = diceThrow()
+                        if cg == 1:
+                            screen.blit(background1, (0, 0))
+                        elif cg == 2:
+                            screen.blit(background2, (0, 0))
+                        else:
+                            screen.blit(background3, (0, 0))
+                        if cp == 1:
+                            randomQuestionID = getQuestion(questionCat)
+                            vraag = interact_with_database("SELECT Question FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
+                            labelshowvraag = font.render(vraag, True, black)
+                            optie1 = interact_with_database("SELECT awnser1 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
+                            optie2 = interact_with_database("SELECT awnser2 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
+                            optie3 = interact_with_database("SELECT awnser3 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
+                            labelOptie1 = font.render(optie1, True, black)
+                            labelOptie2 = font.render(optie2, True, black)
+                            labelOptie3 = font.render(optie3, True, black)
+                            screen.blit(labelshowvraag, (7, 100))
+                            screen.blit(labelOptie1, (7, 380))
+                            screen.blit(labelOptie2, (7, 410))
+                            screen.blit(labelOptie3, (7, 440))
+                            pygame.display.update()
+                            questionCorrect = interact_with_database("SELECT correct_awnser FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
+                            questionABC = True
+                            dobbelloop = False
+                        elif cp == 2:
+                            randomQuestionID = getQuestion(questionCat)
+                            vraag = interact_with_database("SELECT Question FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
+                            labelshowvraag = font.render(vraag, True, black)
+                            optie1 = interact_with_database("SELECT awnser1 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
+                            optie2 = interact_with_database("SELECT awnser2 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
+                            optie3 = interact_with_database("SELECT awnser3 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
+                            labelOptie1 = font.render(optie1, True, black)
+                            labelOptie2 = font.render(optie2, True, black)
+                            labelOptie3 = font.render(optie3, True, black)
+                            screen.blit(labelshowvraag, (7, 100))
+                            screen.blit(labelOptie1, (7, 380))
+                            screen.blit(labelOptie2, (7, 410))
+                            screen.blit(labelOptie3, (7, 440))
+                            pygame.display.update()
+                            questionCorrect = interact_with_database("SELECT correct_awnser FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
+                            questionABC = True
+                            dobbelloop = False
+                        elif cp == 3:
+                            randomQuestionID = getQuestion(questionCat)
+                            vraag = interact_with_database("SELECT Question FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
+                            labelshowvraag = font.render(vraag, True, black)
+                            optie1 = interact_with_database("SELECT awnser1 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
+                            optie2 = interact_with_database("SELECT awnser2 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
+                            optie3 = interact_with_database("SELECT awnser3 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
+                            labelOptie1 = font.render(optie1, True, black)
+                            labelOptie2 = font.render(optie2, True, black)
+                            labelOptie3 = font.render(optie3, True, black)
+                            screen.blit(labelshowvraag, (7, 100))
+                            screen.blit(labelOptie1, (7, 380))
+                            screen.blit(labelOptie2, (7, 410))
+                            screen.blit(labelOptie3, (7, 440))
+                            pygame.display.update()
+                            questionCorrect = interact_with_database("SELECT correct_awnser FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
+                            questionABC = True
+                            dobbelloop = False
+                        elif cp == 4:
+                            randomQuestionID = getQuestion(questionCat)
+                            vraag = interact_with_database("SELECT Question FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
+                            labelshowvraag = font.render(vraag, True, black)
+                            optie1 = interact_with_database("SELECT awnser1 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
+                            optie2 = interact_with_database("SELECT awnser2 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
+                            optie3 = interact_with_database("SELECT awnser3 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
+                            labelOptie1 = font.render(optie1, True, black)
+                            labelOptie2 = font.render(optie2, True, black)
+                            labelOptie3 = font.render(optie3, True, black)
+                            screen.blit(labelshowvraag, (7, 100))
+                            screen.blit(labelOptie1, (7, 380))
+                            screen.blit(labelOptie2, (7, 410))
+                            screen.blit(labelOptie3, (7, 440))
+                            pygame.display.update()
+                            questionCorrect = interact_with_database("SELECT correct_awnser FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
+                            questionABC = True
+                            dobbelloop = False
 
 
         #Start timer
@@ -202,7 +281,12 @@ def program(maxp):
                 cpKeuze = " "
                 questionABC = False
             elif seconds <= 50:
-                screen.blit(main, (0, 0))
+                if cg == 1:
+                    screen.blit(background1, (0,0))
+                elif cg == 2:
+                    screen.blit(background2, (0,0))
+                elif cg == 3:
+                    screen.blit(background3, (0,0))
                 screen.blit(labelCP, (7, 7))
                 screen.blit(labelCat, (7, 30))
                 screen.blit(labelQw, (7, 80))
@@ -217,10 +301,6 @@ def program(maxp):
                 timerLabel = font.render("Timer: "+ str(seconds), True, black)
                 screen.blit(timerLabel, (7, 330))
                 pygame.display.update()
-
-
-
-
 
 
         if questionCorrect != cpKeuze:
@@ -244,65 +324,40 @@ def program(maxp):
                 cp -= 3
         else:
             questionTrue = font.render("Uw keuze was correct.", True, green)
-            continueDobbel = font.render("U kunt nu de dobbelsteen gooien.", True, black)
+            continueDobbel = font.render("U zult nu bewegen.", True, black)
             screen.blit(questionTrue, (7, 500))
             screen.blit(continueDobbel, (7, 525))
             pygame.display.update()
-            dobbelloop = True
-
-
-
-        #Unlock de dobbelsteen
-        while dobbelloop == True:
-            #Mainloop code for input
-            k = pygame.key.get_pressed()
-            if k[K_ESCAPE]:
-                mainloop = False
-            for event in pygame.event.get():
-                mouse = pygame.mouse.get_pos()
-                if event.type == pygame.QUIT:
-                    mainloop = False
-                #elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 64 and mouse[0] < 188 and mouse[1] > 841 and mouse[1] < 958:
-                elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1539 and mouse[0] < 1776 and mouse[1] > 434 and mouse[1] < 662:
-                    if winnerfound == False:
-                        cg = diceThrow()
-                        if cg == 1:
-                            screen.blit(background1, (0, 0))
-                        elif cg == 2:
-                            screen.blit(background2, (0, 0))
-                        else:
-                            screen.blit(background3, (0, 0))
-                        if cp == 1:
-                            playerOne.update(cg)
-                            cp += 1
-                            if playerOne.y < 41:
-                                winner = "Player 1"
-                                winnerfound = True
-                        elif cp == 2:
-                            playerTwo.update(cg)
-                            if maxp > 2:
-                                cp += 1
-                            else:
-                                cp -= 1
-                            if playerTwo.y < 41:
-                                winner = "Player 2"
-                                winnerfound = True
-                        elif cp == 3:
-                            playerThree.update(cg)
-                            if maxp > 3:
-                                cp += 1
-                            else:
-                                cp -= 2
-                            if playerThree.y < 41:
-                                winnerfound = True
-                                winner = "Player 3"
-                        elif cp == 4:
-                            playerFour.update(cg)
-                            cp -= 3
-                            if playerFour.y < 41:
-                                winner = "Player 4"
-                                winnerfound = True
-                        dobbelloop = False
+            if cp == 1:
+                playerOne.update(cg)
+                cp += 1
+                if playerOne.y < 41:
+                    winner = "Player 1"
+                    winnerfound = True
+            elif cp == 2:
+                playerTwo.update(cg)
+                if maxp > 2:
+                    cp += 1
+                else:
+                    cp -= 1
+                if playerTwo.y < 41:
+                    winner = "Player 2"
+                    winnerfound = True
+            elif cp == 3:
+                playerThree.update(cg)
+                if maxp > 3:
+                    cp += 1
+                else:
+                    cp -= 2
+                if playerThree.y < 41:
+                    winnerfound = True
+                    winner = "Player 3"
+            elif cp == 4:
+                playerFour.update(cg)
+                cp -= 3
+                if playerFour.y < 41:
+                    winner = "Player 4"
+                    winnerfound = True
 
         print(cp)
         if maxp <= 2:
@@ -319,4 +374,6 @@ def program(maxp):
             playerFour.draw(screen)
         clock.tick(60)
         pygame.display.update()
+        dobbelloop = True
+        questionABC = False
 
