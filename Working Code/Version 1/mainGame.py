@@ -70,6 +70,9 @@ def program(maxp):
     background1 = pygame.image.load("Afbeeldingen/gameboard.png")
     background2 = pygame.image.load("Afbeeldingen/gameboard2.png")
     background3 = pygame.image.load("Afbeeldingen/gameboard3.png")
+    background4 = pygame.image.load("Afbeeldingen/gameboard4.png")
+    background5 = pygame.image.load("Afbeeldingen/gameboard5.png")
+    background6 = pygame.image.load("Afbeeldingen/gameboard6.png")
     main = pygame.image.load("Afbeeldingen/gameboardMain.png")
     img1 = pygame.image.load("Afbeeldingen/SP1.png")
     img2 = pygame.image.load("Afbeeldingen/SP2.png")
@@ -174,6 +177,21 @@ def program(maxp):
                 #elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 64 and mouse[0] < 188 and mouse[1] > 841 and mouse[1] < 958:
                 elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1539 and mouse[0] < 1776 and mouse[1] > 434 and mouse[1] < 662:
                     if winnerfound == False:
+                        keren = [5, 6, 7, 8, 9, 10]
+                        dobbelsteenZijde = [background1, background2, background3, background4, background5, background6]
+                        aantalKeer = random.choice(keren)
+                        for i in range(0, aantalKeer):
+                            zijde = random.choice(dobbelsteenZijde)
+                            screen.blit(zijde, (0,0))
+                            playerOne.draw(screen)
+                            playerTwo.draw(screen)
+                            playerThree.draw(screen)
+                            playerFour.draw(screen)
+                            screen.blit(labelCP, (7, 7))
+                            screen.blit(labelCat, (7, 30))
+                            screen.blit(labelQw, (7, 80))
+                            pygame.display.update()
+                            time.sleep(0.5)
                         cg = diceThrow()
                         if cg == 1:
                             screen.blit(background1, (0, 0))
@@ -328,6 +346,7 @@ def program(maxp):
             screen.blit(questionTrue, (7, 500))
             screen.blit(continueDobbel, (7, 525))
             pygame.display.update()
+            time.sleep(3)
             if cp == 1:
                 playerOne.update(cg)
                 cp += 1
