@@ -7,6 +7,7 @@ import time
 import random
 import psycopg2
 from database import *
+import sys
 
 clock = pygame.time.Clock()
 # Fix voor het voorkomen van stretchen wat je resolutie verpest
@@ -168,12 +169,10 @@ def program(maxp):
         while dobbelloop == True:
             #Mainloop code for input
             k = pygame.key.get_pressed()
-            if k[K_ESCAPE]:
-                mainloop = False
             for event in pygame.event.get():
                 mouse = pygame.mouse.get_pos()
-                if event.type == pygame.QUIT:
-                    mainloop = False
+                if k[pygame.K_ESCAPE]:
+                    pass
                 #elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 64 and mouse[0] < 188 and mouse[1] > 841 and mouse[1] < 958:
                 elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1539 and mouse[0] < 1776 and mouse[1] > 434 and mouse[1] < 662:
                     if winnerfound == False:
