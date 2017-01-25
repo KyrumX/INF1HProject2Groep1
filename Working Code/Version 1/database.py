@@ -87,7 +87,7 @@ def interact_with_database2(command):
 def get_questions(questionCat):
     # Open database connection
     db = psycopg2.connect("dbname='project22' user='postgres' host='localhost' password='kaas123'")
-
+    id = 17
     # prepare a cursor object using cursor() method
     cursor = db.cursor()
 

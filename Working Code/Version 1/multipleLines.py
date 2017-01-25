@@ -1,12 +1,10 @@
 from itertools import chain
 import pygame
 
-""" Dit is een script gemaakt door iemand anders, niet door ons.
-"""
 
 clock = pygame.time.Clock()
 def truncline(text, font, maxwidth):
-        real=len(text)       
+        lengte=len(text)
         stext=text           
         l=font.size(text)[0]
         cut=0
@@ -22,27 +20,26 @@ def truncline(text, font, maxwidth):
             else:
                 stext = n
             l=font.size(stext)[0]
-            real=len(stext)               
+            lengte=len(stext)
             done=0                        
-        return real, done, stext             
+        return lengte, done, stext
         
 def wrapline(text, font, maxwidth): 
     done=0                      
     wrapped=[]                  
                                
     while not done:             
-        nl, done, stext=truncline(text, font, maxwidth) 
+        nl, done, stext=truncline(text, font, maxwidth)
         wrapped.append(stext.strip())                  
         text=text[nl:]                                 
     return wrapped
  
  
 def wrap_multi_line(text, font, maxwidth):
-    """ returns text taking new lines into account.
-    """
+
     lines = chain(*(wrapline(line, font, maxwidth) for line in text.splitlines()))
     return list(lines)
-
+#
 # while True:
 #     pygame.init()
 #

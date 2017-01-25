@@ -80,6 +80,7 @@ def program(maxp):
     img2 = pygame.image.load("Afbeeldingen/SP2.png")
     img3 = pygame.image.load("Afbeeldingen/SP3.png")
     img4 = pygame.image.load("Afbeeldingen/SP4.png")
+    greenbar = pygame.image.load("Afbeeldingen/greenbar.png")
 
 
     screen = pygame.display.set_mode(size, pygame.FULLSCREEN)
@@ -108,9 +109,11 @@ def program(maxp):
     x = True
     dobbelloop = True
     questionABC = False
+    len3 = 0
 
 
     while mainloop:
+        clock.tick(10)
         #Exit:
         k = pygame.key.get_pressed()
         if k[K_ESCAPE]:
@@ -151,24 +154,6 @@ def program(maxp):
         screen.blit(labelCP, (7, 7))
         screen.blit(labelCat, (7, 30))
         screen.blit(labelQw, (7, 80))
-
-        # rip = "Na 1872 is de stad Rotterdam snel groot geworden, Pieter Caland had een plan om Rotterdam met de zee te verbinden. Hoe noemde hij die verbinding?"
-        # x = wrapline(rip, font, 500)
-        # lenx = len(x)
-        # if lenx > 0:
-        #     g = font.render(x[0], True, red)
-        #     screen.blit(g, (7, 7))
-        #     pygame.display.update()
-        #     if lenx > 1:
-        #         g = font.render(x[1], True, red)
-        #         screen.blit(g, (7, 25))
-        #         pygame.display.update()
-        #         if lenx > 2:
-        #             g = font.render(x[2], True, red)
-        #             screen.blit(g, (7, 42))
-        #             pygame.display.update()
-
-
 
 
         if maxp <= 2:
@@ -226,14 +211,18 @@ def program(maxp):
                             optie1 = interact_with_database("SELECT awnser1 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
                             optie2 = interact_with_database("SELECT awnser2 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
                             optie3 = interact_with_database("SELECT awnser3 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
-                            labelOptie1 = font.render(optie1, True, black)
-                            labelOptie2 = font.render(optie2, True, black)
-                            labelOptie3 = font.render(optie3, True, black)
-                            screen.blit(labelshowvraag, (7, 100))
-                            screen.blit(labelOptie1, (7, 380))
-                            screen.blit(labelOptie2, (7, 410))
-                            screen.blit(labelOptie3, (7, 440))
-                            pygame.display.update()
+                            optie1list = wrapline(optie1, font, 500)
+                            optie2list = wrapline(optie2, font, 500)
+                            print("DIT IS WAT C RETURNT:")
+                            print(optie3)
+                            if optie3 is not None:
+                                optie3list = wrapline(optie3, font, 500)
+                                len3 = len(optie3list)
+                            else:
+                                optie3list = ""
+                                len3 = len(optie3list)
+                            len1 = len(optie1list)
+                            len2 = len(optie2list)
                             questionCorrect = interact_with_database("SELECT correct_awnser FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
                             questionABC = True
                             dobbelloop = False
@@ -244,14 +233,17 @@ def program(maxp):
                             optie1 = interact_with_database("SELECT awnser1 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
                             optie2 = interact_with_database("SELECT awnser2 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
                             optie3 = interact_with_database("SELECT awnser3 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
-                            labelOptie1 = font.render(optie1, True, black)
-                            labelOptie2 = font.render(optie2, True, black)
-                            labelOptie3 = font.render(optie3, True, black)
-                            screen.blit(labelshowvraag, (7, 100))
-                            screen.blit(labelOptie1, (7, 380))
-                            screen.blit(labelOptie2, (7, 410))
-                            screen.blit(labelOptie3, (7, 440))
-                            pygame.display.update()
+                            if optie3 is not None:
+                                optie3list = wrapline(optie3, font, 500)
+                                len3 = len(optie3list)
+                            else:
+                                optie3list = ""
+                                len3 = len(optie3list)
+                            optie1list = wrapline(optie1, font, 500)
+                            optie2list = wrapline(optie2, font, 500)
+                            len1 = len(optie2list)
+                            len2 = len(optie2list)
+                            len3 = len(optie3list)
                             questionCorrect = interact_with_database("SELECT correct_awnser FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
                             questionABC = True
                             dobbelloop = False
@@ -262,14 +254,16 @@ def program(maxp):
                             optie1 = interact_with_database("SELECT awnser1 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
                             optie2 = interact_with_database("SELECT awnser2 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
                             optie3 = interact_with_database("SELECT awnser3 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
-                            labelOptie1 = font.render(optie1, True, black)
-                            labelOptie2 = font.render(optie2, True, black)
-                            labelOptie3 = font.render(optie3, True, black)
-                            screen.blit(labelshowvraag, (7, 100))
-                            screen.blit(labelOptie1, (7, 380))
-                            screen.blit(labelOptie2, (7, 410))
-                            screen.blit(labelOptie3, (7, 440))
-                            pygame.display.update()
+                            optie1list = wrapline(optie1, font, 500)
+                            optie2list = wrapline(optie2, font, 500)
+                            if optie3 is not None:
+                                optie3list = wrapline(optie3, font, 500)
+                                len3 = len(optie3list)
+                            else:
+                                optie3list = ""
+                                len3 = len(optie3list)
+                            len1 = len(optie2list)
+                            len2 = len(optie2list)
                             questionCorrect = interact_with_database("SELECT correct_awnser FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
                             questionABC = True
                             dobbelloop = False
@@ -280,14 +274,16 @@ def program(maxp):
                             optie1 = interact_with_database("SELECT awnser1 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
                             optie2 = interact_with_database("SELECT awnser2 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
                             optie3 = interact_with_database("SELECT awnser3 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
-                            labelOptie1 = font.render(optie1, True, black)
-                            labelOptie2 = font.render(optie2, True, black)
-                            labelOptie3 = font.render(optie3, True, black)
-                            screen.blit(labelshowvraag, (7, 100))
-                            screen.blit(labelOptie1, (7, 380))
-                            screen.blit(labelOptie2, (7, 410))
-                            screen.blit(labelOptie3, (7, 440))
-                            pygame.display.update()
+                            optie1list = wrapline(optie1, font, 500)
+                            optie2list = wrapline(optie2, font, 500)
+                            if optie3 is not None:
+                                optie3list = wrapline(optie3, font, 500)
+                                len3 = len(optie3list)
+                            else:
+                                optie3list = ""
+                                len3 = len(optie3list)
+                            len1 = len(optie2list)
+                            len2 = len(optie2list)
                             questionCorrect = interact_with_database("SELECT correct_awnser FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
                             questionABC = True
                             dobbelloop = False
@@ -296,6 +292,50 @@ def program(maxp):
         #Start timer
         start_ticks = pygame.time.get_ticks()
         #Check gebruikers antwoord bij MEERKEUZEvraag
+        if cg == 1:
+            screen.blit(background1, (0, 0))
+        elif cg == 2:
+            screen.blit(background2, (0, 0))
+        elif cg == 3:
+            screen.blit(background3, (0, 0))
+        screen.blit(labelCP, (7, 7))
+        screen.blit(labelCat, (7, 30))
+        screen.blit(labelQw, (7, 80))
+        screen.blit(labelshowvraag, (7, 100))
+        playerOne.draw(screen)
+        playerTwo.draw(screen)
+        playerThree.draw(screen)
+        playerFour.draw(screen)
+        if len1 > 0:
+            label1 = font.render(optie1list[0], True, black)
+            screen.blit(label1, (7, 380))
+            if len1 > 1:
+                label1 = font.render(optie1list[1], True, black)
+                screen.blit(label1, (7, 397))
+                if len1 > 2:
+                    label1 = font.render(optie1list[2], True, black)
+                    screen.blit(label1, (7, 414))
+        if len2 > 0:
+            labelOptie2 = font.render(optie2list[0], True, black)
+            screen.blit(labelOptie2, (7, 448))
+            if len2 > 1:
+                labelOptie2 = font.render(optie2list[1], True, black)
+                screen.blit(labelOptie2, (7, 465))
+                if len2 > 2:
+                    labelOptie2 = font.render(optie2list[2], True, black)
+                    screen.blit(labelOptie2, (7, 482))
+        if len3 > 0:
+            labelOptie3 = font.render(optie3list[0], True, black)
+            screen.blit(labelOptie3, (7, 522))
+            if len3 > 1:
+                labelOptie3 = font.render(optie3list[1], True, black)
+                screen.blit(labelOptie3, (7, 539))
+                if len3 > 2:
+                    labelOptie3 = font.render(optie3list[2], True, black)
+                    screen.blit(labelOptie3, (7, 556))
+        pygame.display.update()
+
+
         while questionABC == True:
             seconds = (pygame.time.get_ticks() - start_ticks) / 1000
             mouse = pygame.mouse.get_pos()
@@ -319,23 +359,7 @@ def program(maxp):
                 cpKeuze = " "
                 questionABC = False
             elif seconds <= 50:
-                if cg == 1:
-                    screen.blit(background1, (0,0))
-                elif cg == 2:
-                    screen.blit(background2, (0,0))
-                elif cg == 3:
-                    screen.blit(background3, (0,0))
-                screen.blit(labelCP, (7, 7))
-                screen.blit(labelCat, (7, 30))
-                screen.blit(labelQw, (7, 80))
-                screen.blit(labelshowvraag, (7, 100))
-                screen.blit(labelOptie1, (7, 380))
-                screen.blit(labelOptie2, (7, 410))
-                screen.blit(labelOptie3, (7, 440))
-                playerOne.draw(screen)
-                playerTwo.draw(screen)
-                playerThree.draw(screen)
-                playerFour.draw(screen)
+                screen.blit(greenbar, (7,320))
                 timerLabel = font.render("Timer: "+ str(seconds), True, black)
                 screen.blit(timerLabel, (7, 330))
                 pygame.display.update()
@@ -411,7 +435,6 @@ def program(maxp):
             playerTwo.draw(screen)
             playerThree.draw(screen)
             playerFour.draw(screen)
-        clock.tick(60)
         pygame.display.update()
         dobbelloop = True
         questionABC = False
