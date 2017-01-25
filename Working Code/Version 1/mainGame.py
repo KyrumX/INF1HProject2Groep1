@@ -21,11 +21,17 @@ def diceThrow():
     throw = random.choice(gooi)
     return throw
 
-def getQuestion(questionCat):
-    questionList = get_questions(questionCat)
-    questionPicked = random.choice(questionList)
-    questionID = questionPicked[0]
-    return questionID
+def getQuestion(questionCat, cg):
+    if cg == 2 or cg == 4 or cg == 6:
+        questionList = get_questions(questionCat)
+        questionPicked = random.choice(questionList)
+        questionID = questionPicked[0]
+        return questionID
+    else:
+        questionList = get_questions2(questionCat)
+        questionPicked = random.choice(questionList)
+        questionID = questionPicked[0]
+        return questionID
 
 
 class Player:
@@ -109,25 +115,35 @@ def program(maxp):
         else:
             screen.blit(nameInputBack, (0, 0))
             break
-    player3name = (ask(screen, "Naam speler 3"))
-    while True:
-        if player3name == player2name or player3name == player1name:
-            screen.blit(errorName, (300, 130))
-            pygame.display.update()
-            player3name = (ask(screen, "Naam speler 3"))
-        else:
-            screen.blit(nameInputBack, (0, 0))
-            break
-    player4name = (ask(screen, "Naam speler 4"))
-    while True:
-        if player4name == player2name or player4name == player1name or player4name == player3name:
-            screen.blit(errorName, (300, 130))
-            pygame.display.update()
-            player4name = (ask(screen, "Naam speler 4"))
-        else:
-            screen.blit(nameInputBack, (0, 0))
-            break
-
+    if maxp == 3:
+        player3name = (ask(screen, "Naam speler 3"))
+        while True:
+            if player3name == player2name or player3name == player1name:
+                screen.blit(errorName, (300, 130))
+                pygame.display.update()
+                player2name = (ask(screen, "Naam speler 3"))
+            else:
+                screen.blit(nameInputBack, (0, 0))
+                break
+    if maxp == 4:
+        player3name = (ask(screen, "Naam speler 3"))
+        while True:
+            if player3name == player2name or player3name == player1name:
+                screen.blit(errorName, (300, 130))
+                pygame.display.update()
+                player2name = (ask(screen, "Naam speler 3"))
+            else:
+                screen.blit(nameInputBack, (0, 0))
+                break
+        player4name = (ask(screen, "Naam speler 4"))
+        while True:
+            if player4name == player1name or player4name == player2name or player4name == player3name:
+                screen.blit(errorName, (300, 130))
+                pygame.display.update()
+                player4name = (ask(screen, "Naam speler 3"))
+            else:
+                screen.blit(nameInputBack, (0, 0))
+                break
 
     if maxp >= 2:
         playerOne = Player(819, 1007, img1, player1name)
@@ -144,6 +160,9 @@ def program(maxp):
     dobbelloop = True
     questionABC = False
     len3 = 0
+    meerkeuzeLoop = False
+    openvraagLoop = False
+    questionOPEN = False
 
 
     while mainloop:
@@ -256,91 +275,49 @@ def program(maxp):
                             screen.blit(background2, (0, 0))
                         else:
                             screen.blit(background3, (0, 0))
-                        if cp == 1:
-                            randomQuestionID = getQuestion(questionCat)
-                            vraag = interact_with_database("SELECT Question FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
-                            questionList = wrapline(vraag, font, 500)
-                            lenq = len(questionList)
-                            optie1 = interact_with_database("SELECT awnser1 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
-                            optie2 = interact_with_database("SELECT awnser2 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
-                            optie3 = interact_with_database("SELECT awnser3 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
-                            optie1list = wrapline(optie1, font, 500)
-                            optie2list = wrapline(optie2, font, 500)
-                            if optie3 is not None:
-                                optie3list = wrapline(optie3, font, 500)
-                                len3 = len(optie3list)
-                            else:
-                                optie3list = ""
-                                len3 = len(optie3list)
-                            len1 = len(optie1list)
-                            len2 = len(optie2list)
-                            questionCorrect = interact_with_database("SELECT correct_awnser FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
-                            questionABC = True
-                            dobbelloop = False
-                        elif cp == 2:
-                            randomQuestionID = getQuestion(questionCat)
-                            vraag = interact_with_database("SELECT Question FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
-                            questionList = wrapline(vraag, font, 500)
-                            lenq = len(questionList)
-                            optie1 = interact_with_database("SELECT awnser1 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
-                            optie2 = interact_with_database("SELECT awnser2 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
-                            optie3 = interact_with_database("SELECT awnser3 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
-                            if optie3 is not None:
-                                optie3list = wrapline(optie3, font, 500)
-                                len3 = len(optie3list)
-                            else:
-                                optie3list = ""
-                                len3 = len(optie3list)
-                            optie1list = wrapline(optie1, font, 500)
-                            optie2list = wrapline(optie2, font, 500)
-                            len1 = len(optie2list)
-                            len2 = len(optie2list)
-                            len3 = len(optie3list)
-                            questionCorrect = interact_with_database("SELECT correct_awnser FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
-                            questionABC = True
-                            dobbelloop = False
-                        elif cp == 3:
-                            randomQuestionID = getQuestion(questionCat)
-                            vraag = interact_with_database("SELECT Question FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
-                            questionList = wrapline(vraag, font, 500)
-                            lenq = len(questionList)
-                            optie1 = interact_with_database("SELECT awnser1 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
-                            optie2 = interact_with_database("SELECT awnser2 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
-                            optie3 = interact_with_database("SELECT awnser3 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
-                            optie1list = wrapline(optie1, font, 500)
-                            optie2list = wrapline(optie2, font, 500)
-                            if optie3 is not None:
-                                optie3list = wrapline(optie3, font, 500)
-                                len3 = len(optie3list)
-                            else:
-                                optie3list = ""
-                                len3 = len(optie3list)
-                            len1 = len(optie2list)
-                            len2 = len(optie2list)
-                            questionCorrect = interact_with_database("SELECT correct_awnser FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
-                            questionABC = True
-                            dobbelloop = False
-                        elif cp == 4:
-                            randomQuestionID = getQuestion(questionCat)
-                            vraag = interact_with_database("SELECT Question FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
-                            questionList = wrapline(vraag, font, 500)
-                            lenq = len(questionList)
-                            optie1 = interact_with_database("SELECT awnser1 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
-                            optie2 = interact_with_database("SELECT awnser2 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
-                            optie3 = interact_with_database("SELECT awnser3 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
-                            optie1list = wrapline(optie1, font, 500)
-                            optie2list = wrapline(optie2, font, 500)
-                            if optie3 is not None:
-                                optie3list = wrapline(optie3, font, 500)
-                                len3 = len(optie3list)
-                            else:
-                                optie3list = ""
-                                len3 = len(optie3list)
-                            len1 = len(optie2list)
-                            len2 = len(optie2list)
-                            questionCorrect = interact_with_database("SELECT correct_awnser FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
-                            questionABC = True
-                            dobbelloop = False
+                        if cg == 2 or cg == 4 or cg == 6:
+                            meerkeuzeLoop = True
+                            openvraagLoop = False
+                        elif cg == 1 or cg == 3 or cg == 5:
+                            openvraagLoop = True
+                            meerkeuzeLoop = False
+
+                        if meerkeuzeLoop == True:
+                            if cp == 1 or cp == 2 or cp == 3 or cp == 4:
+                                randomQuestionID = getQuestion(questionCat, cg)
+                                vraag = interact_with_database("SELECT Question FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
+                                questionList = wrapline(vraag, font, 500)
+                                lenq = len(questionList)
+                                optie1 = interact_with_database("SELECT answer1 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
+                                optie2 = interact_with_database("SELECT answer2 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
+                                optie3 = interact_with_database("SELECT answer3 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
+                                optie1list = wrapline(optie1, font, 500)
+                                optie2list = wrapline(optie2, font, 500)
+                                if optie3 is not None:
+                                    optie3list = wrapline(optie3, font, 500)
+                                    len3 = len(optie3list)
+                                else:
+                                    optie3list = ""
+                                    len3 = len(optie3list)
+                                len1 = len(optie1list)
+                                len2 = len(optie2list)
+                                questionCorrect = interact_with_database("SELECT correct_answer FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
+                                questionABC = True
+                                dobbelloop = False
+                                questionOPEN = False
+                        elif openvraagLoop == True:
+                            if cp == 1 or cp == 2 or cp == 3 or cp == 4:
+                                randomQuestionID = getQuestion(questionCat, cg)
+                                vraag = interact_with_database("SELECT Question FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
+                                questionList = wrapline(vraag, font, 500)
+                                lenq = len(questionList)
+                                len1 = 0
+                                len2 = 0
+                                len3 = 0
+                                questionCorrect = interact_with_database("SELECT correct_answer FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
+                                questionABC = False
+                                questionOPEN = True
+                                dobbelloop = False
 
 
         #Start timer
@@ -432,6 +409,11 @@ def program(maxp):
                 timerLabel = font.render("Timer: "+ str(seconds), True, black)
                 screen.blit(timerLabel, (7, 330))
                 pygame.display.update()
+
+        while questionOPEN == True:
+            seconds = (pygame.time.get_ticks() - start_ticks) / 1000
+            cpKeuze = ask(screen, "Vul het antwoord in")
+            questionOPEN = False
 
 
         if questionCorrect != cpKeuze:

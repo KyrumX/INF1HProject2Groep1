@@ -86,13 +86,13 @@ def interact_with_database2(command):
 
 def get_questions(questionCat):
     # Open database connection
-    db = psycopg2.connect("dbname='project22' user='postgres' host='localhost' password='kaas123'")
-    id = 17
+    db = psycopg2.connect("dbname='project2' user='postgres' host='localhost' password='kaas123'")
     # prepare a cursor object using cursor() method
     cursor = db.cursor()
 
     # execute SQL query using execute() method.
-    cursor.execute("SELECT Question_ID FROM test WHERE question_catagory = '{}'" .format(questionCat))
+    gesloten = "MC"
+    cursor.execute("SELECT Question_ID FROM qna WHERE question_catagory = '{}' AND question_type = '{}'" .format(questionCat, gesloten))
 
 
     # OR use fetchall() method to fetch multiple rows and store the result in a list variable.
@@ -104,5 +104,23 @@ def get_questions(questionCat):
     db.close()
 
 
+def get_questions2(questionCat):
+    # Open database connection
+    db = psycopg2.connect("dbname='project2' user='postgres' host='localhost' password='kaas123'")
+    # prepare a cursor object using cursor() method
+    cursor = db.cursor()
+
+    # execute SQL query using execute() method.
+    open = "OPEN"
+    cursor.execute("SELECT Question_ID FROM qna WHERE question_catagory = '{}' AND question_type = '{}'" .format(questionCat, open))
+
+
+    # OR use fetchall() method to fetch multiple rows and store the result in a list variable.
+    data = cursor.fetchall()
+
+    return data
+
+    # disconnect from server
+    db.close()
 
 
