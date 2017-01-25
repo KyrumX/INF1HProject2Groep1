@@ -207,7 +207,8 @@ def program(maxp):
                         if cp == 1:
                             randomQuestionID = getQuestion(questionCat)
                             vraag = interact_with_database("SELECT Question FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
-                            labelshowvraag = font.render(vraag, True, black)
+                            questionList = wrapline(vraag, font, 500)
+                            lenq = len(questionList)
                             optie1 = interact_with_database("SELECT awnser1 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
                             optie2 = interact_with_database("SELECT awnser2 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
                             optie3 = interact_with_database("SELECT awnser3 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
@@ -227,7 +228,8 @@ def program(maxp):
                         elif cp == 2:
                             randomQuestionID = getQuestion(questionCat)
                             vraag = interact_with_database("SELECT Question FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
-                            labelshowvraag = font.render(vraag, True, black)
+                            questionList = wrapline(vraag, font, 500)
+                            lenq = len(questionList)
                             optie1 = interact_with_database("SELECT awnser1 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
                             optie2 = interact_with_database("SELECT awnser2 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
                             optie3 = interact_with_database("SELECT awnser3 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
@@ -248,7 +250,8 @@ def program(maxp):
                         elif cp == 3:
                             randomQuestionID = getQuestion(questionCat)
                             vraag = interact_with_database("SELECT Question FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
-                            labelshowvraag = font.render(vraag, True, black)
+                            questionList = wrapline(vraag, font, 500)
+                            lenq = len(questionList)
                             optie1 = interact_with_database("SELECT awnser1 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
                             optie2 = interact_with_database("SELECT awnser2 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
                             optie3 = interact_with_database("SELECT awnser3 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
@@ -268,7 +271,8 @@ def program(maxp):
                         elif cp == 4:
                             randomQuestionID = getQuestion(questionCat)
                             vraag = interact_with_database("SELECT Question FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
-                            labelshowvraag = font.render(vraag, True, black)
+                            questionList = wrapline(vraag, font, 500)
+                            lenq = len(questionList)
                             optie1 = interact_with_database("SELECT awnser1 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
                             optie2 = interact_with_database("SELECT awnser2 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
                             optie3 = interact_with_database("SELECT awnser3 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
@@ -299,11 +303,19 @@ def program(maxp):
         screen.blit(labelCP, (7, 7))
         screen.blit(labelCat, (7, 30))
         screen.blit(labelQw, (7, 80))
-        screen.blit(labelshowvraag, (7, 100))
         playerOne.draw(screen)
         playerTwo.draw(screen)
         playerThree.draw(screen)
         playerFour.draw(screen)
+        if lenq > 0:
+            labelq = font.render(questionList[0], True, black)
+            screen.blit(labelq, (7, 100))
+            if lenq > 1:
+                labelq = font.render(questionList[1], True, black)
+                screen.blit(labelq, (7, 117))
+                if lenq > 2:
+                    label1 = font.render(questionList[2], True, black)
+                    screen.blit(labelq, (7, 134))
         if len1 > 0:
             label1 = font.render(optie1list[0], True, black)
             screen.blit(label1, (7, 380))
@@ -365,7 +377,7 @@ def program(maxp):
 
         if questionCorrect != cpKeuze:
             questionFalse = font.render("Uw keuze was incorrect.", True, red)
-            screen.blit(questionFalse, (7, 500))
+            screen.blit(questionFalse, (7, 690))
             pygame.display.update()
             time.sleep(3)
             if cp == 1:
@@ -385,8 +397,8 @@ def program(maxp):
         else:
             questionTrue = font.render("Uw keuze was correct.", True, green)
             continueDobbel = font.render("U zult nu bewegen.", True, black)
-            screen.blit(questionTrue, (7, 500))
-            screen.blit(continueDobbel, (7, 525))
+            screen.blit(questionTrue, (7, 670))
+            screen.blit(continueDobbel, (7, 690))
             pygame.display.update()
             time.sleep(3)
             if cp == 1:
