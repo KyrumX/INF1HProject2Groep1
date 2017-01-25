@@ -110,7 +110,7 @@ VALUES
 (108,'MC','Hoeveel spelers staan per team op het veld bij lacrosse', 'A. 9', 'B. 10', 'C. 11', 'C'),
 (109,'MC', 'Een honkbal is groter dan een softbal', 'A. Waar', 'B. Niet waar', NULL, 'B'),
 (110,'MC', 'Welke manier van sport word het meest beoefend in Rotterdam', 'A. Fitness', 'B. Voetbal', 'C. Basketbal', 'A'),
-(111,'MC', 'Hoeveel mensen staan er achter er slagman bij honkbal', 'A. 1', 'B. 2',  'C. 3', 'B' ),
+(111,'MC', 'Hoeveel mensen staan er achter de slagman bij honkbal', 'A. 1', 'B. 2',  'C. 3', 'B' ),
 (112,'OPEN', 'Welk tennis toernooi word er elk jaar in Ahoy gehouden', NULL, NULL, NULL, 'ABN AMRO World tennis tournament'),
 (113,'OPEN', 'Voor welke 3 sporten is de Willem Alexander baan het meest geschikt', NULL, NULL, NULL, 'Watersporten, Wielrennen en hardlopen'),
 (114,'OPEN', 'Hoe heet het Stadion van Sparta', NULL, NULL, NULL, 'Het Kasteel'),
