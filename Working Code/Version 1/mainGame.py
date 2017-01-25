@@ -76,6 +76,7 @@ def program(maxp):
     background4 = pygame.image.load("Afbeeldingen/gameboard4.png")
     background5 = pygame.image.load("Afbeeldingen/gameboard5.png")
     background6 = pygame.image.load("Afbeeldingen/gameboard6.png")
+    nameInputBack = pygame.image.load("Afbeeldingen/naamInput.jpg")
     main = pygame.image.load("Afbeeldingen/gameboardMain.png")
     img1 = pygame.image.load("Afbeeldingen/SP1.png")
     img2 = pygame.image.load("Afbeeldingen/SP2.png")
@@ -93,15 +94,15 @@ def program(maxp):
         label = font.render(msg, True, black)
         screen.blit(label, pos)
 
-    screen.blit(main, (0, 0))
+    screen.blit(nameInputBack, (0, 0))
 
     if maxp >= 2:
-        playerOne = Player(819, 1007, img1, (ask(screen, "Naam")))
-        playerTwo = Player(900, 1007, img2, 2)
+        playerOne = Player(819, 1007, img1, (ask(screen, "Naam speler 1")))
+        playerTwo = Player(900, 1007, img2, (ask(screen, "Naam speler 2")))
     if maxp >= 3:
-        playerThree = Player(981, 1007, img3, 3)
+        playerThree = Player(981, 1007, img3, (ask(screen, "Naam speler 3")))
     if maxp == 4:
-        playerFour = Player(1062, 1007, img4, 4)
+        playerFour = Player(1062, 1007, img4, (ask(screen, "Naam speler 4")))
 
     cp = 1
     winnerfound = False
@@ -147,7 +148,17 @@ def program(maxp):
         else:
             questionCat = "Geography"
 
-        labelCP = font.render("Speler " + str(cp) + " is.", True, black)
+        if cp == 1:
+            naam = playerOne.name
+        elif cp == 2:
+            naam = playerTwo.name
+        elif cp == 3:
+            naam = playerThree.name
+        elif cp == 3:
+            naam = playerFour.name
+
+
+        labelCP = font.render(naam + " is nu aan de beurt.", True, black)
         labelCat = font.render("De categorie is: " + questionCat, True, black)
         labelQw = font.render("Beantwoord de onderstaande vraag correct:", True, black)
         screen.blit(main, (0, 0))

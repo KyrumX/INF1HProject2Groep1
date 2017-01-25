@@ -10,17 +10,11 @@ def get_key():
             pass
 
 def display_box(screen, message):
-    fontobject = pygame.font.Font(None,18)
-    pygame.draw.rect(screen, (0, 0, 0),
-                   ((screen.get_width() / 2) - 100,
-                    (screen.get_height() / 2) - 10,
-                    200,20), 0)
-    pygame.draw.rect(screen, (0, 0, 0),
-                   ((screen.get_width() / 2) - 102,
-                    (screen.get_height() / 2) - 12,
-                    204,24), 1)
+    fontobject = pygame.font.Font(None,30)
+    pygame.draw.rect(screen, (0, 0, 0), (298,158,500,30), 0)
+    pygame.draw.rect(screen, (0, 0, 0), (296,156,504,32), 1)
     if len(message) != 0:
-        screen.blit(fontobject.render(message, 1, (255,255,255)), ((screen.get_width() / 2) - 100, (screen.get_height() / 2) - 10))
+        screen.blit(fontobject.render(message, 1, (255,255,255)), (300,160))
         pygame.display.flip()
 
 def ask(screen, question):
