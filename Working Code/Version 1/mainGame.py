@@ -213,8 +213,6 @@ def program(maxp):
                             optie3 = interact_with_database("SELECT awnser3 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
                             optie1list = wrapline(optie1, font, 500)
                             optie2list = wrapline(optie2, font, 500)
-                            print("DIT IS WAT C RETURNT:")
-                            print(optie3)
                             if optie3 is not None:
                                 optie3list = wrapline(optie3, font, 500)
                                 len3 = len(optie3list)
