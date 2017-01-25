@@ -96,13 +96,46 @@ def program(maxp):
 
     screen.blit(nameInputBack, (0, 0))
 
+    errorName = font.render("Naam is al in gebruik! Vul een andere naam in!", True, red)
+
+
+    player1name = (ask(screen, "Naam speler 1"))
+    player2name = (ask(screen, "Naam speler 2"))
+    while True:
+        if player1name == player2name:
+            screen.blit(errorName, (300, 130))
+            pygame.display.update()
+            player2name = (ask(screen, "Naam speler 2"))
+        else:
+            screen.blit(nameInputBack, (0, 0))
+            break
+    player3name = (ask(screen, "Naam speler 3"))
+    while True:
+        if player3name == player2name or player3name == player1name:
+            screen.blit(errorName, (300, 130))
+            pygame.display.update()
+            player3name = (ask(screen, "Naam speler 3"))
+        else:
+            screen.blit(nameInputBack, (0, 0))
+            break
+    player4name = (ask(screen, "Naam speler 4"))
+    while True:
+        if player4name == player2name or player4name == player1name or player4name == player3name:
+            screen.blit(errorName, (300, 130))
+            pygame.display.update()
+            player4name = (ask(screen, "Naam speler 4"))
+        else:
+            screen.blit(nameInputBack, (0, 0))
+            break
+
+
     if maxp >= 2:
-        playerOne = Player(819, 1007, img1, (ask(screen, "Naam speler 1")))
-        playerTwo = Player(900, 1007, img2, (ask(screen, "Naam speler 2")))
+        playerOne = Player(819, 1007, img1, player1name)
+        playerTwo = Player(900, 1007, img2, player2name)
     if maxp >= 3:
-        playerThree = Player(981, 1007, img3, (ask(screen, "Naam speler 3")))
+        playerThree = Player(981, 1007, img3, player3name)
     if maxp == 4:
-        playerFour = Player(1062, 1007, img4, (ask(screen, "Naam speler 4")))
+        playerFour = Player(1062, 1007, img4, player4name)
 
     cp = 1
     winnerfound = False
@@ -154,7 +187,7 @@ def program(maxp):
             naam = playerTwo.name
         elif cp == 3:
             naam = playerThree.name
-        elif cp == 3:
+        elif cp == 4:
             naam = playerFour.name
 
 
