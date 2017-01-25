@@ -36,13 +36,3 @@ def ask(screen, question):
         display_box(screen, question + ": " + "".join(current_string))
     return "".join(current_string)
 
-def main():
-    background = pygame.image.load('Afbeeldingen/gameboard2.png')
-    background = pygame.transform.scale(background, (1920, 1080))
-    resolution = (1920,1080)
-    screen = pygame.display.set_mode(resolution, pygame.FULLSCREEN)
-    screen.blit(background, (0, 0))
-
-    k = pygame.key.get_pressed()
-
-main()
