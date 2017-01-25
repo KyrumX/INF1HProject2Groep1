@@ -9,6 +9,7 @@ import psycopg2
 from database import *
 import sys
 from multipleLines import *
+from textInput import *
 
 clock = pygame.time.Clock()
 # Fix voor het voorkomen van stretchen wat je resolutie verpest
@@ -28,10 +29,10 @@ def getQuestion(questionCat):
 
 
 class Player:
-    def __init__(self, x, y, image, player):
+    def __init__(self, x, y, image, name):
         self.x = x
         self.y = y
-        self.player = player
+        self.name = name
         self.image = image
 
     def update(self, cg):
@@ -92,18 +93,17 @@ def program(maxp):
         label = font.render(msg, True, black)
         screen.blit(label, pos)
 
+    screen.blit(main, (0, 0))
+
     if maxp >= 2:
-        playerOne = Player(819, 1007, img1, 1)
+        playerOne = Player(819, 1007, img1, (ask(screen, "Naam")))
         playerTwo = Player(900, 1007, img2, 2)
     if maxp >= 3:
         playerThree = Player(981, 1007, img3, 3)
     if maxp == 4:
         playerFour = Player(1062, 1007, img4, 4)
 
-    screen.blit(main, (0, 0))
     cp = 1
-
-
     winnerfound = False
     mainloop = True
     x = True
@@ -113,7 +113,7 @@ def program(maxp):
 
 
     while mainloop:
-        clock.tick(10)
+        clock.tick(60)
         #Exit:
         k = pygame.key.get_pressed()
         if k[K_ESCAPE]:
@@ -188,10 +188,18 @@ def program(maxp):
                         for i in range(0, aantalKeer):
                             zijde = random.choice(dobbelsteenZijde)
                             screen.blit(zijde, (0,0))
-                            playerOne.draw(screen)
-                            playerTwo.draw(screen)
-                            playerThree.draw(screen)
-                            playerFour.draw(screen)
+                            if maxp <= 2:
+                                playerOne.draw(screen)
+                                playerTwo.draw(screen)
+                            elif maxp == 3:
+                                playerOne.draw(screen)
+                                playerTwo.draw(screen)
+                                playerThree.draw(screen)
+                            else:
+                                playerOne.draw(screen)
+                                playerTwo.draw(screen)
+                                playerThree.draw(screen)
+                                playerFour.draw(screen)
                             screen.blit(labelCP, (7, 7))
                             screen.blit(labelCat, (7, 30))
                             screen.blit(labelQw, (7, 80))
@@ -303,10 +311,18 @@ def program(maxp):
         screen.blit(labelCP, (7, 7))
         screen.blit(labelCat, (7, 30))
         screen.blit(labelQw, (7, 80))
-        playerOne.draw(screen)
-        playerTwo.draw(screen)
-        playerThree.draw(screen)
-        playerFour.draw(screen)
+        if maxp <= 2:
+            playerOne.draw(screen)
+            playerTwo.draw(screen)
+        elif maxp == 3:
+            playerOne.draw(screen)
+            playerTwo.draw(screen)
+            playerThree.draw(screen)
+        else:
+            playerOne.draw(screen)
+            playerTwo.draw(screen)
+            playerThree.draw(screen)
+            playerFour.draw(screen)
         if lenq > 0:
             labelq = font.render(questionList[0], True, black)
             screen.blit(labelq, (7, 100))
@@ -350,7 +366,6 @@ def program(maxp):
             seconds = (pygame.time.get_ticks() - start_ticks) / 1000
             mouse = pygame.mouse.get_pos()
             for event in pygame.event.get():
-                print(mouse)
                 if event.type == pygame.QUIT:
                     mainloop = False
                 elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 65 and mouse[0] < 190 and mouse[1] > 842 and mouse[1] < 959:
