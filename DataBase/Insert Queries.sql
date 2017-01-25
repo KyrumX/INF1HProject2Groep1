@@ -1,4 +1,4 @@
-INSERT INTO QnA(Question_ID, Question_type, Question, Awnser1, Awnser2, Awnser3, correct_awnser)
+INSERT INTO QnA(Question_ID, Question_type, Question_Catagory, Question, Anwser1, Anwser2, Anwser3, correct_anwser)
 VALUES 
 (1, 'OPEN', 'Geography', 'Hoe hoog is de Euromast?(Schat tot op 5 meter nauwkeurig.)', NULL, NULL, NULL, '185 meter'),
 (2, 'OPEN', 'Geography', 'Welke stad is groter dan Rotterdam?', NULL, NULL, NULL, 'Geen, Rotterdam is de grootste stad in Nederland.'), 
