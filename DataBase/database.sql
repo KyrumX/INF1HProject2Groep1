@@ -10,10 +10,11 @@ CREATE TABLE QnA(
 );
 
 CREATE TABLE Score(
-    ID int UNIQUE Primary key,
-    Name varchar(15),
-    Score int
-);
+    Name varchar(30) Primary KEY,
+    Score int,
+	Wins int,
+	losses int,
+	);
     
 	
 	
