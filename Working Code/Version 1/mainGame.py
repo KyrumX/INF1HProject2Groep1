@@ -140,7 +140,7 @@ def program(maxp):
             if player4name == player1name or player4name == player2name or player4name == player3name:
                 screen.blit(errorName, (300, 130))
                 pygame.display.update()
-                player4name = (ask(screen, "Naam speler 3"))
+                player4name = (ask(screen, "Naam speler 4"))
             else:
                 screen.blit(nameInputBack, (0, 0))
                 break
