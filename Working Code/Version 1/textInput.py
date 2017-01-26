@@ -2,15 +2,15 @@ import pygame, pygame.font, pygame.event, pygame.draw, string
 from pygame.locals import *
 
 #Timed, voor openvragen:
-def get_key2(start_ticks, screen, font, greenbar, black):
+def get_key2(start_ticks, screen, font, brownbar, white):
     while 1:
         seconds = (pygame.time.get_ticks() - start_ticks) / 1000
         if seconds > 50:
             return K_RETURN
         elif seconds < 50:
-            screen.blit(greenbar, (7, 320))
-            timerLabel = font.render("Timer: " + str(seconds), True, black)
-            screen.blit(timerLabel, (7, 330))
+            screen.blit(brownbar, (216, 460))
+            timerLabel = font.render("Timer: " + str(seconds), True, white)
+            screen.blit(timerLabel, (216, 465))
             pygame.display.update()
         event = pygame.event.poll()
         if event.type == KEYDOWN:
@@ -20,10 +20,10 @@ def get_key2(start_ticks, screen, font, greenbar, black):
 
 def display_box2(screen, message):
     fontobject = pygame.font.Font(None,30)
-    pygame.draw.rect(screen, (0, 0, 0), (7,380,560,30), 0)
-    pygame.draw.rect(screen, (0, 0, 0), (5,378,564,32), 1)
+    pygame.draw.rect(screen, (0, 0, 0), (37,518,560,30), 0)
+    pygame.draw.rect(screen, (0, 0, 0), (35,516,564,32), 1)
     if len(message) != 0:
-        screen.blit(fontobject.render(message, 1, (255,255,255)), (9,382))
+        screen.blit(fontobject.render(message, 1, (255,255,255)), (39,520))
         pygame.display.flip()
 
 def ask2(screen, question, font, greenbar, black):
