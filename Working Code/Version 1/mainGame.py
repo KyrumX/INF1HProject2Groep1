@@ -351,7 +351,7 @@ def program(maxp):
                 labelq = font.render(questionList[1], True, black)
                 screen.blit(labelq, (7, 117))
                 if lenq > 2:
-                    label1 = font.render(questionList[2], True, black)
+                    labelq = font.render(questionList[2], True, black)
                     screen.blit(labelq, (7, 134))
         if len1 > 0:
             label1 = font.render(optie1list[0], True, black)
@@ -411,8 +411,7 @@ def program(maxp):
                 pygame.display.update()
 
         while questionOPEN == True:
-            seconds = (pygame.time.get_ticks() - start_ticks) / 1000
-            cpKeuze = ask(screen, "Vul het antwoord in")
+            cpKeuze = ask2(screen, "Antwoord", font, greenbar, black)
             questionOPEN = False
 
 
