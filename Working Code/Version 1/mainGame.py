@@ -44,29 +44,23 @@ class Player:
     def update(self, cg):
         while cg > 0 and self.y > 0:
             if self.y <= 468:
-                self.x = 927
-                self.y = 343
+                if self.x == 804:
+                    self.x = 927
+                    self.y = 401
+                elif self.x == 923:
+                    self.x = 985
+                    self.y = 401
+                elif self.x == 1045:
+                    self.x = 1053
+                    self.y = 401
+                elif self.x == 1165:
+                    self.x = 1114
+                    self.y = 401
+
             self.y -= 58
             cg -= 1
 
     def draw(self, screen):
-
-        win1 = pygame.image.load("Afbeeldingen/SP1winner.png")
-        win2 = pygame.image.load("Afbeeldingen/SP2winner.png")
-        win3 = pygame.image.load("Afbeeldingen/SP3winner.png")
-        win4 = pygame.image.load("Afbeeldingen/SP4winner.png")
-
-        if self.y < 41:
-            if self.player == 1:
-                self.image = win1
-                print(self.y)
-            elif self.player == 2:
-                self.image = win2
-                print(self.y)
-            elif self.player == 3:
-                self.image = win3
-            else:
-                self.image = win4
         screen.blit(self.image, (self.x, self.y))
 
 
@@ -155,7 +149,7 @@ def program(maxp):
 
     if maxp >= 2:
         playerOne = Player(804, 990, img1, player1name)
-        playerTwo = Player(923.25, 990, img2, player2name)
+        playerTwo = Player(923, 990, img2, player2name)
     if maxp >= 3:
         playerThree = Player(1045, 990, img3, player3name)
     if maxp == 4:
@@ -289,7 +283,6 @@ def program(maxp):
                             pygame.display.update()
                             time.sleep(0.5)
                         cg = diceThrow()
-                        cg = 2
                         if cg == 2 or cg == 4 or cg == 6:
                             if cg == 2:
                                 screen.blit(d2, (1510, 470))
@@ -483,9 +476,9 @@ def program(maxp):
             pygame.display.update()
             time.sleep(3)
             if cp == 1:
-                playerOne.update(5)
+                playerOne.update(cg)
                 cp += 1
-                if playerOne.y < 41:
+                if playerOne.y < 121:
                     winner = "Player 1"
                     winnerfound = True
             elif cp == 2:
@@ -494,7 +487,7 @@ def program(maxp):
                     cp += 1
                 else:
                     cp -= 1
-                if playerTwo.y < 41:
+                if playerTwo.y < 121:
                     winner = "Player 2"
                     winnerfound = True
             elif cp == 3:
@@ -503,13 +496,13 @@ def program(maxp):
                     cp += 1
                 else:
                     cp -= 2
-                if playerThree.y < 41:
+                if playerThree.y < 121:
                     winnerfound = True
                     winner = "Player 3"
             elif cp == 4:
                 playerFour.update(cg)
                 cp -= 3
-                if playerFour.y < 41:
+                if playerFour.y < 121:
                     winner = "Player 4"
                     winnerfound = True
 
