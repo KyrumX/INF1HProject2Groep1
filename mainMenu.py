@@ -19,14 +19,6 @@ resolution = (1920, 1080)
 screen = pygame.display.set_mode(resolution, pygame.FULLSCREEN)
 pygame.display.set_caption("Euromast Spel")
 
-myfont = pygame.font.SysFont('Comic Sans MS', 70)
-myfont2 = pygame.font.SysFont('Comic Sans MS', 100)
-label = myfont.render('Spelen', True, black)
-label2 = myfont.render('Spel sluiten', True, white)
-label4 = myfont.render('Regels', True, black)
-label3 = myfont2.render('Het Euromast spel', True, white)
-playgametext = myfont.render('Hier wordt het spel gespeeld!', True, white)
-
 
 class Button:
     def __init__(self, msg, fontsize, x, y, rectanglecolor=green, textcolor=black, h=100, w=600): # Optionele waardes hier zijn rectanglecolor, textcolor en de dimensies van de rectangle
@@ -68,6 +60,7 @@ def button(msg, x, y, w, h, ic, ac, action=None):
     mouse = pygame.mouse.get_ps()
     click = pygame.mouse.get_pressed()
     print(click)
+    
 prachtig = (66, 170, 244)
 screen.fill(prachtig)
 menu = True
@@ -83,22 +76,22 @@ while True:
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
-        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1244 and mouse[0] < 1712 and mouse[1] > 349 and mouse[1] < 470 and menu == True:
+        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 0 and mouse[0] < 400 and mouse[1] > 0 and mouse[1] < 150 and menu == True:
             clicked = True
             menu = False
-        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1244 and mouse[0] < 1712 and mouse[1] > 720 and mouse[1] < 840 and menu == True:
+        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1516 and mouse[0] < 1920 and mouse[1] > 200 and mouse[1] < 350 and menu == True:
             rules = True
             menu = False
-        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1620 and mouse[0] < 1780 and mouse[1] > 890 and mouse[1] < 940 and rules == True:
+        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 30 and mouse[0] < 300 and mouse[1] > 1000 and mouse[1] < 1080 and rules == True:
             terug = True
-        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1245 and mouse[0] < 1711 and mouse[1] > 534 and mouse[1] < 657 and menu == True:
+        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1516 and mouse[0] < 1920 and mouse[1] > 0 and mouse[1] < 150 and menu == True:
             pygame.quit()
             sys.exit()
-        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1384 and mouse[0] < 1461 and mouse[1] > 617 and mouse[1] < 686 and menu == False:
+        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 175 and mouse[0] < 540 and mouse[1] > 700 and mouse[1] < 830 and menu == False:
             program(2)
-        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1534 and mouse[0] < 1609 and mouse[1] > 617 and mouse[1] < 686 and menu == False:
+        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 770 and mouse[0] < 1130 and mouse[1] > 700 and mouse[1] < 830 and menu == False:
             program(3)
-        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1684 and mouse[0] < 1761 and mouse[1] > 617 and mouse[1] < 688 and menu == False:
+        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1360 and mouse[0] < 1770 and mouse[1] > 700 and mouse[1] < 830 and menu == False:
             program(4)
 
 
@@ -109,25 +102,12 @@ while True:
         sys.exit()
 
     if menu == True:
-        background = pygame.image.load('Afbeeldingen/euro.jpg')
+        background = pygame.image.load('Afbeeldingen/euromastspelbgwmenu.png')
         background = pygame.transform.scale(background, (1920, 1080))
         screen.blit(background, (0, 0))
-        bg = pygame.image.load('Afbeeldingen/menubg.png')
-        screen.blit(bg, (1230, 200))
-        if clicked == False:
-            spelen = pygame.image.load('Afbeeldingen/spelen.png')
-            screen.blit(spelen, (1245, 350))
-            afsluiten = pygame.image.load('Afbeeldingen/afsluiten.png')
-            screen.blit(afsluiten, (1245, 534))
-            regels = pygame.image.load('Afbeeldingen/regels.png')
-            screen.blit(regels, (1245, 718))
-        else:
-            afsluiten = pygame.image.load('Afbeeldingen/afsluiten.png')
-            spelen = pygame.image.load('Afbeeldingen/spelenpressed.png')
-            pygame.time.wait(10000)
 
     elif rules == True:
-        background = pygame.image.load('Afbeeldingen/regelscherm.jpg')
+        background = pygame.image.load('Afbeeldingen/spelregelsbg.png')
         background = pygame.transform.scale(background, (1920, 1080))
         screen.blit(background, (0, 0))
         if terug == True:
@@ -138,7 +118,7 @@ while True:
 
 
     else:
-        background = pygame.image.load('Afbeeldingen/playercount.png')
+        background = pygame.image.load('Afbeeldingen/hvlspelers.png')
         background = pygame.transform.scale(background, (1920, 1080))
         screen.blit(background, (0, 0))
 
