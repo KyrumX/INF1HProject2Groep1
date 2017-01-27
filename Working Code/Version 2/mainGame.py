@@ -17,7 +17,7 @@ user32 = ctypes.windll.user32
 user32.SetProcessDPIAware()
 
 def diceThrow():
-    gooi = [1, 2, 3]
+    gooi = [1, 2, 3, 4, 5, 6]
     throw = random.choice(gooi)
     return throw
 
@@ -41,7 +41,7 @@ class Player:
         self.name = name
         self.image = image
 
-    def update(self, cg):
+    def updatef(self, cg):
         while cg > 0 and self.y > 0:
             if self.y <= 468:
                 if self.x == 804:
@@ -58,6 +58,16 @@ class Player:
                     self.y = 401
 
             self.y -= 58
+            cg -= 1
+
+    def updatel(self, cg):
+        while cg > 0:
+            self.x -= 60
+            cg -= 1
+
+    def updater(self, cg):
+        while cg > 0:
+            self.x += 60
             cg -= 1
 
     def draw(self, screen):
@@ -149,8 +159,8 @@ def program(maxp):
                 break
 
     if maxp >= 2:
-        playerOne = Player(804, 990, img1, player1name)
-        playerTwo = Player(923, 990, img2, player2name)
+        playerOne = Player(805, 990, img1, player1name)
+        playerTwo = Player(925, 990, img2, player2name)
     if maxp >= 3:
         playerThree = Player(1045, 990, img3, player3name)
     if maxp == 4:
@@ -196,19 +206,58 @@ def program(maxp):
                 pygame.display.update()
 
         if cp == 1:
-            questionCat = "Entertainment"
-            screen.blit(background1, (0,0))
+            if playerOne.x == 805 or playerOne.x == 865:
+                questionCat = "Entertainment"
+                screen.blit(background1, (0,0))
+            elif playerOne.x == 925 or playerOne.x == 985:
+                questionCat = "History"
+                screen.blit(background2, (0, 0))
+            elif playerOne.x == 1045 or playerOne.x == 1105:
+                questionCat = "Geography"
+                screen.blit(background3, (0, 0))
+            elif playerOne.x == 1165 or playerOne.x == 1230:
+                questionCat = "Sport"
+                screen.blit(background4, (0, 0))
         elif cp == 2:
-            questionCat = "History"
-            screen.blit(background2, (0,0))
+            if playerTwo.x == 805 or playerTwo.x == 865:
+                questionCat = "Entertainment"
+                screen.blit(background1, (0,0))
+            elif playerTwo.x == 925 or playerTwo.x == 985:
+                questionCat = "History"
+                screen.blit(background2, (0, 0))
+            elif playerTwo.x == 1045 or playerTwo.x == 1105:
+                questionCat = "Geography"
+                screen.blit(background3, (0, 0))
+            elif playerTwo.x == 1165 or playerTwo.x == 1230:
+                questionCat = "Sport"
+                screen.blit(background4, (0, 0))
         elif cp == 3:
-            questionCat = "Geography"
-            screen.blit(background3, (0,0))
-        else:
-            questionCat = "Sport"
-            screen.blit(background4, (0,0))
+            if playerThree.x == 805 or playerThree.x == 865:
+                questionCat = "Entertainment"
+                screen.blit(background1, (0, 0))
+            elif playerThree.x == 925 or playerThree.x == 985:
+                questionCat = "History"
+                screen.blit(background2, (0, 0))
+            elif playerThree.x == 1045 or playerThree.x == 1105:
+                questionCat = "Geography"
+                screen.blit(background3, (0, 0))
+            elif playerThree.x == 1165 or playerThree.x == 1230:
+                questionCat = "Sport"
+                screen.blit(background4, (0, 0))
+        elif cp == 4:
+            if playerFour.x == 805 or playerFour.x == 865:
+                questionCat = "Entertainment"
+                screen.blit(background1, (0, 0))
+            elif playerFour.x == 925 or playerFour.x == 985:
+                questionCat = "History"
+                screen.blit(background2, (0, 0))
+            elif playerFour.x == 1045 or playerFour.x == 1105:
+                questionCat = "Geography"
+                screen.blit(background3, (0, 0))
+            elif playerFour.x == 1165 or playerFour.x == 1230:
+                questionCat = "Sport"
+                screen.blit(background4, (0, 0))
 
-        screen.blit(dn, (1510,470))
 
         if cp == 1:
             naam = playerOne.name
@@ -226,7 +275,7 @@ def program(maxp):
         screen.blit(labelCP, (40, 43))
         screen.blit(labelCat, (49, 145))
         screen.blit(labelQw, (49, 165))
-
+        screen.blit(dn, (1510,470))
 
         if maxp <= 2:
             playerOne.draw(screen)
@@ -250,7 +299,7 @@ def program(maxp):
             for event in pygame.event.get():
                 mouse = pygame.mouse.get_pos()
                 if k[pygame.K_ESCAPE]:
-                    pass
+                    sys.exit("Escape was pressed")
                 elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1516 and mouse[0] < 1705 and mouse[1] > 471 and mouse[1] < 664:
                     if winnerfound == False:
                         keren = [5, 6, 7, 8, 9, 10]
@@ -426,12 +475,16 @@ def program(maxp):
 
 
         while questionABC == True:
-            seconds = (pygame.time.get_ticks() - start_ticks) / 1000
+            mils = 50 - ((pygame.time.get_ticks() - start_ticks) / 1000)
+            seconds = int(mils)
             mouse = pygame.mouse.get_pos()
+            k = pygame.key.get_pressed()
             if optie3 is not None:
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         mainloop = False
+                    elif k[pygame.K_ESCAPE]:
+                        sys.exit("Escape was pressed")
                     elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 24 and mouse[0] < 190 and mouse[1] > 922 and mouse[1] < 1035:
                         print("A")
                         cpKeuze = "A"
@@ -448,13 +501,13 @@ def program(maxp):
                 for event in pygame.event.get():
                     if event.type == pygame.QUIT:
                         mainloop = False
-                    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 24 and mouse[
-                        0] < 190 and mouse[1] > 922 and mouse[1] < 1035:
+                    elif k[pygame.K_ESCAPE]:
+                        sys.exit("Escape was pressed")
+                    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 24 and mouse[0] < 190 and mouse[1] > 922 and mouse[1] < 1035:
                         print("A")
                         cpKeuze = "A"
                         questionABC = False
-                    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 227 and mouse[
-                        0] < 390 and mouse[1] > 922 and mouse[1] < 1035:
+                    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 227 and mouse[0] < 390 and mouse[1] > 922 and mouse[1] < 1035:
                         print("B")
                         cpKeuze = "B"
                         questionABC = False
@@ -493,41 +546,97 @@ def program(maxp):
                 cp -= 3
         else:
             questionTrue = font2.render("Uw keuze was correct.", True, green)
-            continueDobbel = font2.render("U zult nu bewegen.", True, black)
+            continueDobbel = font2.render("U kunt nu een richting kiezen.", True, black)
             screen.blit(questionTrue, (49, 360))
             screen.blit(continueDobbel, (49, 390))
             pygame.display.update()
-            time.sleep(3)
-            if cp == 1:
-                playerOne.update(cg)
-                cp += 1
-                if playerOne.y < 121:
-                    winner = "Player 1"
-                    winnerfound = True
-            elif cp == 2:
-                playerTwo.update(cg)
-                if maxp > 2:
-                    cp += 1
-                else:
-                    cp -= 1
-                if playerTwo.y < 121:
-                    winner = "Player 2"
-                    winnerfound = True
-            elif cp == 3:
-                playerThree.update(cg)
-                if maxp > 3:
-                    cp += 1
-                else:
-                    cp -= 2
-                if playerThree.y < 121:
-                    winnerfound = True
-                    winner = "Player 3"
-            elif cp == 4:
-                playerFour.update(cg)
-                cp -= 3
-                if playerFour.y < 121:
-                    winner = "Player 4"
-                    winnerfound = True
+            if cg == 1 or cg == 2:
+                cg = 1
+            elif cg == 3 or cg == 4:
+                cg = 2
+            elif cg == 5 or cg == 6:
+                cg = 3
+            movement = True
+            while movement == True:
+                mouse = pygame.mouse.get_pos()
+                k = pygame.key.get_pressed()
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        mainloop = False
+                    elif k[pygame.K_ESCAPE]:
+                        sys.exit("Escape was pressed")
+                    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1474 and mouse[0] < 1590 and mouse[1] > 931 and mouse[1] < 1045:
+                        if cp == 1:
+                            playerOne.updatel(cg)
+                            cp += 1
+                        elif cp == 2:
+                            playerTwo.updatel(cg)
+                            if maxp > 2:
+                                cp += 1
+                            else:
+                                cp -= 1
+                        elif cp == 3:
+                            playerThree.updatel(cg)
+                            if maxp > 3:
+                                cp += 1
+                            else:
+                                cp -= 2
+                        elif cp == 4:
+                            playerFour.updatel(cg)
+                            cp -= 3
+                        movement = False
+                    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1603 and mouse[0] < 1727 and mouse[1] > 775 and mouse[1] < 898:
+                        if cp == 1:
+                            playerOne.updatef(cg)
+                            cp += 1
+                            if playerOne.y < 121:
+                                winner = "Player 1"
+                                winnerfound = True
+                        elif cp == 2:
+                            playerTwo.updatef(cg)
+                            if maxp > 2:
+                                cp += 1
+                            else:
+                                cp -= 1
+                            if playerTwo.y < 121:
+                                winner = "Player 2"
+                                winnerfound = True
+                        elif cp == 3:
+                            playerThree.updatef(cg)
+                            if maxp > 3:
+                                cp += 1
+                            else:
+                                cp -= 2
+                            if playerThree.y < 121:
+                                winnerfound = True
+                                winner = "Player 3"
+                        elif cp == 4:
+                            playerFour.updatef(cg)
+                            cp -= 3
+                            if playerFour.y < 121:
+                                winner = "Player 4"
+                                winnerfound = True
+                        movement = False
+                    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1737 and mouse[0] < 1857 and mouse[1] > 926 and mouse[1] < 1046:
+                        if cp == 1:
+                            playerOne.updater(cg)
+                            cp += 1
+                        elif cp == 2:
+                            playerTwo.updater(cg)
+                            if maxp > 2:
+                                cp += 1
+                            else:
+                                cp -= 1
+                        elif cp == 3:
+                            playerThree.updater(cg)
+                            if maxp > 3:
+                                cp += 1
+                            else:
+                                cp -= 2
+                        elif cp == 4:
+                            playerFour.updater(cg)
+                            cp -= 3
+                        movement = False
 
         print(cp)
         if maxp <= 2:

@@ -5,7 +5,8 @@ import sys
 #Timed, voor openvragen:
 def get_key2(start_ticks, screen, font, brownbar, white):
     while 1:
-        seconds = (pygame.time.get_ticks() - start_ticks) / 1000
+        mils = 50 - ((pygame.time.get_ticks() - start_ticks) / 1000)
+        seconds = int(mils)
         if seconds > 50:
             return K_RETURN
         elif seconds < 50:
