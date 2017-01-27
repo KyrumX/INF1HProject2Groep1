@@ -83,6 +83,7 @@ def program(maxp):
     img4 = pygame.image.load("Afbeeldingen/SP4.png")
     greenbar = pygame.image.load("Afbeeldingen/greenbar.png")
     brownbar = pygame.image.load("Afbeeldingen/brownbar.png")
+    buttoncover = pygame.image.load("Afbeeldingen/buttoncover.png")
     d1 = pygame.image.load("Afbeeldingen/DS1.png")
     d2 = pygame.image.load("Afbeeldingen/DS2.png")
     d3 = pygame.image.load("Afbeeldingen/DS3.png")
@@ -165,6 +166,7 @@ def program(maxp):
     meerkeuzeLoop = False
     openvraagLoop = False
     questionOPEN = False
+    optie3 = None
 
 
     while mainloop:
@@ -414,27 +416,48 @@ def program(maxp):
                 if len3 > 2:
                     labelOptie3 = font.render(optie3list[2], True, black)
                     screen.blit(labelOptie3, (49, 780))
+        if optie3 is None:
+            screen.blit(buttoncover, (410,910))
+        if questionABC == False:
+            screen.blit(buttoncover, (410, 910))
+            screen.blit(buttoncover, (10, 910))
+            screen.blit(buttoncover, (200, 910))
         pygame.display.update()
 
 
         while questionABC == True:
             seconds = (pygame.time.get_ticks() - start_ticks) / 1000
             mouse = pygame.mouse.get_pos()
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    mainloop = False
-                elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 24 and mouse[0] < 190 and mouse[1] > 922 and mouse[1] < 1035:
-                    print("A")
-                    cpKeuze = "A"
-                    questionABC = False
-                elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 227 and mouse[0] < 390 and mouse[1] > 922 and mouse[1] < 1035:
-                    print("B")
-                    cpKeuze = "B"
-                    questionABC = False
-                elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 430 and mouse[0] < 590 and mouse[1] > 922 and mouse[1] < 1035:
-                    print("C")
-                    cpKeuze = "C"
-                    questionABC = False
+            if optie3 is not None:
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        mainloop = False
+                    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 24 and mouse[0] < 190 and mouse[1] > 922 and mouse[1] < 1035:
+                        print("A")
+                        cpKeuze = "A"
+                        questionABC = False
+                    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 227 and mouse[0] < 390 and mouse[1] > 922 and mouse[1] < 1035:
+                        print("B")
+                        cpKeuze = "B"
+                        questionABC = False
+                    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 430 and mouse[0] < 590 and mouse[1] > 922 and mouse[1] < 1035:
+                        print("C")
+                        cpKeuze = "C"
+                        questionABC = False
+            else:
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        mainloop = False
+                    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 24 and mouse[
+                        0] < 190 and mouse[1] > 922 and mouse[1] < 1035:
+                        print("A")
+                        cpKeuze = "A"
+                        questionABC = False
+                    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 227 and mouse[
+                        0] < 390 and mouse[1] > 922 and mouse[1] < 1035:
+                        print("B")
+                        cpKeuze = "B"
+                        questionABC = False
             if seconds > 50:
                 cpKeuze = " "
                 questionABC = False
