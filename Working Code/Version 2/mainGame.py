@@ -43,31 +43,37 @@ class Player:
 
     def updatef(self, cg):
         while cg > 0 and self.y > 0:
-            if self.y <= 468:
-                if self.x == 804:
-                    self.x = 927
-                    self.y = 401
-                elif self.x == 923:
-                    self.x = 985
-                    self.y = 401
-                elif self.x == 1045:
-                    self.x = 1053
-                    self.y = 401
-                elif self.x == 1165:
-                    self.x = 1114
-                    self.y = 401
-
-            self.y -= 58
+            if self.y == 477:
+                if self.x == 805 or self.x == 865:
+                    self.x = 930
+                    self.y = 333
+                elif self.x == 925 or self.x == 985:
+                    self.x = 990
+                    self.y = 333
+                elif self.x == 1045 or self.x == 1105:
+                    self.x = 1050
+                    self.y = 333
+                elif self.x == 1165 or self.x == 1225:
+                    self.x = 1110
+                    self.y = 333
+            else:
+                self.y -= 57
             cg -= 1
 
     def updatel(self, cg):
         while cg > 0:
-            self.x -= 60
+            if self.x < 865 and self.y > 333:
+                self.x = 1225
+            else:
+                self.x -= 60
             cg -= 1
 
     def updater(self, cg):
         while cg > 0:
-            self.x += 60
+            if self.x > 1165 and self.y > 333:
+                self.x = 805
+            else:
+                self.x += 60
             cg -= 1
 
     def draw(self, screen):
@@ -215,7 +221,7 @@ def program(maxp):
             elif playerOne.x == 1045 or playerOne.x == 1105:
                 questionCat = "Geography"
                 screen.blit(background3, (0, 0))
-            elif playerOne.x == 1165 or playerOne.x == 1230:
+            elif playerOne.x == 1165 or playerOne.x == 1225:
                 questionCat = "Sport"
                 screen.blit(background4, (0, 0))
         elif cp == 2:
@@ -228,7 +234,7 @@ def program(maxp):
             elif playerTwo.x == 1045 or playerTwo.x == 1105:
                 questionCat = "Geography"
                 screen.blit(background3, (0, 0))
-            elif playerTwo.x == 1165 or playerTwo.x == 1230:
+            elif playerTwo.x == 1165 or playerTwo.x == 1225:
                 questionCat = "Sport"
                 screen.blit(background4, (0, 0))
         elif cp == 3:
@@ -241,7 +247,7 @@ def program(maxp):
             elif playerThree.x == 1045 or playerThree.x == 1105:
                 questionCat = "Geography"
                 screen.blit(background3, (0, 0))
-            elif playerThree.x == 1165 or playerThree.x == 1230:
+            elif playerThree.x == 1165 or playerThree.x == 1225:
                 questionCat = "Sport"
                 screen.blit(background4, (0, 0))
         elif cp == 4:
@@ -254,7 +260,7 @@ def program(maxp):
             elif playerFour.x == 1045 or playerFour.x == 1105:
                 questionCat = "Geography"
                 screen.blit(background3, (0, 0))
-            elif playerFour.x == 1165 or playerFour.x == 1230:
+            elif playerFour.x == 1165 or playerFour.x == 1225:
                 questionCat = "Sport"
                 screen.blit(background4, (0, 0))
 
@@ -302,16 +308,17 @@ def program(maxp):
                     sys.exit("Escape was pressed")
                 elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1516 and mouse[0] < 1705 and mouse[1] > 471 and mouse[1] < 664:
                     if winnerfound == False:
-                        keren = [5, 6, 7, 8, 9, 10]
-                        dobbelsteenZijde = [d1, d2, d3, d4, d5, d6]
-                        aantalKeer = random.choice(keren)
-                        for i in range(0, aantalKeer):
-                            zijde = random.choice(dobbelsteenZijde)
-                            if cp == 1:
+                        # keren = [5, 6, 7, 8, 9, 10]
+                        # dobbelsteenZijde = [d1, d2, d3, d4, d5, d6]
+                        # aantalKeer = random.choice(keren)
+                        # for i in range(0, aantalKeer):
+                        #     zijde = random.choice(dobbelsteenZijde)
+                        if True:
+                            if questionCat == "Entertainment":
                                 screen.blit(background1, (0, 0))
-                            elif cp == 2:
+                            elif questionCat == "History":
                                 screen.blit(background2, (0, 0))
-                            elif cp == 3:
+                            elif questionCat == "Geography":
                                 screen.blit(background3, (0, 0))
                             else:
                                 screen.blit(background4, (0, 0))
@@ -327,7 +334,7 @@ def program(maxp):
                                 playerTwo.draw(screen)
                                 playerThree.draw(screen)
                                 playerFour.draw(screen)
-                            screen.blit(zijde, (1510,470))
+                            # screen.blit(zijde, (1510,470))
                             screen.blit(labelCP, (40, 43))
                             screen.blit(labelCat, (49, 145))
                             screen.blit(labelQw, (49, 165))
@@ -394,14 +401,14 @@ def program(maxp):
         #Start timer
         start_ticks = pygame.time.get_ticks()
         #Check gebruikers antwoord bij MEERKEUZEvraag
-        if cp == 1:
-            screen.blit(background1, (0,0))
-        elif cp == 2:
-            screen.blit(background2, (0,0))
-        elif cp == 3:
-            screen.blit(background3, (0,0))
+        if questionCat == "Entertainment":
+            screen.blit(background1, (0, 0))
+        elif questionCat == "History":
+            screen.blit(background2, (0, 0))
+        elif questionCat == "Geography":
+            screen.blit(background3, (0, 0))
         else:
-            screen.blit(background4, (0,0))
+            screen.blit(background4, (0, 0))
         if cg == 2:
             screen.blit(d2, (1510, 470))
         elif cg == 4:
@@ -525,26 +532,26 @@ def program(maxp):
             questionOPEN = False
 
 
-        if questionCorrect != cpKeuze:
-            questionFalse = font2.render("Uw keuze was incorrect.", True, red)
-            screen.blit(questionFalse, (49, 390))
-            pygame.display.update()
-            time.sleep(3)
-            if cp == 1:
-                cp += 1
-            elif cp == 2:
-                if maxp > 2:
-                    cp += 1
-                else:
-                    cp -= 1
-            elif cp == 3:
-                if maxp > 3:
-                    cp += 1
-                else:
-                    cp -= 2
-            elif cp == 4:
-                cp -= 3
-        else:
+        # if questionCorrect != cpKeuze:
+        #     questionFalse = font2.render("Uw keuze was incorrect.", True, red)
+        #     screen.blit(questionFalse, (49, 390))
+        #     pygame.display.update()
+        #     time.sleep(3)
+        #     if cp == 1:
+        #         cp += 1
+        #     elif cp == 2:
+        #         if maxp > 2:
+        #             cp += 1
+        #         else:
+        #             cp -= 1
+        #     elif cp == 3:
+        #         if maxp > 3:
+        #             cp += 1
+        #         else:
+        #             cp -= 2
+        #     elif cp == 4:
+        #         cp -= 3
+        if True == True:
             questionTrue = font2.render("Uw keuze was correct.", True, green)
             continueDobbel = font2.render("U kunt nu een richting kiezen.", True, black)
             screen.blit(questionTrue, (49, 360))
@@ -587,13 +594,13 @@ def program(maxp):
                         movement = False
                     elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1603 and mouse[0] < 1727 and mouse[1] > 775 and mouse[1] < 898:
                         if cp == 1:
-                            playerOne.updatef(cg)
+                            playerOne.updatef(1)
                             cp += 1
                             if playerOne.y < 121:
                                 winner = "Player 1"
                                 winnerfound = True
                         elif cp == 2:
-                            playerTwo.updatef(cg)
+                            playerTwo.updatef(1)
                             if maxp > 2:
                                 cp += 1
                             else:
