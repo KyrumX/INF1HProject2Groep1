@@ -56,34 +56,6 @@ def login():
         print("Je bent ingelogd!")
 
 
-def interact_with_database2(command):
-    # Connect and set up cursor
-    connection = psycopg2.connect("dbname=sjors user=sjors")
-    cursor = connection.cursor()
-
-    # Execute the command
-    cursor.execute(command)
-    connection.commit()
-
-    # Save results
-    results = None
-    try:
-        results = cursor.fetchall()
-    except psycopg2.ProgrammingError:
-        # Nothing to fetch
-        pass
-
-    # Close connection
-    cursor.close()
-    connection.close()
-
-    return results
-
-    # !/usr/bin/python
-    # import the desired package
-
-
-
 def get_questions(questionCat):
     # Open database connection
     db = psycopg2.connect("dbname='project2' user='postgres' host='localhost' password='kaas123'")

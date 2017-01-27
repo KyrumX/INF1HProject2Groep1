@@ -251,7 +251,7 @@ def program(maxp):
                 mouse = pygame.mouse.get_pos()
                 if k[pygame.K_ESCAPE]:
                     pass
-                elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1510 and mouse[0] < 1755 and mouse[1] > 470 and mouse[1] < 702:
+                elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1516 and mouse[0] < 1705 and mouse[1] > 471 and mouse[1] < 664:
                     if winnerfound == False:
                         keren = [5, 6, 7, 8, 9, 10]
                         dobbelsteenZijde = [d1, d2, d3, d4, d5, d6]

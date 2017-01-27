@@ -1,5 +1,6 @@
 import pygame, pygame.font, pygame.event, pygame.draw, string
 from pygame.locals import *
+import sys
 
 #Timed, voor openvragen:
 def get_key2(start_ticks, screen, font, brownbar, white):
@@ -36,7 +37,7 @@ def ask2(screen, question, font, greenbar, black):
         if inkey == K_BACKSPACE:
             current_string = current_string[0:-1]
         elif inkey == K_ESCAPE:
-            pygame.quit()
+            sys.exit("Esc has been pressed")
         elif inkey == K_RETURN:
             break
         elif inkey == K_MINUS:
@@ -77,7 +78,7 @@ def ask(screen, question):
         if inkey == K_BACKSPACE:
             current_string = current_string[0:-1]
         elif inkey == K_ESCAPE:
-            pygame.quit()
+            sys.exit("Esc has been pressed")
         elif inkey == K_RETURN:
             break
         elif inkey == K_MINUS:
