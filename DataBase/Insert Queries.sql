@@ -74,7 +74,7 @@ VALUES
 (72, 'OPEN', 'Entertainment', 'Bij welke brug in Rotterdam vindt “het nationale vuurwerk” plaats', NULL, NULL, NULL, 'erasmusbrug', 'de erasmusbrug', NULL, NULL),
 (73, 'OPEN', 'Entertainment', 'Bij welk station is het start punt van de Rotterdam street art route', NULL, NULL, NULL, 'centraal station', NULL, NULL, NULL),
 (74, 'OPEN', 'Entertainment', 'Hoe heet het theater dat zich naast Pathe schouwburg bevindt', NULL, NULL, NULL, 'rotterdam schouwburg', 'de schouwburg', 'schouwburg', NULL),
-(75, 'OPEN', 'Entertainment', 'Bij welke haven bevindt zich heet drijvend paviljoen', NULL, NULL, NULL, 'rotterdamse rijnhaven', 'rijnhaven', NULL, NULL),
+(75, 'OPEN', 'Entertainment', 'Bij welke haven bevindt zich het drijvend paviljoen', NULL, NULL, NULL, 'rotterdamse rijnhaven', 'rijnhaven', NULL, NULL),
 (76, 'OPEN', 'Entertainment', 'In welke maand vinden de wereldhavendagen plaats', NULl, NULL, NULL, 'september', NULL, NULL, NULL),
 (77, 'OPEN', 'Entertainment', 'Welk festival in Rotterdam viert seksuele diversiteit', NULL, NULL, NULL, 'rotterdam pride', NULL, NULL, NULL),
 (78, 'OPEN', 'Entertainment', 'Hoe heet het evenement waarbij zombies door de binnenstad van Rotterdam lopen', NULL, NULL, NULL, 'rotterdam zombie walk', NULL, NULL, NULL),
