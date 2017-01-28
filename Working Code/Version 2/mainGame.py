@@ -80,9 +80,9 @@ class Player:
 
     def updateb(self, cg):
         while cg > 0:
-            self.y += 57
             if self.y == 990:
-                cg = 0
+                break
+            self.y += 57
             if self.y > 333:
                 if self.x == 926:
                     self.x = 805
@@ -187,12 +187,12 @@ def program(maxp):
                 break
 
     if maxp >= 2:
-        playerOne = Player(926, 333, img1, player1name)
-        playerTwo = Player(986, 333, img2, player2name)
+        playerOne = Player(805, 990, img1, player1name)
+        playerTwo = Player(925, 990, img2, player2name)
     if maxp >= 3:
-        playerThree = Player(1046, 333, img3, player3name) #1045, 990
+        playerThree = Player(1045, 990, img3, player3name) #1045, 990
     if maxp == 4:
-        playerFour = Player(1106, 333, img4, player4name) #1165, 990
+        playerFour = Player(1165, 990, img4, player4name) #1165, 990
 
     cp = 1
     winnerfound = False
