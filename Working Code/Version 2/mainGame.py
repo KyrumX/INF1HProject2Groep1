@@ -45,16 +45,16 @@ class Player:
         while cg > 0 and self.y > 0:
             if self.y == 477:
                 if self.x == 805 or self.x == 865:
-                    self.x = 930
+                    self.x = 925
                     self.y = 333
                 elif self.x == 925 or self.x == 985:
-                    self.x = 990
+                    self.x = 985
                     self.y = 333
                 elif self.x == 1045 or self.x == 1105:
-                    self.x = 1050
+                    self.x = 1045
                     self.y = 333
                 elif self.x == 1165 or self.x == 1225:
-                    self.x = 1110
+                    self.x = 1105
                     self.y = 333
             else:
                 self.y -= 57
@@ -62,18 +62,20 @@ class Player:
 
     def updatel(self, cg):
         while cg > 0:
-            if self.x < 865 and self.y > 333:
+            self.x -= 60
+            if self.x == 745 and self.y > 333:
                 self.x = 1225
-            else:
-                self.x -= 60
+            elif self.x == 865 and self.y <= 333:
+                self.x = 1105
             cg -= 1
 
     def updater(self, cg):
         while cg > 0:
-            if self.x > 1165 and self.y > 333:
+            self.x += 60
+            if self.x == 1285 and self.y > 333:
                 self.x = 805
-            else:
-                self.x += 60
+            elif self.x == 1165 and self.y <= 333:
+                self.x = 925
             cg -= 1
 
     def draw(self, screen):
@@ -170,7 +172,7 @@ def program(maxp):
     if maxp >= 3:
         playerThree = Player(1045, 990, img3, player3name)
     if maxp == 4:
-        playerFour = Player(1165, 990, img4, player4name)
+        playerFour = Player(925, 333, img4, player4name)
 
     cp = 1
     winnerfound = False
@@ -594,13 +596,13 @@ def program(maxp):
                         movement = False
                     elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1603 and mouse[0] < 1727 and mouse[1] > 775 and mouse[1] < 898:
                         if cp == 1:
-                            playerOne.updatef(1)
+                            playerOne.updatef(3)
                             cp += 1
                             if playerOne.y < 121:
                                 winner = "Player 1"
                                 winnerfound = True
                         elif cp == 2:
-                            playerTwo.updatef(1)
+                            playerTwo.updatef(3)
                             if maxp > 2:
                                 cp += 1
                             else:
@@ -609,7 +611,7 @@ def program(maxp):
                                 winner = "Player 2"
                                 winnerfound = True
                         elif cp == 3:
-                            playerThree.updatef(cg)
+                            playerThree.updatef(3)
                             if maxp > 3:
                                 cp += 1
                             else:
@@ -618,7 +620,7 @@ def program(maxp):
                                 winnerfound = True
                                 winner = "Player 3"
                         elif cp == 4:
-                            playerFour.updatef(cg)
+                            playerFour.updatef(3)
                             cp -= 3
                             if playerFour.y < 121:
                                 winner = "Player 4"
