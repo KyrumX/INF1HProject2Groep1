@@ -45,16 +45,16 @@ class Player:
         while cg > 0 and self.y > 0:
             if self.y == 477:
                 if self.x == 805 or self.x == 865:
-                    self.x = 925
+                    self.x = 926
                     self.y = 333
                 elif self.x == 925 or self.x == 985:
-                    self.x = 985
+                    self.x = 986
                     self.y = 333
                 elif self.x == 1045 or self.x == 1105:
-                    self.x = 1045
+                    self.x = 1046
                     self.y = 333
                 elif self.x == 1165 or self.x == 1225:
-                    self.x = 1105
+                    self.x = 1106
                     self.y = 333
             else:
                 self.y -= 57
@@ -64,9 +64,9 @@ class Player:
         while cg > 0:
             self.x -= 60
             if self.x == 745 and self.y > 333:
-                self.x = 1225
-            elif self.x == 865 and self.y <= 333:
-                self.x = 1105
+                self.x = 1226
+            elif self.x == 866 and self.y <= 333:
+                self.x = 1106
             cg -= 1
 
     def updater(self, cg):
@@ -74,8 +74,28 @@ class Player:
             self.x += 60
             if self.x == 1285 and self.y > 333:
                 self.x = 805
-            elif self.x == 1165 and self.y <= 333:
-                self.x = 925
+            elif self.x == 1166 and self.y <= 333:
+                self.x = 926
+            cg -= 1
+
+    def updateb(self, cg):
+        while cg > 0:
+            self.y += 57
+            if self.y == 990:
+                cg = 0
+            if self.y > 333:
+                if self.x == 926:
+                    self.x = 805
+                    self.y = 477
+                elif self.x == 987:
+                    self.x = 925
+                    self.y = 477
+                elif self.x == 1046:
+                    self.x = 1045
+                    self.y = 477
+                elif self.x == 1106:
+                    self.x = 1165
+                    self.y = 477
             cg -= 1
 
     def draw(self, screen):
@@ -167,12 +187,12 @@ def program(maxp):
                 break
 
     if maxp >= 2:
-        playerOne = Player(805, 990, img1, player1name)
-        playerTwo = Player(925, 990, img2, player2name)
+        playerOne = Player(926, 333, img1, player1name)
+        playerTwo = Player(986, 333, img2, player2name)
     if maxp >= 3:
-        playerThree = Player(1045, 990, img3, player3name)
+        playerThree = Player(1046, 333, img3, player3name) #1045, 990
     if maxp == 4:
-        playerFour = Player(925, 333, img4, player4name)
+        playerFour = Player(1106, 333, img4, player4name) #1165, 990
 
     cp = 1
     winnerfound = False
@@ -214,55 +234,55 @@ def program(maxp):
                 pygame.display.update()
 
         if cp == 1:
-            if playerOne.x == 805 or playerOne.x == 865:
+            if playerOne.x == 805 or playerOne.x == 865 or playerOne.x == 926:
                 questionCat = "Entertainment"
                 screen.blit(background1, (0,0))
-            elif playerOne.x == 925 or playerOne.x == 985:
+            elif playerOne.x == 925 or playerOne.x == 985 or playerOne.x == 986:
                 questionCat = "History"
                 screen.blit(background2, (0, 0))
-            elif playerOne.x == 1045 or playerOne.x == 1105:
+            elif playerOne.x == 1045 or playerOne.x == 1105 or playerOne.x == 1046:
                 questionCat = "Geography"
                 screen.blit(background3, (0, 0))
-            elif playerOne.x == 1165 or playerOne.x == 1225:
+            elif playerOne.x == 1165 or playerOne.x == 1225 or playerOne.x == 1106:
                 questionCat = "Sport"
                 screen.blit(background4, (0, 0))
         elif cp == 2:
-            if playerTwo.x == 805 or playerTwo.x == 865:
+            if playerTwo.x == 805 or playerTwo.x == 865 or playerTwo.x == 926:
                 questionCat = "Entertainment"
                 screen.blit(background1, (0,0))
-            elif playerTwo.x == 925 or playerTwo.x == 985:
+            elif playerTwo.x == 925 or playerTwo.x == 985 or playerTwo.x == 986:
                 questionCat = "History"
                 screen.blit(background2, (0, 0))
-            elif playerTwo.x == 1045 or playerTwo.x == 1105:
+            elif playerTwo.x == 1045 or playerTwo.x == 1105 or playerTwo.x == 1046:
                 questionCat = "Geography"
                 screen.blit(background3, (0, 0))
-            elif playerTwo.x == 1165 or playerTwo.x == 1225:
+            elif playerTwo.x == 1165 or playerTwo.x == 1225 or playerTwo.x == 1106:
                 questionCat = "Sport"
                 screen.blit(background4, (0, 0))
         elif cp == 3:
-            if playerThree.x == 805 or playerThree.x == 865:
+            if playerThree.x == 805 or playerThree.x == 865 or playerThree.x == 926:
                 questionCat = "Entertainment"
                 screen.blit(background1, (0, 0))
-            elif playerThree.x == 925 or playerThree.x == 985:
+            elif playerThree.x == 925 or playerThree.x == 985 or playerThree.x == 986:
                 questionCat = "History"
                 screen.blit(background2, (0, 0))
-            elif playerThree.x == 1045 or playerThree.x == 1105:
+            elif playerThree.x == 1045 or playerThree.x == 1105 or playerThree.x == 1046:
                 questionCat = "Geography"
                 screen.blit(background3, (0, 0))
-            elif playerThree.x == 1165 or playerThree.x == 1225:
+            elif playerThree.x == 1165 or playerThree.x == 1225 or playerThree.x == 1106:
                 questionCat = "Sport"
                 screen.blit(background4, (0, 0))
         elif cp == 4:
-            if playerFour.x == 805 or playerFour.x == 865:
+            if playerFour.x == 805 or playerFour.x == 865 or playerFour.x == 926:
                 questionCat = "Entertainment"
                 screen.blit(background1, (0, 0))
-            elif playerFour.x == 925 or playerFour.x == 985:
+            elif playerFour.x == 925 or playerFour.x == 985 or playerFour.x == 986:
                 questionCat = "History"
                 screen.blit(background2, (0, 0))
-            elif playerFour.x == 1045 or playerFour.x == 1105:
+            elif playerFour.x == 1045 or playerFour.x == 1105 or playerFour.x == 1046:
                 questionCat = "Geography"
                 screen.blit(background3, (0, 0))
-            elif playerFour.x == 1165 or playerFour.x == 1225:
+            elif playerFour.x == 1165 or playerFour.x == 1225 or playerFour.x == 1106:
                 questionCat = "Sport"
                 screen.blit(background4, (0, 0))
 
@@ -310,36 +330,12 @@ def program(maxp):
                     sys.exit("Escape was pressed")
                 elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1516 and mouse[0] < 1705 and mouse[1] > 471 and mouse[1] < 664:
                     if winnerfound == False:
-                        # keren = [5, 6, 7, 8, 9, 10]
-                        # dobbelsteenZijde = [d1, d2, d3, d4, d5, d6]
-                        # aantalKeer = random.choice(keren)
-                        # for i in range(0, aantalKeer):
-                        #     zijde = random.choice(dobbelsteenZijde)
-                        if True:
-                            if questionCat == "Entertainment":
-                                screen.blit(background1, (0, 0))
-                            elif questionCat == "History":
-                                screen.blit(background2, (0, 0))
-                            elif questionCat == "Geography":
-                                screen.blit(background3, (0, 0))
-                            else:
-                                screen.blit(background4, (0, 0))
-                            if maxp <= 2:
-                                playerOne.draw(screen)
-                                playerTwo.draw(screen)
-                            elif maxp == 3:
-                                playerOne.draw(screen)
-                                playerTwo.draw(screen)
-                                playerThree.draw(screen)
-                            else:
-                                playerOne.draw(screen)
-                                playerTwo.draw(screen)
-                                playerThree.draw(screen)
-                                playerFour.draw(screen)
-                            # screen.blit(zijde, (1510,470))
-                            screen.blit(labelCP, (40, 43))
-                            screen.blit(labelCat, (49, 145))
-                            screen.blit(labelQw, (49, 165))
+                        keren = [5, 6, 7, 8, 9, 10]
+                        dobbelsteenZijde = [d1, d2, d3, d4, d5, d6]
+                        aantalKeer = random.choice(keren)
+                        for i in range(0, aantalKeer):
+                            zijde = random.choice(dobbelsteenZijde)
+                            screen.blit(zijde, (1510,470))
                             pygame.display.update()
                             time.sleep(0.5)
                         cg = diceThrow()
@@ -534,26 +530,12 @@ def program(maxp):
             questionOPEN = False
 
 
-        # if questionCorrect != cpKeuze:
-        #     questionFalse = font2.render("Uw keuze was incorrect.", True, red)
-        #     screen.blit(questionFalse, (49, 390))
-        #     pygame.display.update()
-        #     time.sleep(3)
-        #     if cp == 1:
-        #         cp += 1
-        #     elif cp == 2:
-        #         if maxp > 2:
-        #             cp += 1
-        #         else:
-        #             cp -= 1
-        #     elif cp == 3:
-        #         if maxp > 3:
-        #             cp += 1
-        #         else:
-        #             cp -= 2
-        #     elif cp == 4:
-        #         cp -= 3
-        if True == True:
+        if questionCorrect != cpKeuze:
+            questionFalse = font2.render("Uw keuze was incorrect.", True, red)
+            screen.blit(questionFalse, (49, 390))
+            pygame.display.update()
+            time.sleep(3)
+        else:
             questionTrue = font2.render("Uw keuze was correct.", True, green)
             continueDobbel = font2.render("U kunt nu een richting kiezen.", True, black)
             screen.blit(questionTrue, (49, 360))
@@ -577,51 +559,31 @@ def program(maxp):
                     elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1474 and mouse[0] < 1590 and mouse[1] > 931 and mouse[1] < 1045:
                         if cp == 1:
                             playerOne.updatel(cg)
-                            cp += 1
                         elif cp == 2:
                             playerTwo.updatel(cg)
-                            if maxp > 2:
-                                cp += 1
-                            else:
-                                cp -= 1
                         elif cp == 3:
                             playerThree.updatel(cg)
-                            if maxp > 3:
-                                cp += 1
-                            else:
-                                cp -= 2
-                        elif cp == 4:
+                        else:
                             playerFour.updatel(cg)
-                            cp -= 3
                         movement = False
                     elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1603 and mouse[0] < 1727 and mouse[1] > 775 and mouse[1] < 898:
                         if cp == 1:
-                            playerOne.updatef(3)
-                            cp += 1
+                            playerOne.updatef(2)
                             if playerOne.y < 121:
                                 winner = "Player 1"
                                 winnerfound = True
                         elif cp == 2:
                             playerTwo.updatef(3)
-                            if maxp > 2:
-                                cp += 1
-                            else:
-                                cp -= 1
                             if playerTwo.y < 121:
                                 winner = "Player 2"
                                 winnerfound = True
                         elif cp == 3:
-                            playerThree.updatef(3)
-                            if maxp > 3:
-                                cp += 1
-                            else:
-                                cp -= 2
+                            playerThree.updatef(cg)
                             if playerThree.y < 121:
                                 winnerfound = True
                                 winner = "Player 3"
                         elif cp == 4:
-                            playerFour.updatef(3)
-                            cp -= 3
+                            playerFour.updatef(cg)
                             if playerFour.y < 121:
                                 winner = "Player 4"
                                 winnerfound = True
@@ -629,25 +591,255 @@ def program(maxp):
                     elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1737 and mouse[0] < 1857 and mouse[1] > 926 and mouse[1] < 1046:
                         if cp == 1:
                             playerOne.updater(cg)
-                            cp += 1
                         elif cp == 2:
                             playerTwo.updater(cg)
-                            if maxp > 2:
-                                cp += 1
-                            else:
-                                cp -= 1
                         elif cp == 3:
                             playerThree.updater(cg)
-                            if maxp > 3:
-                                cp += 1
-                            else:
-                                cp -= 2
                         elif cp == 4:
                             playerFour.updater(cg)
-                            cp -= 3
                         movement = False
 
-        print(cp)
+        if questionCat == "Entertainment":
+            screen.blit(background1, (0, 0))
+        elif questionCat == "History":
+            screen.blit(background2, (0, 0))
+        elif questionCat == "Geography":
+            screen.blit(background3, (0, 0))
+        else:
+            screen.blit(background4, (0, 0))
+        screen.blit(labelCP, (40, 43))
+        screen.blit(labelCat, (49, 145))
+        screen.blit(labelQw, (49, 165))
+        if maxp == 2:
+            playerOne.draw(screen)
+            playerTwo.draw(screen)
+        elif maxp == 3:
+            playerOne.draw(screen)
+            playerTwo.draw(screen)
+            playerThree.draw(screen)
+        else:
+            playerOne.draw(screen)
+            playerTwo.draw(screen)
+            playerThree.draw(screen)
+            playerFour.draw(screen)
+
+        pygame.display.update()
+        screen.blit(dn, (1510,470))
+        pygame.display.update()
+        dobbelloop = True
+        questionABC = False
+        moveBackLoop = False
+
+        if cp == 1:
+            if playerOne.x == playerTwo.x and playerOne.y == playerTwo.y:
+                mb = 2
+                moveBackLabel = font.render(playerOne.name + " staat op " + playerTwo.name, True, black)
+                moveBackLabel2 = font.render(playerTwo.name + " zal nu achteruit moeten gaan.", True, black)
+                moveBackLabel3 = font.render("Druk op de dobbelsteen om te zien hoeveel stappen", True, black)
+                moveBackLabel4 = font.render("je achteruit zal gaan.", True, black)
+                screen.blit(moveBackLabel, (49, 520))
+                screen.blit(moveBackLabel2, (49, 540))
+                screen.blit(moveBackLabel3, (49, 560))
+                screen.blit(moveBackLabel4, (49, 580))
+                pygame.display.update()
+                moveBackLoop = True
+            if maxp > 2:
+                if playerOne.x == playerThree.x and playerOne.y == playerThree.y:
+                    mb = 3
+                    moveBackLabel = font.render(playerOne.name + " staat op " + playerThree.name, True, black)
+                    moveBackLabel2 = font.render(playerThree.name + " zal nu achteruit moeten gaan.", True, black)
+                    moveBackLabel3 = font.render("Druk op de dobbelsteen om te zien hoeveel stappen", True, black)
+                    moveBackLabel4 = font.render("je achteruit zal gaan.", True, black)
+                    screen.blit(moveBackLabel, (49, 520))
+                    screen.blit(moveBackLabel2, (49, 540))
+                    screen.blit(moveBackLabel3, (49, 560))
+                    screen.blit(moveBackLabel4, (49, 580))
+                    pygame.display.update()
+                    moveBackLoop = True
+                if maxp > 3:
+                    if playerOne.x == playerFour.x and playerOne.y == playerFour.y:
+                        mb = 4
+                        moveBackLabel = font.render(playerOne.name + " staat op " + playerFour.name, True, black)
+                        moveBackLabel2 = font.render(playerFour.name + " zal nu achteruit moeten gaan.", True, black)
+                        moveBackLabel3 = font.render("Druk op de dobbelsteen om te zien hoeveel stappen", True, black)
+                        moveBackLabel4 = font.render("je achteruit zal gaan.", True, black)
+                        screen.blit(moveBackLabel, (49, 520))
+                        screen.blit(moveBackLabel2, (49, 540))
+                        screen.blit(moveBackLabel3, (49, 560))
+                        screen.blit(moveBackLabel4, (49, 580))
+                        pygame.display.update()
+                        moveBackLoop = True
+                        print("IK ZIT HIERO")
+        elif cp == 2:
+            if playerTwo.x == playerOne.x and playerTwo.y == playerOne.y:
+                mb = 1
+                moveBackLabel = font.render(playerTwo.name + " staat op " + playerOne.name, True, black)
+                moveBackLabel2 = font.render(playerOne.name + " zal nu achteruit moeten gaan.", True, black)
+                moveBackLabel3 = font.render("Druk op de dobbelsteen om te zien hoeveel stappen", True, black)
+                moveBackLabel4 = font.render("je achteruit zal gaan.", True, black)
+                screen.blit(moveBackLabel, (49, 520))
+                screen.blit(moveBackLabel2, (49, 540))
+                screen.blit(moveBackLabel3, (49, 560))
+                screen.blit(moveBackLabel4, (49, 580))
+                pygame.display.update()
+                moveBackLoop = True
+            if maxp > 2:
+                if playerTwo.x == playerThree.x and playerTwo.y == playerThree.y:
+                    mb = 3
+                    moveBackLabel = font.render(playerTwo.name + " staat op " + playerThree.name, True, black)
+                    moveBackLabel2 = font.render(playerThree.name + " zal nu achteruit moeten gaan.", True, black)
+                    moveBackLabel3 = font.render("Druk op de dobbelsteen om te zien hoeveel stappen", True, black)
+                    moveBackLabel4 = font.render("je achteruit zal gaan.", True, black)
+                    screen.blit(moveBackLabel, (49, 520))
+                    screen.blit(moveBackLabel2, (49, 540))
+                    screen.blit(moveBackLabel3, (49, 560))
+                    screen.blit(moveBackLabel4, (49, 580))
+                    pygame.display.update()
+                    moveBackLoop = True
+                if maxp > 3:
+                    if playerTwo.x == playerFour.x and playerTwo.y == playerFour.y:
+                        mb = 4
+                        moveBackLabel = font.render(playerTwo.name + " staat op " + playerFour.name, True, black)
+                        moveBackLabel2 = font.render(playerFour.name + " zal nu achteruit moeten gaan.", True, black)
+                        moveBackLabel3 = font.render("Druk op de dobbelsteen om te zien hoeveel stappen", True, black)
+                        moveBackLabel4 = font.render("je achteruit zal gaan.", True, black)
+                        screen.blit(moveBackLabel, (49, 520))
+                        screen.blit(moveBackLabel2, (49, 540))
+                        screen.blit(moveBackLabel3, (49, 560))
+                        screen.blit(moveBackLabel4, (49, 580))
+                        pygame.display.update()
+                        moveBackLoop = True
+        elif cp == 3:
+            if playerThree.x == playerOne.x and playerThree.y == playerOne.y:
+                mb = 1
+                moveBackLabel = font.render(playerThree.name + " staat op " + playerOne.name, True, black)
+                moveBackLabel2 = font.render(playerOne.name + " zal nu achteruit moeten gaan.", True, black)
+                moveBackLabel3 = font.render("Druk op de dobbelsteen om te zien hoeveel stappen", True, black)
+                moveBackLabel4 = font.render("je achteruit zal gaan.", True, black)
+                screen.blit(moveBackLabel, (49, 520))
+                screen.blit(moveBackLabel2, (49, 540))
+                screen.blit(moveBackLabel3, (49, 560))
+                screen.blit(moveBackLabel4, (49, 580))
+                pygame.display.update()
+                moveBackLoop = True
+            elif playerThree.x == playerTwo.x and playerThree.y == playerTwo.y:
+                mb = 2
+                moveBackLabel = font.render(playerThree.name + " staat op " + playerTwo.name, True, black)
+                moveBackLabel2 = font.render(playerTwo.name + " zal nu achteruit moeten gaan.", True, black)
+                moveBackLabel3 = font.render("Druk op de dobbelsteen om te zien hoeveel stappen", True, black)
+                moveBackLabel4 = font.render("je achteruit zal gaan.", True, black)
+                screen.blit(moveBackLabel, (49, 520))
+                screen.blit(moveBackLabel2, (49, 540))
+                screen.blit(moveBackLabel3, (49, 560))
+                screen.blit(moveBackLabel4, (49, 580))
+                pygame.display.update()
+                moveBackLoop = True
+            if maxp > 3:
+                if playerThree.x == playerFour.x and playerThree.y == playerFour.y:
+                    mb = 4
+                    moveBackLabel = font.render(playerThree.name + " staat op " + playerFour.name, True, black)
+                    moveBackLabel2 = font.render(playerFour.name + " zal nu achteruit moeten gaan.", True, black)
+                    moveBackLabel3 = font.render("Druk op de dobbelsteen om te zien hoeveel stappen", True, black)
+                    moveBackLabel4 = font.render("je achteruit zal gaan.", True, black)
+                    screen.blit(moveBackLabel, (49, 520))
+                    screen.blit(moveBackLabel2, (49, 540))
+                    screen.blit(moveBackLabel3, (49, 560))
+                    screen.blit(moveBackLabel4, (49, 580))
+                    pygame.display.update()
+                    moveBackLoop = True
+        elif cp == 4:
+            if playerFour.x == playerOne.x and playerFour.y == playerOne.y:
+                mb = 1
+                moveBackLabel = font.render(playerFour.name + " staat op " + playerOne.name, True, black)
+                moveBackLabel2 = font.render(playerOne.name + " zal nu achteruit moeten gaan.", True, black)
+                moveBackLabel3 = font.render("Druk op de dobbelsteen om te zien hoeveel stappen", True, black)
+                moveBackLabel4 = font.render("je achteruit zal gaan.", True, black)
+                screen.blit(moveBackLabel, (49, 520))
+                screen.blit(moveBackLabel2, (49, 540))
+                screen.blit(moveBackLabel3, (49, 560))
+                screen.blit(moveBackLabel4, (49, 580))
+                pygame.display.update()
+                moveBackLoop = True
+            elif playerFour.x == playerThree.x and playerFour.y == playerThree.y:
+                mb = 3
+                moveBackLabel = font.render(playerFour.name + " staat op " + playerThree.name, True, black)
+                moveBackLabel2 = font.render(playerThree.name + " zal nu achteruit moeten gaan.", True, black)
+                moveBackLabel3 = font.render("Druk op de dobbelsteen om te zien hoeveel stappen", True, black)
+                moveBackLabel4 = font.render("je achteruit zal gaan.", True, black)
+                screen.blit(moveBackLabel, (49, 520))
+                screen.blit(moveBackLabel2, (49, 540))
+                screen.blit(moveBackLabel3, (49, 560))
+                screen.blit(moveBackLabel4, (49, 580))
+                pygame.display.update()
+                moveBackLoop = True
+            elif playerFour.x == playerTwo.x and playerFour.y == playerTwo.y:
+                mb = 2
+                moveBackLabel = font.render(playerFour.name + " staat op " + playerTwo.name, True, black)
+                moveBackLabel2 = font.render(playerTwo.name + " zal nu achteruit moeten gaan.", True, black)
+                moveBackLabel3 = font.render("Druk op de dobbelsteen om te zien hoeveel stappen", True, black)
+                moveBackLabel4 = font.render("je achteruit zal gaan.", True, black)
+                screen.blit(moveBackLabel, (49, 520))
+                screen.blit(moveBackLabel2, (49, 540))
+                screen.blit(moveBackLabel3, (49, 560))
+                screen.blit(moveBackLabel4, (49, 580))
+                pygame.display.update()
+                moveBackLoop = True
+
+
+        while moveBackLoop == True:
+            screen.blit(dn, (1510, 470))
+            for event in pygame.event.get():
+                mouse = pygame.mouse.get_pos()
+                k = pygame.key.get_pressed()
+                if k[pygame.K_ESCAPE]:
+                    sys.exit("Escape was pressed")
+                elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1516 and mouse[0] < 1705 and mouse[1] > 471 and mouse[1] < 664:
+                    keren = [5, 6, 7, 8, 9, 10]
+                    dobbelsteenZijde = [d1, d2, d3, d4, d5, d6]
+                    aantalKeer = random.choice(keren)
+                    for i in range(0, aantalKeer):
+                        zijde = random.choice(dobbelsteenZijde)
+                        screen.blit(zijde, (1510,470))
+                        pygame.display.update()
+                        time.sleep(0.5)
+                    cg = diceThrow()
+                    if cg == 2:
+                        screen.blit(d2, (1510, 470))
+                    elif cg == 4:
+                        screen.blit(d4, (1510, 470))
+                    elif cg == 6:
+                        screen.blit(d6, (1510, 470))
+                    elif cg == 1:
+                        screen.blit(d1, (1510, 470))
+                    elif cg == 3:
+                        screen.blit(d3, (1510, 470))
+                    elif cg == 5:
+                        screen.blit(d5, (1510, 470))
+                    moveBackLabel5 = font.render("Je hebt " + str(cg) + " gegooid.", True, black)
+                    screen.blit(moveBackLabel5, (49, 620))
+                    if cg == 1 or cg == 2:
+                        cg = 1
+                    elif cg == 3 or cg == 4:
+                        cg = 2
+                    elif cg == 5 or cg == 6:
+                        cg = 3
+                    moveBackLabel6 = font.render("Je zal nu " + str(cg) + " stappen achteruit gaan.", True, black)
+                    screen.blit(moveBackLabel6, (49, 640))
+                    pygame.display.update()
+                    time.sleep(2)
+                    if mb == 1:
+                        playerOne.updateb(cg)
+                        moveBackLoop = False
+                    elif mb == 2:
+                        playerTwo.updateb(cg)
+                        moveBackLoop = False
+                    elif mb == 3:
+                        playerThree.updateb(cg)
+                        moveBackLoop = False
+                    elif mb == 4:
+                        playerFour.updateb(cg)
+                        moveBackLoop = False
+
         if maxp <= 2:
             playerOne.draw(screen)
             playerTwo.draw(screen)
@@ -661,6 +853,19 @@ def program(maxp):
             playerThree.draw(screen)
             playerFour.draw(screen)
         pygame.display.update()
-        dobbelloop = True
-        questionABC = False
+
+        if cp == 1:
+            cp += 1
+        elif cp == 2:
+            if maxp > 2:
+                cp += 1
+            else:
+                cp = 1
+        elif cp == 3:
+            if maxp > 3:
+                cp += 1
+            else: cp = 1
+        else:
+            cp = 1
+
 
