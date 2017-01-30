@@ -940,5 +940,26 @@ def program(maxp):
         else:
             cp = 1
 
+    #Termination Screen
+    if winnerfound == True:
+        time.sleep(2)
+        termination = True
+
+    while termination == True:
+        screen.blit(terminationscreen, (0, 0))
+        pygame.display.update()
+        for event in pygame.event.get():
+                mouse = pygame.mouse.get_pos()
+                k = pygame.key.get_pressed()
+                if k[pygame.K_ESCAPE]:
+                    sys.exit("Escape was pressed")
+                elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1530 and mouse[0] < 1950 and mouse[1] > 300 and mouse[1] < 460:
+                        pygame.quit()
+                        sys.exit()
+                elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1530 and mouse[0] < 1950 and mouse[1] > 100 and mouse[1] < 250:
+                        winnerfound = False
+                        program(maxp)
+
+
 
 
