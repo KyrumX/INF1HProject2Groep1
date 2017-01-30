@@ -1,5 +1,6 @@
 import psycopg2
 import random
+import time
 
 # Use the database
 def interact_with_database(command):
@@ -95,4 +96,34 @@ def get_questions2(questionCat):
     # disconnect from server
     db.close()
 
-
+def score(name, score, win, loss):
+    connection = psycopg2.connect("dbname='project2' user='postgres' host='localhost' password='kaas123'")
+    cursor = connection.cursor()
+    cursor.execute("SELECT naamSpeler FROM score WHERE naamSpeler = '{}'".format(name))
+    exists = cursor.fetchone()
+    print(exists)
+    if exists is None:
+        print("IK ZIT HIER")
+        cursor.execute("INSERT INTO score VALUES('{}',{},{},{})" . format(name, score, win, loss))
+        connection.commit()
+    else:
+        print("Hier")
+        x = cursor.execute("SELECT score FROM score WHERE naamSpeler = '{}'".format(name))
+        cS = cursor.fetchall()
+        y = cursor.execute("SELECT wins FROM score WHERE naamSpeler = '{}'".format(name))
+        cW = cursor.fetchall()
+        z = cursor.execute("SELECT losses FROM score WHERE naamSpeler = '{}'".format(name))
+        cL = cursor.fetchall()
+        connection.commit()
+        cS2 = cS[0][0]
+        cW2 = cW[0][0]
+        cL2 = cL[0][0]
+        nS = cS2 + score
+        nW = cW2 + win
+        nL = cL2 + loss
+        cursor.execute("UPDATE score SET score='{}' WHERE naamSpeler = '{}'".format(nS, name))
+        cursor.execute("UPDATE score SET wins ='{}' WHERE naamSpeler = '{}'".format(nW, name))
+        cursor.execute("UPDATE score SET losses ='{}' WHERE naamSpeler = '{}'".format(nL, name))
+        connection.commit()
+    cursor.close()
+    connection.close()

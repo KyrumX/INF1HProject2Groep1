@@ -133,6 +133,7 @@ def program(maxp):
     d5 = pygame.image.load("Afbeeldingen/DS5.png")
     d6 = pygame.image.load("Afbeeldingen/DS6.png")
     dn = pygame.image.load("Afbeeldingen/DS0.png")
+    terminationscreen = pygame.image.load("Afbeeldingen/TerminationScreen.png")
 
 
     screen = pygame.display.set_mode(size, pygame.FULLSCREEN)
@@ -464,6 +465,7 @@ def program(maxp):
         screen.blit(labelCP, (40, 43))
         screen.blit(labelCat, (49, 145))
         screen.blit(labelQw, (49, 165))
+        screen.blit(labelScore, (1446, 43))
         if maxp <= 2:
             playerOne.draw(screen)
             playerTwo.draw(screen)
@@ -633,23 +635,27 @@ def program(maxp):
                         if cp == 1:
                             playerOne.updatef(cg)
                             if playerOne.y < 121:
-                                winner = "Player 1"
-                                winnerfound = True
+                                winner = 1
+                                termination = True
+                                mainloop = False
                         elif cp == 2:
                             playerTwo.updatef(cg)
                             if playerTwo.y < 121:
-                                winner = "Player 2"
-                                winnerfound = True
+                                winner = 2
+                                termination = True
+                                mainloop = False
                         elif cp == 3:
                             playerThree.updatef(cg)
                             if playerThree.y < 121:
-                                winnerfound = True
-                                winner = "Player 3"
+                                winner = 3
+                                termination = True
+                                mainloop = False
                         elif cp == 4:
                             playerFour.updatef(cg)
                             if playerFour.y < 121:
-                                winner = "Player 4"
-                                winnerfound = True
+                                winner = 4
+                                termination = True
+                                mainloop = False
                         movement = False
                     elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1737 and mouse[0] < 1857 and mouse[1] > 926 and mouse[1] < 1046:
                         if cp == 1:
@@ -673,6 +679,7 @@ def program(maxp):
         screen.blit(labelCP, (40, 43))
         screen.blit(labelCat, (49, 145))
         screen.blit(labelQw, (49, 165))
+        screen.blit(labelScore, (1446, 43))
         if maxp == 2:
             playerOne.draw(screen)
             playerTwo.draw(screen)
@@ -945,9 +952,88 @@ def program(maxp):
         time.sleep(2)
         termination = True
 
+    uploadScore = True
     while termination == True:
         screen.blit(terminationscreen, (0, 0))
+        labelScore = font.render("Scores:", True, black)
+        screen.blit(labelScore, (1446, 43))
+        if maxp == 2:
+            scoreP1 = font.render(playerOne.name + ": " + str(playerOne.score), True, black)
+            scoreP2 = font.render(playerTwo.name + ": " + str(playerTwo.score), True, black)
+        elif maxp == 3:
+            scoreP1 = font.render(playerOne.name + ": " + str(playerOne.score), True, black)
+            scoreP2 = font.render(playerTwo.name + ": " + str(playerTwo.score), True, black)
+            scoreP3 = font.render(playerThree.name + ": " + str(playerThree.score), True, black)
+        elif maxp == 4:
+            scoreP1 = font.render(playerOne.name + ": " + str(playerOne.score), True, black)
+            scoreP2 = font.render(playerTwo.name + ": " + str(playerTwo.score), True, black)
+            scoreP3 = font.render(playerThree.name + ": " + str(playerThree.score), True, black)
+            scoreP4 = font.render(playerFour.name + ": " + str(playerFour.score), True, black)
+        if maxp <= 2:
+            screen.blit(scoreP1, (1446, 63))
+            screen.blit(scoreP2, (1446, 83))
+        elif maxp == 3:
+            screen.blit(scoreP1, (1446, 63))
+            screen.blit(scoreP2, (1446, 83))
+            screen.blit(scoreP3, (1446, 103))
+        else:
+            screen.blit(scoreP1, (1446, 63))
+            screen.blit(scoreP2, (1446, 83))
+            screen.blit(scoreP3, (1446, 103))
+            screen.blit(scoreP4, (1446, 123))
         pygame.display.update()
+        if uploadScore == True:
+            if winner == 1:
+                if maxp == 2:
+                    score(playerOne.name, playerOne.score, 1, 0)
+                    score(playerTwo.name, playerTwo.score, 0, 1)
+                    uploadScore = False
+                elif maxp == 3:
+                    score(playerOne.name, playerOne.score, 1, 0)
+                    score(playerTwo.name, playerTwo.score, 0, 1)
+                    score(playerThree.name, playerThree.score, 0, 1)
+                    uploadScore = False
+                elif maxp == 4:
+                    score(playerOne.name, playerOne.score, 1, 0)
+                    score(playerTwo.name, playerTwo.score, 0, 1)
+                    score(playerThree.name, playerThree.score, 0, 1)
+                    score(playerFour.name, playerFour.score, 0, 1)
+                    uploadScore = False
+            elif winner == 2:
+                if maxp == 2:
+                    score(playerOne.name, playerOne.score, 0, 1)
+                    score(playerTwo.name, playerTwo.score, 1, 0)
+                    uploadScore = False
+                elif maxp == 3:
+                    score(playerOne.name, playerOne.score, 0, 1)
+                    score(playerTwo.name, playerTwo.score, 1, 0)
+                    score(playerThree.name, playerThree.score, 0, 1)
+                    uploadScore = False
+                elif maxp == 4:
+                    score(playerOne.name, playerOne.score, 0, 1)
+                    score(playerTwo.name, playerTwo.score, 1, 0)
+                    score(playerThree.name, playerThree.score, 0, 1)
+                    score(playerFour.name, playerFour.score, 0, 1)
+                    uploadScore = False
+            elif winner == 3:
+                if maxp == 3:
+                    score(playerOne.name, playerOne.score, 0, 1)
+                    score(playerTwo.name, playerTwo.score, 0, 1)
+                    score(playerThree.name, playerThree.score, 1, 0)
+                    uploadScore = False
+                elif maxp == 4:
+                    score(playerOne.name, playerOne.score, 0, 1)
+                    score(playerTwo.name, playerTwo.score, 0, 1)
+                    score(playerThree.name, playerThree.score, 1, 0)
+                    score(playerFour.name, playerFour.score, 0, 1)
+                    uploadScore = False
+            elif winner == 4:
+                score(playerOne.name, playerOne.score, 0, 1)
+                score(playerTwo.name, playerTwo.score, 0, 1)
+                score(playerThree.name, playerThree.score, 0, 0)
+                score(playerFour.name, playerFour.score, 1, 0)
+                uploadScore = False
+
         for event in pygame.event.get():
                 mouse = pygame.mouse.get_pos()
                 k = pygame.key.get_pressed()
@@ -957,7 +1043,6 @@ def program(maxp):
                         pygame.quit()
                         sys.exit()
                 elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1530 and mouse[0] < 1950 and mouse[1] > 100 and mouse[1] < 250:
-                        winnerfound = False
                         program(maxp)
 
 
