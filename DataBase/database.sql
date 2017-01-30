@@ -16,8 +16,7 @@ CREATE TABLE Score(
     Name varchar(30) Primary KEY,
     Score int,
 	Wins int,
-	losses int,
-	WL_ratio int
+	Losses int,
 	);
     
 	
