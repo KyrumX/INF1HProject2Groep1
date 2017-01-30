@@ -64,7 +64,7 @@ class Player:
         while cg > 0:
             self.x -= 60
             if self.x == 745 and self.y > 333:
-                self.x = 1226
+                self.x = 1225
             elif self.x == 866 and self.y <= 333:
                 self.x = 1106
             cg -= 1
@@ -378,6 +378,10 @@ def program(maxp):
                                 len1 = len(optie1list)
                                 len2 = len(optie2list)
                                 questionCorrect = interact_with_database("SELECT correct_answer FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
+                                questionCorrect2 = '123456789123456789123456789123456789'
+                                questionCorrect3 = '123456789123456789123456789123456789'
+                                questionCorrect4 = '123456789123456789123456789123456789'
+                                questionCorrect1 = '123456789123456789123456789123456789'
                                 questionABC = True
                                 dobbelloop = False
                                 questionOPEN = False
@@ -390,7 +394,16 @@ def program(maxp):
                                 len1 = 0
                                 len2 = 0
                                 len3 = 0
-                                questionCorrect = interact_with_database("SELECT correct_answer FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
+                                questionCorrect1 = interact_with_database("SELECT correct_answer FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
+                                questionCorrect2 = interact_with_database("SELECT correct_answer2 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
+                                questionCorrect3 = interact_with_database("SELECT correct_answer3 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
+                                questionCorrect4 = interact_with_database("SELECT correct_answer4 FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
+                                if questionCorrect2 is None:
+                                    questionCorrect2 = '123456789123456789123456789123456789'
+                                if questionCorrect3 is None:
+                                    questionCorrect3 = '123456789123456789123456789123456789'
+                                if questionCorrect4 is None:
+                                    questionCorrect4 = '123456789123456789123456789123456789'
                                 questionABC = False
                                 questionOPEN = True
                                 dobbelloop = False
@@ -527,8 +540,12 @@ def program(maxp):
 
         while questionOPEN == True:
             cpKeuze = ask2(screen, "Antwoord", font, brownbar, white)
+            if questionCorrect1 == cpKeuze or questionCorrect2 == cpKeuze or questionCorrect3 == cpKeuze or questionCorrect4 == cpKeuze:
+                cpKeuze = interact_with_database("SELECT correct_answer FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
+                questionCorrect = interact_with_database("SELECT correct_answer FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
+            else:
+                cpKeuze = "123456789123456789123456789"
             questionOPEN = False
-
 
         if questionCorrect != cpKeuze:
             questionFalse = font2.render("Uw keuze was incorrect.", True, red)
@@ -568,12 +585,12 @@ def program(maxp):
                         movement = False
                     elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1603 and mouse[0] < 1727 and mouse[1] > 775 and mouse[1] < 898:
                         if cp == 1:
-                            playerOne.updatef(2)
+                            playerOne.updatef(cg)
                             if playerOne.y < 121:
                                 winner = "Player 1"
                                 winnerfound = True
                         elif cp == 2:
-                            playerTwo.updatef(3)
+                            playerTwo.updatef(cg)
                             if playerTwo.y < 121:
                                 winner = "Player 2"
                                 winnerfound = True
