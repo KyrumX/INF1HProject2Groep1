@@ -40,6 +40,7 @@ class Player:
         self.y = y
         self.name = name
         self.image = image
+        self.score = 0
 
     def updatef(self, cg):
         while cg > 0 and self.y > 0:
@@ -100,6 +101,9 @@ class Player:
 
     def draw(self, screen):
         screen.blit(self.image, (self.x, self.y))
+
+    def addScore(self):
+        self.score += 10
 
 
 def program(maxp):
@@ -223,6 +227,7 @@ def program(maxp):
             pass
         else:
             while x == True:
+
                 mouse = pygame.mouse.get_pos()
                 text("De winnaar is {}!".format(winner), (7, 7), 60)
                 mainbutton = pygame.image.load("Afbeeldingen/mainbutton.png")
@@ -300,23 +305,47 @@ def program(maxp):
         labelCP = font.render(naam + " is nu aan de beurt.", True, black)
         labelCat = font.render("De categorie is: " + questionCat, True, black)
         labelQw = font.render("Beantwoord de onderstaande vraag correct:", True, black)
+        labelScore = font.render("Scores:", True, black)
         screen.blit(labelCP, (40, 43))
         screen.blit(labelCat, (49, 145))
         screen.blit(labelQw, (49, 165))
         screen.blit(dn, (1510,470))
+        screen.blit(labelScore, (1446, 43))
+        if maxp == 2:
+            scoreP1 = font.render(playerOne.name + ": " + str(playerOne.score), True, black)
+            scoreP2 = font.render(playerTwo.name + ": " + str(playerTwo.score), True, black)
+        elif maxp == 3:
+            scoreP1 = font.render(playerOne.name + ": " + str(playerOne.score), True, black)
+            scoreP2 = font.render(playerTwo.name + ": " + str(playerTwo.score), True, black)
+            scoreP3 = font.render(playerThree.name + ": " + str(playerThree.score), True, black)
+        elif maxp == 4:
+            scoreP1 = font.render(playerOne.name + ": " + str(playerOne.score), True, black)
+            scoreP2 = font.render(playerTwo.name + ": " + str(playerTwo.score), True, black)
+            scoreP3 = font.render(playerThree.name + ": " + str(playerThree.score), True, black)
+            scoreP4 = font.render(playerFour.name + ": " + str(playerFour.score), True, black)
+
 
         if maxp <= 2:
             playerOne.draw(screen)
             playerTwo.draw(screen)
+            screen.blit(scoreP1, (1446, 63))
+            screen.blit(scoreP2, (1446, 83))
         elif maxp == 3:
             playerOne.draw(screen)
             playerTwo.draw(screen)
             playerThree.draw(screen)
+            screen.blit(scoreP1, (1446, 63))
+            screen.blit(scoreP2, (1446, 83))
+            screen.blit(scoreP3, (1446, 103))
         else:
             playerOne.draw(screen)
             playerTwo.draw(screen)
             playerThree.draw(screen)
             playerFour.draw(screen)
+            screen.blit(scoreP1, (1446, 63))
+            screen.blit(scoreP2, (1446, 83))
+            screen.blit(scoreP3, (1446, 103))
+            screen.blit(scoreP4, (1446, 123))
         pygame.display.update()
 
 
@@ -438,15 +467,24 @@ def program(maxp):
         if maxp <= 2:
             playerOne.draw(screen)
             playerTwo.draw(screen)
+            screen.blit(scoreP1, (1446, 63))
+            screen.blit(scoreP2, (1446, 83))
         elif maxp == 3:
             playerOne.draw(screen)
             playerTwo.draw(screen)
             playerThree.draw(screen)
+            screen.blit(scoreP1, (1446, 63))
+            screen.blit(scoreP2, (1446, 83))
+            screen.blit(scoreP3, (1446, 103))
         else:
             playerOne.draw(screen)
             playerTwo.draw(screen)
             playerThree.draw(screen)
             playerFour.draw(screen)
+            screen.blit(scoreP1, (1446, 63))
+            screen.blit(scoreP2, (1446, 83))
+            screen.blit(scoreP3, (1446, 103))
+            screen.blit(scoreP4, (1446, 123))
         if lenq > 0:
             labelq = font.render(questionList[0], True, black)
             screen.blit(labelq, (49, 200))
@@ -529,7 +567,7 @@ def program(maxp):
                         print("B")
                         cpKeuze = "B"
                         questionABC = False
-            if seconds > 50:
+            if seconds == -1:
                 cpKeuze = " "
                 questionABC = False
             elif seconds <= 50:
@@ -539,10 +577,10 @@ def program(maxp):
                 pygame.display.update()
 
         while questionOPEN == True:
+            questionCorrect = interact_with_database("SELECT correct_answer FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
             cpKeuze = ask2(screen, "Antwoord", font, brownbar, white)
             if questionCorrect1 == cpKeuze or questionCorrect2 == cpKeuze or questionCorrect3 == cpKeuze or questionCorrect4 == cpKeuze:
                 cpKeuze = interact_with_database("SELECT correct_answer FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
-                questionCorrect = interact_with_database("SELECT correct_answer FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
             else:
                 cpKeuze = "123456789123456789123456789"
             questionOPEN = False
@@ -553,6 +591,14 @@ def program(maxp):
             pygame.display.update()
             time.sleep(3)
         else:
+            if cp == 1:
+                playerOne.addScore()
+            elif cp == 2:
+                playerTwo.addScore()
+            elif cp == 3:
+                playerThree.addScore()
+            elif cp == 4:
+                playerFour.addScore()
             questionTrue = font2.render("Uw keuze was correct.", True, green)
             continueDobbel = font2.render("U kunt nu een richting kiezen.", True, black)
             screen.blit(questionTrue, (49, 360))
@@ -840,7 +886,7 @@ def program(maxp):
                         cg = 2
                     elif cg == 5 or cg == 6:
                         cg = 3
-                    moveBackLabel6 = font.render("Je zal nu " + str(cg) + " stappen achteruit gaan.", True, black)
+                    moveBackLabel6 = font.render("Je zal nu " + str(cg) + " stap(pen) achteruit gaan.", True, black)
                     screen.blit(moveBackLabel6, (49, 640))
                     pygame.display.update()
                     time.sleep(2)
@@ -860,15 +906,24 @@ def program(maxp):
         if maxp <= 2:
             playerOne.draw(screen)
             playerTwo.draw(screen)
+            screen.blit(scoreP1, (1446, 63))
+            screen.blit(scoreP2, (1446, 83))
         elif maxp == 3:
             playerOne.draw(screen)
             playerTwo.draw(screen)
             playerThree.draw(screen)
+            screen.blit(scoreP1, (1446, 63))
+            screen.blit(scoreP2, (1446, 83))
+            screen.blit(scoreP3, (1446, 103))
         else:
             playerOne.draw(screen)
             playerTwo.draw(screen)
             playerThree.draw(screen)
             playerFour.draw(screen)
+            screen.blit(scoreP1, (1446, 63))
+            screen.blit(scoreP2, (1446, 83))
+            screen.blit(scoreP3, (1446, 103))
+            screen.blit(scoreP4, (1446, 123))
         pygame.display.update()
 
         if cp == 1:
@@ -884,5 +939,6 @@ def program(maxp):
             else: cp = 1
         else:
             cp = 1
+
 
 

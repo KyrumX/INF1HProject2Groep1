@@ -7,7 +7,7 @@ def get_key2(start_ticks, screen, font, brownbar, white):
     while 1:
         mils = 50 - ((pygame.time.get_ticks() - start_ticks) / 1000)
         seconds = int(mils)
-        if seconds > 50:
+        if seconds == -1:
             return K_RETURN
         elif seconds < 50:
             screen.blit(brownbar, (216, 460))
