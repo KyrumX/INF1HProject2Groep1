@@ -103,11 +103,9 @@ def score(name, score, win, loss):
     exists = cursor.fetchone()
     print(exists)
     if exists is None:
-        print("IK ZIT HIER")
         cursor.execute("INSERT INTO score VALUES('{}',{},{},{})" . format(name, score, win, loss))
         connection.commit()
     else:
-        print("Hier")
         x = cursor.execute("SELECT score FROM score WHERE naamSpeler = '{}'".format(name))
         cS = cursor.fetchall()
         y = cursor.execute("SELECT wins FROM score WHERE naamSpeler = '{}'".format(name))

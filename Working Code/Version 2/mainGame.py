@@ -209,7 +209,7 @@ def program(maxp):
     openvraagLoop = False
     questionOPEN = False
     optie3 = None
-
+    richtingLoop = True
 
     while mainloop:
         clock.tick(60)
@@ -306,11 +306,15 @@ def program(maxp):
         labelCat = font.render("De categorie is: " + questionCat, True, black)
         labelQw = font.render("Beantwoord de onderstaande vraag correct:", True, black)
         labelScore = font.render("Scores:", True, black)
+        labelRichtingKiezen = font.render("Kies eerst een richting voordat", True, black)
+        labelRichtingKiezen2 = font.render("u de dobbelsteen gooit.", True, black)
         screen.blit(labelCP, (40, 43))
         screen.blit(labelCat, (49, 145))
         screen.blit(labelQw, (49, 165))
         screen.blit(dn, (1510,470))
         screen.blit(labelScore, (1446, 43))
+        screen.blit(labelRichtingKiezen, (1446, 370))
+        screen.blit(labelRichtingKiezen2, (1446, 390))
         if maxp == 2:
             scoreP1 = font.render(playerOne.name + ": " + str(playerOne.score), True, black)
             scoreP2 = font.render(playerTwo.name + ": " + str(playerTwo.score), True, black)
@@ -347,6 +351,60 @@ def program(maxp):
             screen.blit(scoreP3, (1446, 103))
             screen.blit(scoreP4, (1446, 123))
         pygame.display.update()
+
+        while richtingLoop == True:
+            mouse = pygame.mouse.get_pos()
+            k = pygame.key.get_pressed()
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    mainloop = False
+                elif k[pygame.K_ESCAPE]:
+                    sys.exit("Escape was pressed")
+                elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1474 and mouse[0] < 1590 and mouse[1] > 931 and mouse[1] < 1045:
+                    richting = "links"
+                    richtingLabel = font.render("Uw gekozen richting: " + str(richting), True, black)
+                    screen.blit(richtingLabel, (1446, 410))
+                    pygame.display.update()
+                    richtingLoop = False
+                elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1603 and mouse[0] < 1727 and mouse[1] > 775 and mouse[1] < 898:
+                    richting = "omhoog"
+                    richtingLabel = font.render("Uw gekozen richting: " + str(richting), True, black)
+                    screen.blit(richtingLabel, (1446, 410))
+                    pygame.display.update()
+                    richtingLoop = False
+                elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1737 and mouse[0] < 1857 and mouse[1] > 926 and mouse[1] < 1046:
+                    richting = "rechts"
+                    richtingLabel = font.render("Uw gekozen richting: " + str(richting), True, black)
+                    screen.blit(richtingLabel, (1446, 410))
+                    pygame.display.update()
+                    richtingLoop = False
+
+        screen.blit(labelCP, (40, 43))
+        screen.blit(labelCat, (49, 145))
+        screen.blit(labelQw, (49, 165))
+        screen.blit(labelScore, (1446, 43))
+        screen.blit(richtingLabel, (1446, 410))
+        if maxp <= 2:
+            playerOne.draw(screen)
+            playerTwo.draw(screen)
+            screen.blit(scoreP1, (1446, 63))
+            screen.blit(scoreP2, (1446, 83))
+        elif maxp == 3:
+            playerOne.draw(screen)
+            playerTwo.draw(screen)
+            playerThree.draw(screen)
+            screen.blit(scoreP1, (1446, 63))
+            screen.blit(scoreP2, (1446, 83))
+            screen.blit(scoreP3, (1446, 103))
+        else:
+            playerOne.draw(screen)
+            playerTwo.draw(screen)
+            playerThree.draw(screen)
+            playerFour.draw(screen)
+            screen.blit(scoreP1, (1446, 63))
+            screen.blit(scoreP2, (1446, 83))
+            screen.blit(scoreP3, (1446, 103))
+            screen.blit(scoreP4, (1446, 123))
 
 
         #Unlock de dobbelsteen
@@ -465,6 +523,7 @@ def program(maxp):
         screen.blit(labelCat, (49, 145))
         screen.blit(labelQw, (49, 165))
         screen.blit(labelScore, (1446, 43))
+        screen.blit(richtingLabel, (1446, 410))
         if maxp <= 2:
             playerOne.draw(screen)
             playerTwo.draw(screen)
@@ -601,10 +660,12 @@ def program(maxp):
             elif cp == 4:
                 playerFour.addScore()
             questionTrue = font2.render("Uw keuze was correct.", True, green)
-            continueDobbel = font2.render("U kunt nu een richting kiezen.", True, black)
-            screen.blit(questionTrue, (49, 360))
+            continueDobbel = font.render("U zult nu in de gekozen richting bewegen.", True, black)
+            screen.blit(questionTrue, (49, 350))
             screen.blit(continueDobbel, (49, 390))
+            screen.blit(richtingLabel, (1446, 410))
             pygame.display.update()
+            time.sleep(2)
             if cg == 1 or cg == 2:
                 cg = 1
             elif cg == 3 or cg == 4:
@@ -620,52 +681,52 @@ def program(maxp):
                         mainloop = False
                     elif k[pygame.K_ESCAPE]:
                         sys.exit("Escape was pressed")
-                    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1474 and mouse[0] < 1590 and mouse[1] > 931 and mouse[1] < 1045:
-                        if cp == 1:
-                            playerOne.updatel(cg)
-                        elif cp == 2:
-                            playerTwo.updatel(cg)
-                        elif cp == 3:
-                            playerThree.updatel(cg)
-                        else:
-                            playerFour.updatel(cg)
-                        movement = False
-                    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1603 and mouse[0] < 1727 and mouse[1] > 775 and mouse[1] < 898:
-                        if cp == 1:
-                            playerOne.updatef(cg)
-                            if playerOne.y < 121:
-                                winner = 1
-                                termination = True
-                                mainloop = False
-                        elif cp == 2:
-                            playerTwo.updatef(cg)
-                            if playerTwo.y < 121:
-                                winner = 2
-                                termination = True
-                                mainloop = False
-                        elif cp == 3:
-                            playerThree.updatef(cg)
-                            if playerThree.y < 121:
-                                winner = 3
-                                termination = True
-                                mainloop = False
-                        elif cp == 4:
-                            playerFour.updatef(cg)
-                            if playerFour.y < 121:
-                                winner = 4
-                                termination = True
-                                mainloop = False
-                        movement = False
-                    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1737 and mouse[0] < 1857 and mouse[1] > 926 and mouse[1] < 1046:
-                        if cp == 1:
-                            playerOne.updater(cg)
-                        elif cp == 2:
-                            playerTwo.updater(cg)
-                        elif cp == 3:
-                            playerThree.updater(cg)
-                        elif cp == 4:
-                            playerFour.updater(cg)
-                        movement = False
+                if richting == "links":
+                    if cp == 1:
+                        playerOne.updatel(cg)
+                    elif cp == 2:
+                        playerTwo.updatel(cg)
+                    elif cp == 3:
+                        playerThree.updatel(cg)
+                    else:
+                        playerFour.updatel(cg)
+                    movement = False
+                elif richting == "omhoog":
+                    if cp == 1:
+                        playerOne.updatef(cg)
+                        if playerOne.y < 121:
+                            winner = 1
+                            termination = True
+                            mainloop = False
+                    elif cp == 2:
+                        playerTwo.updatef(cg)
+                        if playerTwo.y < 121:
+                            winner = 2
+                            termination = True
+                            mainloop = False
+                    elif cp == 3:
+                        playerThree.updatef(cg)
+                        if playerThree.y < 121:
+                            winner = 3
+                            termination = True
+                            mainloop = False
+                    elif cp == 4:
+                        playerFour.updatef(cg)
+                        if playerFour.y < 121:
+                            winner = 4
+                            termination = True
+                            mainloop = False
+                    movement = False
+                elif richting == "rechts":
+                    if cp == 1:
+                        playerOne.updater(cg)
+                    elif cp == 2:
+                        playerTwo.updater(cg)
+                    elif cp == 3:
+                        playerThree.updater(cg)
+                    elif cp == 4:
+                        playerFour.updater(cg)
+                    movement = False
 
         if questionCat == "Entertainment":
             screen.blit(background1, (0, 0))
@@ -707,6 +768,8 @@ def program(maxp):
         dobbelloop = True
         questionABC = False
         moveBackLoop = False
+        richtingLoop = True
+        time.sleep(2)
 
         if cp == 1:
             if playerOne.x == playerTwo.x and playerOne.y == playerTwo.y:
@@ -1038,7 +1101,7 @@ def program(maxp):
             elif winner == 4:
                 score(playerOne.name, playerOne.score, 0, 1)
                 score(playerTwo.name, playerTwo.score, 0, 1)
-                score(playerThree.name, playerThree.score, 0, 0)
+                score(playerThree.name, playerThree.score, 0, 1)
                 score(playerFour.name, playerFour.score, 1, 0)
                 uploadScore = False
 
