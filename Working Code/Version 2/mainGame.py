@@ -123,7 +123,6 @@ def program(maxp):
     img2 = pygame.image.load("Afbeeldingen/SP2.png")
     img3 = pygame.image.load("Afbeeldingen/SP3.png")
     img4 = pygame.image.load("Afbeeldingen/SP4.png")
-    greenbar = pygame.image.load("Afbeeldingen/greenbar.png")
     brownbar = pygame.image.load("Afbeeldingen/brownbar.png")
     buttoncover = pygame.image.load("Afbeeldingen/buttoncover.png")
     d1 = pygame.image.load("Afbeeldingen/DS1.png")
@@ -680,18 +679,27 @@ def program(maxp):
         screen.blit(labelCat, (49, 145))
         screen.blit(labelQw, (49, 165))
         screen.blit(labelScore, (1446, 43))
-        if maxp == 2:
+        if maxp <= 2:
             playerOne.draw(screen)
             playerTwo.draw(screen)
+            screen.blit(scoreP1, (1446, 63))
+            screen.blit(scoreP2, (1446, 83))
         elif maxp == 3:
             playerOne.draw(screen)
             playerTwo.draw(screen)
             playerThree.draw(screen)
+            screen.blit(scoreP1, (1446, 63))
+            screen.blit(scoreP2, (1446, 83))
+            screen.blit(scoreP3, (1446, 103))
         else:
             playerOne.draw(screen)
             playerTwo.draw(screen)
             playerThree.draw(screen)
             playerFour.draw(screen)
+            screen.blit(scoreP1, (1446, 63))
+            screen.blit(scoreP2, (1446, 83))
+            screen.blit(scoreP3, (1446, 103))
+            screen.blit(scoreP4, (1446, 123))
 
         pygame.display.update()
         screen.blit(dn, (1510,470))
