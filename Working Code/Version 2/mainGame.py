@@ -16,6 +16,7 @@ clock = pygame.time.Clock()
 user32 = ctypes.windll.user32
 user32.SetProcessDPIAware()
 
+
 def diceThrow():
     gooi = [1, 2, 3, 4, 5, 6]
     throw = random.choice(gooi)
@@ -114,6 +115,8 @@ def program(maxp):
     width = 1920
     height = 1080
     size = (width, height)
+    QuestionRight = pygame.mixer.Sound("Geluiden/Ding.wav")
+    QuestionWrong = pygame.mixer.Sound("Geluiden/buzzer.wav")
     background1 = pygame.image.load("Afbeeldingen/gamebackgroundred.png")
     background2 = pygame.image.load("Afbeeldingen/gamebackgroundyellow.png")
     background3 = pygame.image.load("Afbeeldingen/gamebackgroundgreen.png")
@@ -648,11 +651,13 @@ def program(maxp):
             questionOPEN = False
 
         if questionCorrect != cpKeuze:
+            QuestionWrong.play()
             questionFalse = font2.render("Uw keuze was incorrect.", True, red)
             screen.blit(questionFalse, (49, 390))
             pygame.display.update()
             time.sleep(3)
         else:
+            QuestionRight.play()
             if cp == 1:
                 playerOne.addScore()
             elif cp == 2:
