@@ -125,3 +125,17 @@ def score(name, score, win, loss):
         connection.commit()
     cursor.close()
     connection.close()
+
+def highscore():
+    connection = psycopg2.connect("dbname='project2' user='postgres' host='localhost' password='kaas123'")
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM score ORDER BY score DESC LIMIT 10;")
+    returns = cursor.fetchall()
+    length = len(returns)
+    print(length)
+    x = 0
+    for i in range(0, length):
+        print(str(returns[x][0]) + " " + str(returns[x][1]) + " " + str(returns[x][2]) + " " + str(returns[x][3]))
+        x += 1
+
+highscore()
