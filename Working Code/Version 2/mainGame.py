@@ -311,7 +311,6 @@ def program(maxp):
         screen.blit(labelCP, (40, 43))
         screen.blit(labelCat, (49, 145))
         screen.blit(labelQw, (49, 165))
-        screen.blit(dn, (1510,470))
         screen.blit(labelScore, (1446, 43))
         screen.blit(labelRichtingKiezen, (1446, 370))
         screen.blit(labelRichtingKiezen2, (1446, 390))
@@ -363,22 +362,25 @@ def program(maxp):
                 elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1474 and mouse[0] < 1590 and mouse[1] > 931 and mouse[1] < 1045:
                     richting = "links"
                     richtingLabel = font.render("Uw gekozen richting: " + str(richting), True, black)
-                    screen.blit(richtingLabel, (1446, 410))
-                    pygame.display.update()
                     richtingLoop = False
                 elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1603 and mouse[0] < 1727 and mouse[1] > 775 and mouse[1] < 898:
                     richting = "omhoog"
                     richtingLabel = font.render("Uw gekozen richting: " + str(richting), True, black)
-                    screen.blit(richtingLabel, (1446, 410))
-                    pygame.display.update()
                     richtingLoop = False
                 elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1737 and mouse[0] < 1857 and mouse[1] > 926 and mouse[1] < 1046:
                     richting = "rechts"
                     richtingLabel = font.render("Uw gekozen richting: " + str(richting), True, black)
-                    screen.blit(richtingLabel, (1446, 410))
-                    pygame.display.update()
                     richtingLoop = False
 
+        if questionCat == "Entertainment":
+            screen.blit(background1, (0, 0))
+        elif questionCat == "History":
+            screen.blit(background2, (0, 0))
+        elif questionCat == "Geography":
+            screen.blit(background3, (0, 0))
+        else:
+            screen.blit(background4, (0, 0))
+        screen.blit(dn, (1510,470))
         screen.blit(labelCP, (40, 43))
         screen.blit(labelCat, (49, 145))
         screen.blit(labelQw, (49, 165))
@@ -405,7 +407,7 @@ def program(maxp):
             screen.blit(scoreP2, (1446, 83))
             screen.blit(scoreP3, (1446, 103))
             screen.blit(scoreP4, (1446, 123))
-
+        pygame.display.update()
 
         #Unlock de dobbelsteen
         while dobbelloop == True:
@@ -763,13 +765,10 @@ def program(maxp):
             screen.blit(scoreP4, (1446, 123))
 
         pygame.display.update()
-        screen.blit(dn, (1510,470))
-        pygame.display.update()
         dobbelloop = True
         questionABC = False
         moveBackLoop = False
         richtingLoop = True
-        time.sleep(2)
 
         if cp == 1:
             if playerOne.x == playerTwo.x and playerOne.y == playerTwo.y:
@@ -929,6 +928,7 @@ def program(maxp):
 
         while moveBackLoop == True:
             screen.blit(dn, (1510, 470))
+            pygame.display.update()
             for event in pygame.event.get():
                 mouse = pygame.mouse.get_pos()
                 k = pygame.key.get_pressed()
