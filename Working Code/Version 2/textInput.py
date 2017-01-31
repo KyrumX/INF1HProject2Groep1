@@ -22,8 +22,7 @@ def get_key2(start_ticks, screen, font, brownbar, white):
 
 def display_box2(screen, message):
     fontobject = pygame.font.Font(None,30)
-    pygame.draw.rect(screen, (0, 0, 0), (37,518,560,30), 0)
-    pygame.draw.rect(screen, (0, 0, 0), (35,516,564,32), 1)
+    pygame.draw.rect(screen, (74, 110, 134), (37,518,560,30), 0)
     if len(message) != 0:
         screen.blit(fontobject.render(message, 1, (255,255,255)), (39,520))
         pygame.display.flip()
@@ -64,10 +63,9 @@ def get_key():
 
 def display_box(screen, message):
     fontobject = pygame.font.Font(None,30)
-    pygame.draw.rect(screen, (0, 0, 0), (298,158,500,30), 0)
-    pygame.draw.rect(screen, (0, 0, 0), (296,156,504,32), 1)
+    pygame.draw.rect(screen, (42, 40, 40), (200, 320,500,30), 0)
     if len(message) != 0:
-        screen.blit(fontobject.render(message, 1, (255,255,255)), (300,160))
+        screen.blit(fontobject.render(message, 1, (255,255,255)), (200, 320))
         pygame.display.flip()
 
 def ask(screen, question):
