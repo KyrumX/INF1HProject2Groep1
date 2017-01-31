@@ -118,7 +118,7 @@ def program(maxp):
     background2 = pygame.image.load("Afbeeldingen/gamebackgroundyellow.png")
     background3 = pygame.image.load("Afbeeldingen/gamebackgroundgreen.png")
     background4 = pygame.image.load("Afbeeldingen/gamebackgroundblue.png")
-    nameInputBack = pygame.image.load("Afbeeldingen/naamInput.jpg")
+    nameInputBack = pygame.image.load("Afbeeldingen/avatarks.png")
     img1 = pygame.image.load("Afbeeldingen/SP1.png")
     img2 = pygame.image.load("Afbeeldingen/SP2.png")
     img3 = pygame.image.load("Afbeeldingen/SP3.png")
