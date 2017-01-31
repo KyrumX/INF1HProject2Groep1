@@ -3,7 +3,7 @@ VALUES
 (1, 'OPEN', 'Geography', 'Hoe hoog is de Euromast?', NULL, NULL, NULL, '185 meter', '185', '185m', NULL),
 (2, 'OPEN', 'Geography', 'Welke stad is groter dan Rotterdam?', NULL, NULL, NULL, 'geen', 'er is geen grotere stad', NULL, NULL), 
 (3, 'OPEN', 'Geography', 'Wat is de hoogste brug van Rotterdam?', NULL, NULL, NULL, 'de erasmusbrug', 'erasmusbrug', NULL, NULL), 
-(4, 'OPEN', 'Geography', 'Hoe groot is Rotterdam, inclusief wateren?, ', NULL, NULL, NULL, '320 km2', '320', '320km2' NULL),
+(4, 'OPEN', 'Geography', 'Hoe groot is Rotterdam, inclusief wateren?, ', NULL, NULL, NULL, '320 km2', '320', '320km2', NULL),
 (5, 'OPEN', 'Geography', 'Hoe heet de berg die in Rotterdam ligt?', NULL, NULL, NULL, 'rotterdam heeft geen bergen', 'heeft geen naam', 'bestaat niet', NULL),
 (6, 'OPEN', 'Geography', 'Welke klimaat heerst er in Rotterdam?', NULL, NULL, NULL, 'gematigd zeeklimaat', 'zeeklimaat', NULL, NULL),
 (7, 'OPEN', 'Geography', 'Wat is de oudste deelgemeente van Rotterdam?', NULL, NULL, NULL, 'rotterdam-noord', 'noord', NULL, NULL), 
