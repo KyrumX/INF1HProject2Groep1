@@ -31,6 +31,7 @@ rules = False
 terug = False
 MenuMusic = pygame.mixer.Sound("Geluiden/Menu.wav")
 
+
 while True:
     mouse = pygame.mouse.get_pos()
     print(mouse)
