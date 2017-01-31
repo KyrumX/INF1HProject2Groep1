@@ -13,7 +13,7 @@ CREATE TABLE QnA(
 );
 
 CREATE TABLE Score(
-    Name varchar(30) Primary KEY,
+    naamSpeler varchar(30) Primary KEY,
     Score int,
 	Wins int,
 	Losses int
