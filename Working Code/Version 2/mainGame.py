@@ -107,6 +107,10 @@ class Player:
         self.score += 10
 
 
+    def winnerScore(self):
+        self.score += 100
+
+
 def program(maxp):
     black = (0, 0, 0)
     red = (255, 0, 0)
@@ -194,8 +198,8 @@ def program(maxp):
                 break
 
     if maxp >= 2:
-        playerOne = Player(805, 990, img1, player1name)
-        playerTwo = Player(925, 990, img2, player2name)
+        playerOne = Player(805, 999, img1, player1name) #805, 990
+        playerTwo = Player(925, 990, img2, player2name) #925, 990
     if maxp >= 3:
         playerThree = Player(1045, 990, img3, player3name) #1045, 990
     if maxp == 4:
@@ -701,25 +705,25 @@ def program(maxp):
                 elif richting == "omhoog":
                     if cp == 1:
                         playerOne.updatef(cg)
-                        if playerOne.y < 121:
+                        if playerOne.y == 48:
                             winner = 1
                             termination = True
                             mainloop = False
                     elif cp == 2:
                         playerTwo.updatef(cg)
-                        if playerTwo.y < 121:
+                        if playerTwo.y == 48:
                             winner = 2
                             termination = True
                             mainloop = False
                     elif cp == 3:
                         playerThree.updatef(cg)
-                        if playerThree.y < 121:
+                        if playerThree.y == 48:
                             winner = 3
                             termination = True
                             mainloop = False
                     elif cp == 4:
                         playerFour.updatef(cg)
-                        if playerFour.y < 121:
+                        if playerFour.y == 48:
                             winner = 4
                             termination = True
                             mainloop = False
@@ -1060,6 +1064,7 @@ def program(maxp):
         pygame.display.update()
         if uploadScore == True:
             if winner == 1:
+                playerOne.winnerScore()
                 if maxp == 2:
                     score(playerOne.name, playerOne.score, 1, 0)
                     score(playerTwo.name, playerTwo.score, 0, 1)
@@ -1076,6 +1081,7 @@ def program(maxp):
                     score(playerFour.name, playerFour.score, 0, 1)
                     uploadScore = False
             elif winner == 2:
+                playerTwo.winnerScore()
                 if maxp == 2:
                     score(playerOne.name, playerOne.score, 0, 1)
                     score(playerTwo.name, playerTwo.score, 1, 0)
@@ -1092,6 +1098,7 @@ def program(maxp):
                     score(playerFour.name, playerFour.score, 0, 1)
                     uploadScore = False
             elif winner == 3:
+                playerThree.winnerScore()
                 if maxp == 3:
                     score(playerOne.name, playerOne.score, 0, 1)
                     score(playerTwo.name, playerTwo.score, 0, 1)
@@ -1104,6 +1111,7 @@ def program(maxp):
                     score(playerFour.name, playerFour.score, 0, 1)
                     uploadScore = False
             elif winner == 4:
+                playerFour.winnerScore()
                 score(playerOne.name, playerOne.score, 0, 1)
                 score(playerTwo.name, playerTwo.score, 0, 1)
                 score(playerThree.name, playerThree.score, 0, 1)
