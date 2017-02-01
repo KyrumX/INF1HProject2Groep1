@@ -1,6 +1,7 @@
 import psycopg2
 import random
 import time
+import pygame
 
 # Use the database
 def interact_with_database(command):
@@ -126,7 +127,9 @@ def score(name, score, win, loss):
     cursor.close()
     connection.close()
 
-def highscore():
+def highscoreRetrieve(screen):
+    font = pygame.font.Font(None, 40)
+    black = (0, 0, 0)
     connection = psycopg2.connect("dbname='project2' user='postgres' host='localhost' password='kaas123'")
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM score ORDER BY score DESC LIMIT 10;")
@@ -134,8 +137,22 @@ def highscore():
     length = len(returns)
     print(length)
     x = 0
+    y = 180
     for i in range(0, length):
-        print(str(returns[x][0]) + " " + str(returns[x][1]) + " " + str(returns[x][2]) + " " + str(returns[x][3]))
-        x += 1
+        nameLabel = font.render(returns[x][0], True, black)
+        screen.blit(nameLabel, (240, y))
+        winLabel = font.render(str(returns[x][2]), True, black)
+        screen.blit(winLabel, (615, y))
+        loseLabel = font.render(str(returns[x][3]), True, black)
+        screen.blit(loseLabel, (880, y))
+        ratio = int((returns[x][2] / (returns[x][2] + returns[x][3])) * 100)
+        ratioLabel = font.render(str(ratio) + "%", True, black)
+        screen.blit(ratioLabel, (1150, y))
+        scoreLabel = font.render(str(returns[x][1]), True, black)
+        screen.blit(scoreLabel, (1420, y))
+        x = x + 1
+        y += 40
+
+
 
 #highscore()
