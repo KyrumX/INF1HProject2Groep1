@@ -3,6 +3,7 @@ import sys
 import time
 from pygame.locals import *
 from mainGame import *
+from database import *
 
 pygame.init()
 pygame.font.init()
@@ -89,9 +90,10 @@ while True:
            menu = True
     elif highscore == True:
         MenuMusic.play()
-        background = pygame.image.load('Afbeeldingen/highscorebg.png')
+        background = pygame.image.load('Afbeeldingen/highscoresbg.png')
         background = pygame.transform.scale(background, (1920, 1080))
         screen.blit(background, (0, 0))
+        highscoreRetrieve(screen)
         if terug2 == True:
            terug2 = False
            highscore = False
