@@ -120,7 +120,7 @@ class Player:
     def winnerScore(self):
         self.score += 100
 
-def program(maxp):
+def program(maxp, timer):
     black = (0, 0, 0)
     red = (255, 0, 0)
     green = (0, 255, 0)
@@ -683,7 +683,7 @@ def program(maxp):
 
 
         while questionABC == True:
-            mils = 50 - ((pygame.time.get_ticks() - start_ticks) / 1000)
+            mils = timer - ((pygame.time.get_ticks() - start_ticks) / 1000)
             seconds = int(mils)
             mouse = pygame.mouse.get_pos()
             k = pygame.key.get_pressed()
@@ -722,7 +722,7 @@ def program(maxp):
             if seconds == -1:
                 cpKeuze = " "
                 questionABC = False
-            elif seconds <= 50:
+            elif seconds <= timer:
                 screen.blit(brownbar, (216,460))
                 timerLabel = font.render("Timer: "+ str(seconds), True, white)
                 screen.blit(timerLabel, (216, 465))
