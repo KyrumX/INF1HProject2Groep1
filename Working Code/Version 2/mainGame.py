@@ -120,7 +120,6 @@ class Player:
     def winnerScore(self):
         self.score += 100
 
-
 def program(maxp):
     black = (0, 0, 0)
     red = (255, 0, 0)
@@ -150,6 +149,7 @@ def program(maxp):
     d6 = pygame.image.load("Afbeeldingen/DS6.png")
     dn = pygame.image.load("Afbeeldingen/DS0.png")
     terminationscreen = pygame.image.load("Afbeeldingen/gameover.png")
+    orderPlayers = pygame.image.load("Afbeeldingen/dobbelbackground.png")
 
 
     screen = pygame.display.set_mode(size, pygame.FULLSCREEN)
@@ -207,6 +207,80 @@ def program(maxp):
                 screen.blit(nameInputBack, (0, 0))
                 break
 
+    #BEPALEN WELKE SPELER MAG BEGINNEN
+    dtp = 1
+    pl4throw = 0
+    pl3throw = 0
+    pl2throw = 0
+    pl1throw = 0
+    for i in range(1, maxp+1):
+        screen.blit(orderPlayers, (0, 0))
+        screen.blit(dn, (1510,470))
+        pygame.display.update()
+        getorder = True
+        if dtp == 1:
+            gooiBericht = font.render("Gooi nu de dobbelsteen. Wie het hoogste gooit mag beginnen", True, red)
+            screen.blit(gooiBericht, (30,30))
+            while getorder == True:
+                k = pygame.key.get_pressed()
+                for event in pygame.event.get():
+                    mouse = pygame.mouse.get_pos()
+                    if k[pygame.K_ESCAPE]:
+                        sys.exit("Escape was pressed")
+                    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1516 and mouse[0] < 1705 and mouse[1] > 471 and mouse[1] < 664:
+                        pl1throw = diceThrow()
+                        print(pl1throw)
+                        getorder = False
+        elif dtp == 2:
+            gooiBericht = font.render("Gooi nu de dobbelsteen. Wie het hoogste gooit mag beginnen", True, red)
+            screen.blit(gooiBericht, (30,30))
+            while getorder == True:
+                k = pygame.key.get_pressed()
+                for event in pygame.event.get():
+                    mouse = pygame.mouse.get_pos()
+                    if k[pygame.K_ESCAPE]:
+                        sys.exit("Escape was pressed")
+                    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1516 and mouse[0] < 1705 and mouse[1] > 471 and mouse[1] < 664:
+                        pl2throw = diceThrow()
+                        print(pl2throw)
+                        getorder = False
+        if dtp == 3:
+            gooiBericht = font.render("Gooi nu de dobbelsteen. Wie het hoogste gooit mag beginnen", True, red)
+            screen.blit(gooiBericht, (30,30))
+            while getorder == True:
+                k = pygame.key.get_pressed()
+                for event in pygame.event.get():
+                    mouse = pygame.mouse.get_pos()
+                    if k[pygame.K_ESCAPE]:
+                        sys.exit("Escape was pressed")
+                    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1516 and mouse[0] < 1705 and mouse[1] > 471 and mouse[1] < 664:
+                        pl3throw = diceThrow()
+                        print(pl3throw)
+                        getorder = False
+        if dtp == 4:
+            while getorder == True:
+                k = pygame.key.get_pressed()
+                for event in pygame.event.get():
+                    mouse = pygame.mouse.get_pos()
+                    if k[pygame.K_ESCAPE]:
+                        sys.exit("Escape was pressed")
+                    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1516 and mouse[0] < 1705 and mouse[1] > 471 and mouse[1] < 664:
+                        pl4throw = diceThrow()
+                        print(pl4throw)
+                        getorder = False
+        dtp +=1
+    maxThrow = max(pl1throw, pl2throw, pl3throw, pl4throw)
+    if pl1throw == maxThrow:
+        cp = 1
+    elif pl2throw == maxThrow:
+        cp = 2
+    elif pl3throw == maxThrow:
+        cp = 3
+    elif pl4throw == maxThrow:
+        cp = 4
+    #EINDE VAN BEPALEN 1E SPELER
+
+
     if maxp >= 2:
         playerOne = Player(805, 48, img1, player1name) #805, 990
         playerTwo = Player(925, 990, img2, player2name) #925, 990
@@ -215,7 +289,6 @@ def program(maxp):
     if maxp == 4:
         playerFour = Player(1165, 990, img4, player4name) #1165, 990
 
-    cp = 1
     winnerfound = False
     mainloop = True
     x = True
