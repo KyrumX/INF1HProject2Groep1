@@ -161,55 +161,370 @@ def program(maxp, timer):
     font2 = pygame.font.Font(None, 50)
 
     def text(msg, pos, size=30):
-        black = (0, 0, 0)
+        white = (255, 255, 255)
         font = pygame.font.Font(None, size)
-        label = font.render(msg, True, black)
+        label = font.render(msg, True, white)
         screen.blit(label, pos)
-
+    
+    
+    #AVATAR KEUZESCHERM
+    
     screen.blit(nameInputBack, (0, 0))
 
-    errorName = font.render("Naam is al in gebruik! Vul een andere naam in!", True, red)
-
-
     player1name = (ask(screen, "Naam speler 1"))
+    screen.blit(nameInputBack, (0, 0))
+    pygame.display.update()
+
+    while len(player1name) < 1:
+        player1name = (ask(screen, "Naam te kort. Naam speler 1"))
+        screen.blit(nameInputBack, (0, 0))
+        pygame.display.update()
+    screen.blit(nameInputBack, (0, 0))
+    pygame.display.update()
+
     player2name = (ask(screen, "Naam speler 2"))
-    while True:
-        if player1name == player2name:
-            screen.blit(errorName, (300, 130))
-            pygame.display.update()
-            player2name = (ask(screen, "Naam speler 2"))
-        else:
-            screen.blit(nameInputBack, (0, 0))
-            break
+    screen.blit(nameInputBack, (0, 0))
+    while player2name == player1name:
+        player2name = (ask(screen, "Een medespeler heeft deze naam al gekozen. Naam speler 2"))
+    screen.blit(nameInputBack, (0, 0))
+    pygame.display.update()
+
     if maxp == 3:
         player3name = (ask(screen, "Naam speler 3"))
-        while True:
-            if player3name == player2name or player3name == player1name:
-                screen.blit(errorName, (300, 130))
-                pygame.display.update()
-                player2name = (ask(screen, "Naam speler 3"))
-            else:
-                screen.blit(nameInputBack, (0, 0))
-                break
-    if maxp == 4:
+        screen.blit(nameInputBack, (0, 0))
+        pygame.display.update()
+        while player3name == player1name or player3name == player2name:
+            player3name = (ask(screen, "Een medespeler heeft deze naam al gekozen. Naam speler 3"))
+        screen.blit(nameInputBack, (0, 0))
+        pygame.display.update()
+    elif maxp == 4:
         player3name = (ask(screen, "Naam speler 3"))
-        while True:
-            if player3name == player2name or player3name == player1name:
-                screen.blit(errorName, (300, 130))
-                pygame.display.update()
-                player2name = (ask(screen, "Naam speler 3"))
-            else:
-                screen.blit(nameInputBack, (0, 0))
-                break
+        screen.blit(nameInputBack, (0, 0))
+        pygame.display.update()
+
+        while player3name == player1name or player3name == player2name:
+            player3name = (ask(screen, "Een medespeler heeft deze naam al gekozen. Naam speler 3"))
+        screen.blit(nameInputBack, (0, 0))
+        pygame.display.update()
+
         player4name = (ask(screen, "Naam speler 4"))
-        while True:
-            if player4name == player1name or player4name == player2name or player4name == player3name:
-                screen.blit(errorName, (300, 130))
+        screen.blit(nameInputBack, (0, 0))
+        pygame.display.update()
+        while player4name == player1name or player4name == player2name or player4name == player3name:
+            player3name = (ask(screen, "Een medespeler heeft deze naam al gekozen. Naam speler 4"))
+        screen.blit(nameInputBack, (0, 0))
+        pygame.display.update()
+
+    p1choosing = True
+    p2choosing = False
+    p3choosing = False
+    p4choosing = False
+    choosing = True
+    beginning = True
+    while choosing:
+        mouse = pygame.mouse.get_pos()
+        if p1choosing == True:
+            pygame.display.update()
+            text("{}, kies je avatar".format(player1name), (200, 320))
+            screen.blit(keuzeimg, (100, 420))
+            screen.blit(keuzeimg, (450, 420))
+            screen.blit(keuzeimg, (810, 420))
+            screen.blit(keuzeimg, (1180, 420))
+            pygame.display.update()
+            for event in pygame.event.get():
+                if event.type == MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 101 and mouse[0] < 281 and mouse[1] > 422 and mouse[1] < 474:
+                    playerOne = Player(805, 990, img1, player1name)
+                    char1chosen = True
+                    char2chosen = False
+                    char3chosen = False
+                    char4chosen = False
+                    p1choosing = False
+                    p2choosing = True
+                elif event.type == MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 453 and mouse[0] < 626 and mouse[1] > 422 and mouse[1] < 474:
+                    playerOne = Player(805, 990, img2, player1name)
+                    char1chosen = False
+                    char2chosen = True
+                    char3chosen = False
+                    char4chosen = False
+                    p1choosing = False
+                    p2choosing = True
+                elif event.type == MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 813 and mouse[0] < 986 and mouse[1] > 422 and mouse[1] < 474:
+                    playerOne = Player(805, 990, img3, player1name)
+                    char1chosen = False
+                    char2chosen = False
+                    char3chosen = True
+                    char4chosen = False
+                    p1choosing = False
+                    p2choosing = True
+                elif event.type == MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1183 and mouse[0] < 1356 and mouse[1] > 422 and mouse[1] < 474:
+                    playerOne = Player(805, 990, img4, player1name)
+                    char1chosen = False
+                    char2chosen = False
+                    char3chosen = False
+                    char4chosen = True
+                    p1choosing = False
+                    p2choosing = True
+
+
+        elif p2choosing == True:
+            screen.blit(nameInputBack, (0, 0))
+            pygame.display.update()
+            text("{}, kies je avatar".format(player2name), (200, 320))
+            if char1chosen:
+                screen.blit(gekozen2, (100, 420))
+                text("Gekozen", (110, 430))
+                screen.blit(keuzeimg, (450, 420))
+                screen.blit(keuzeimg, (810, 420))
+                screen.blit(keuzeimg, (1180, 420))
                 pygame.display.update()
-                player4name = (ask(screen, "Naam speler 4"))
-            else:
-                screen.blit(nameInputBack, (0, 0))
-                break
+            elif char2chosen:
+                screen.blit(keuzeimg, (100, 420))
+                screen.blit(gekozen3, (450, 420))
+                text("Gekozen", (460, 430))
+                screen.blit(keuzeimg, (810, 420))
+                screen.blit(keuzeimg, (1180, 420))
+                pygame.display.update()
+            elif char3chosen:
+                screen.blit(keuzeimg, (100, 420))
+                screen.blit(keuzeimg, (450, 420))
+                screen.blit(gekozen, (810, 420))
+                text("Gekozen", (820, 430))
+                screen.blit(keuzeimg, (1180, 420))
+                pygame.display.update()
+            elif char4chosen:
+                screen.blit(keuzeimg, (100, 420))
+                screen.blit(keuzeimg, (450, 420))
+                screen.blit(keuzeimg, (810, 420))
+                screen.blit(gekozen4, (1180, 420))
+                text("Gekozen", (1190, 430))
+                pygame.display.update()
+
+            for event in pygame.event.get():
+                if event.type == MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 103 and mouse[0] < 276 and mouse[1] > 422 and mouse[1] < 474 and char1chosen == False:
+                    playerTwo = Player(925, 990, img1, player2name)
+                    char1chosen = True
+                    if maxp > 2:
+                        p3choosing = True
+                        p2choosing = False
+                    else:
+                        screen.blit(gekozen2, (100, 420))
+                        text("Gekozen", (110, 430))
+                        pygame.display.update()
+                        pygame.time.delay(1000)
+                        choosing = False
+                elif event.type == MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 453 and mouse[0] < 626 and mouse[1] > 422 and mouse[1] < 474 and char2chosen == False:
+                    playerTwo = Player(925, 990, img2, player2name)
+                    char2chosen = True
+                    if maxp > 2:
+                        p3choosing = True
+                        p2choosing = False
+                    else:
+                        screen.blit(gekozen3, (450, 420))
+                        text("Gekozen", (460, 430))
+                        pygame.display.update()
+                        pygame.time.delay(1000)
+                        choosing = False
+                elif event.type == MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 813 and mouse[0] < 986 and mouse[1] > 422 and mouse[1] < 474 and char3chosen == False:
+                    playerTwo = Player(925, 990, img3, player2name)
+                    char3chosen = True
+                    if maxp > 2:
+                        p3choosing = True
+                        p2choosing = False
+                    else:
+                        screen.blit(gekozen, (810, 420))
+                        text("Gekozen", (820, 430))
+                        pygame.display.update()
+                        pygame.time.delay(1000)
+                        choosing = False
+                elif event.type == MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1183 and mouse[0] < 1356 and mouse[1] > 422 and mouse[1] < 474 and char4chosen == False:
+                    playerTwo = Player(925, 990, img4, player2name)
+                    char4chosen = True
+                    if maxp > 2:
+                        p3choosing = True
+                        p2choosing = False
+                    else:
+                        screen.blit(gekozen4, (1180, 420))
+                        text("Gekozen", (1190, 430))
+                        pygame.display.update()
+                        pygame.time.delay(1000)
+                        choosing = False
+        elif p3choosing == True:
+            screen.blit(nameInputBack, (0, 0))
+            pygame.display.update()
+            text("{}, kies je avatar".format(player3name), (200, 320))
+            print("checkpoint 3 before")
+            if char1chosen == True and char2chosen == True:
+                screen.blit(gekozen2, (100, 420))
+                text("Gekozen", (110, 430))
+                screen.blit(gekozen3, (450, 420))
+                text("Gekozen", (460, 430))
+                screen.blit(keuzeimg, (810, 420))
+                screen.blit(keuzeimg, (1180, 420))
+                pygame.display.update()
+                print("checkpoint 3")
+            elif char1chosen and char3chosen:
+                screen.blit(gekozen2, (100, 420))
+                text("Gekozen", (110, 430))
+                screen.blit(keuzeimg, (450, 420))
+                screen.blit(gekozen, (810, 420))
+                text("Gekozen", (820, 430))
+                screen.blit(keuzeimg, (1180, 420))
+                pygame.display.update()
+            elif char1chosen and char4chosen:
+                screen.blit(gekozen2, (100, 420))
+                text("Gekozen", (110, 430))
+                screen.blit(keuzeimg, (450, 420))
+                screen.blit(keuzeimg, (810, 420))
+                screen.blit(gekozen4, (1180, 420))
+                text("Gekozen", (1190, 430))
+                pygame.display.update()
+            elif char2chosen and char3chosen:
+                screen.blit(keuzeimg, (100, 420))
+                screen.blit(gekozen3, (450, 420))
+                text("Gekozen", (460, 430))
+                screen.blit(gekozen, (810, 420))
+                text("Gekozen", (820, 430))
+                screen.blit(keuzeimg, (1180, 420))
+                pygame.display.update()
+            elif char2chosen and char4chosen:
+                screen.blit(keuzeimg, (100, 420))
+                screen.blit(gekozen3, (450, 420))
+                text("Gekozen", (460, 430))
+                screen.blit(keuzeimg, (810, 420))
+                screen.blit(gekozen4, (1180, 420))
+                text("Gekozen", (1190, 430))
+                pygame.display.update()
+            elif char3chosen and char4chosen:
+                screen.blit(keuzeimg, (100, 420))
+                screen.blit(keuzeimg, (450, 420))
+                screen.blit(gekozen, (810, 420))
+                text("Gekozen", (820, 430))
+                screen.blit(gekozen4, (1180, 420))
+                text("Gekozen", (1190, 430))
+                pygame.display.update()
+            for event in pygame.event.get():
+                if event.type == MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 103 and mouse[0] < 276 and mouse[1] > 422 and mouse[1] < 474 and char1chosen == False:
+                    playerThree = Player(1045, 990, img1, player3name)
+                    char1chosen = True
+                    if maxp > 3:
+                        p4choosing = True
+                        p3choosing = False
+                    else:
+                        screen.blit(gekozen2, (100, 420))
+                        text("Gekozen", (110, 430))
+                        pygame.display.update()
+                        pygame.time.delay(1000)
+                        pygame.display.update()
+                        choosing = False
+                elif event.type == MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 453 and mouse[0] < 626 and mouse[1] > 422 and mouse[1] < 474 and char2chosen == False:
+                    playerThree = Player(1045, 990, img2, player3name)
+                    char2chosen = True
+                    if maxp > 3:
+                        p4choosing = True
+                        p3choosing = False
+                    else:
+                        screen.blit(gekozen3, (450, 420))
+                        text("Gekozen", (460, 430))
+                        pygame.display.update()
+                        pygame.time.delay(1000)
+                        pygame.display.update()
+                        choosing = False
+                elif event.type == MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 813 and mouse[0] < 986 and mouse[1] > 422 and mouse[1] < 474 and char3chosen == False:
+                    playerThree = Player(1045, 990, img3, player3name)
+                    char3chosen = True
+                    if maxp > 3:
+                        p4choosing = True
+                        p3choosing = False
+                    else:
+                        screen.blit(gekozen, (810, 420))
+                        text("Gekozen", (820, 430))
+                        pygame.display.update()
+                        pygame.time.delay(1000)
+                        pygame.display.update()
+                        choosing = False
+                elif event.type == MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1183 and mouse[0] < 1356 and mouse[1] > 422 and mouse[1] < 474 and char4chosen == False:
+                    playerThree = Player(1045, 990, img4, player3name)
+                    char4chosen = True
+                    if maxp > 3:
+                        p4choosing = True
+                        p3choosing = False
+                    else:
+                        screen.blit(gekozen4, (1180, 420))
+                        text("Gekozen", (1190, 430))
+                        pygame.display.update()
+                        pygame.time.delay(1000)
+                        pygame.display.update()
+                        screen.blit(gekozen, (1180, 420))
+                        choosing = False
+
+        elif p4choosing == True:
+            print("checkpoint 4")
+            screen.blit(nameInputBack, (0, 0))
+            if char1chosen and char2chosen and char3chosen:
+                text("{}, jij krijgt avatar 4".format(player4name), (200, 320))
+                screen.blit(gekozen2, (100, 420))
+                text("Gekozen", (110, 430))
+                screen.blit(gekozen3, (450, 420))
+                text("Gekozen", (460, 430))
+                screen.blit(gekozen, (810, 420))
+                text("Gekozen", (820, 430))
+                screen.blit(gekozen, (1180, 420))
+                text("{}".format(player4name), (1190, 430))
+                playerFour = Player(1165, 990, img4, player4name)
+                pygame.display.update()
+                pygame.time.delay(3000)
+                pygame.display.update()
+            elif char2chosen and char3chosen and char4chosen:
+                text("{}, jij krijgt avatar 1".format(player4name), (200, 320))
+                screen.blit(gekozen2, (100, 420))
+                text("{}".format(player4name), (110, 430))
+                screen.blit(gekozen3, (450, 420))
+                text("Gekozen", (460, 430))
+                screen.blit(gekozen, (810, 420))
+                text("Gekozen", (820, 430))
+                screen.blit(gekozen4, (1180, 420))
+                text("Gekozen", (1190, 430))
+                playerFour = Player(1165, 990, img1, player4name)
+                pygame.display.update()
+                pygame.time.delay(3000)
+                pygame.display.update()
+            elif char1chosen and char3chosen and char4chosen:
+                text("{}, jij krijgt avatar 2".format(player4name), (200, 320))
+                screen.blit(gekozen2, (100, 420))
+                text("Gekozen", (110, 430))
+                screen.blit(gekozen3, (450, 420))
+                text("{}".format(player4name), (460, 430))
+                screen.blit(gekozen, (810, 420))
+                text("Gekozen", (820, 430))
+                screen.blit(gekozen4, (1180, 420))
+                text("Gekozen", (1190, 430))
+                playerFour = Player(1165, 990, img2, player4name)
+                pygame.display.update()
+                pygame.time.delay(3000)
+                pygame.display.update()
+            elif char1chosen and char2chosen and char4chosen:
+                text("{}, jij krijgt avatar 3".format(player4name), (200, 320))
+                screen.blit(gekozen2, (100, 420))
+                text("Gekozen", (110, 430))
+                screen.blit(gekozen3, (450, 420))
+                text("Gekozen", (470, 440))
+                screen.blit(gekozen, (810, 420))
+                text("{}".format(player4name), (830, 440))
+                screen.blit(gekozen4, (1180, 420))
+                text("Gekozen", (1190, 430))
+                playerFour = Player(1165, 990, img3, player4name)
+                pygame.display.update()
+                pygame.time.delay(3000)
+                pygame.display.update()
+
+                # screen.blit(keuzeimg, (100, 420))
+                # screen.blit(keuzeimg, (450, 420))
+                # screen.blit(keuzeimg, (810, 420))
+                # screen.blit(keuzeimg, (1180, 420))
+
+
+            choosing = False
+
 
     #BEPALEN WELKE SPELER MAG BEGINNEN
     dtp = 1
