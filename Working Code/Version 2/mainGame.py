@@ -150,6 +150,10 @@ def program(maxp, timer):
     dn = pygame.image.load("Afbeeldingen/DS0.png")
     terminationscreen = pygame.image.load("Afbeeldingen/gameover.png")
     orderPlayers = pygame.image.load("Afbeeldingen/dobbelbackground.png")
+    entButton = pygame.image.load("Afbeeldingen/KiesEnt.png")
+    sportButton = pygame.image.load("Afbeeldingen/KiesSport.png")
+    geoButton = pygame.image.load("Afbeeldingen/KiesGeo.png")
+    hisButton = pygame.image.load("Afbeeldingen/KiesGesch.png")
 
 
     screen = pygame.display.set_mode(size, pygame.FULLSCREEN)
@@ -370,17 +374,200 @@ def program(maxp, timer):
         cp = 3
     elif pl4throw == maxThrow:
         cp = 4
-    pygame.time.wait(5000)
     #EINDE VAN BEPALEN 1E SPELER
+
+    #LAAT SPELERS CATEGORIE KIEZEN:
+    if maxp == 2:
+        aantKeuze = 2
+    elif maxp == 3:
+        aantKeuze = 3
+    elif maxp == 4:
+        aantKeuze = 4
+
+    sp = cp
+
+    screen.blit(entButton, (1300, 370))
+    screen.blit(sportButton, (1300, 620))
+    screen.blit(hisButton, (1550, 370))
+    screen.blit(geoButton, (1550, 620))
+    pygame.display.update()
+    entAllowed = True
+    sportAllowed = True
+    hisAllowed = True
+    geoAllowed = True
+    assignCat = True
+    cnt = 0
+
+    while assignCat == True:
+        while not cnt == maxp:
+            k = pygame.key.get_pressed()
+            for event in pygame.event.get():
+                mouse = pygame.mouse.get_pos()
+                if k[pygame.K_ESCAPE]:
+                    sys.exit("Escape was pressed")
+                elif entAllowed == True:
+                    if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1300 and mouse[0] < 1500 and mouse[1] > 370 and mouse[1] < 560:
+                        if sp == 1:
+                            sp1c = 805
+                            entAllowed = False
+                            sp += 1
+                            cnt += 1
+                            break
+                        elif sp == 2:
+                            sp2c = 805
+                            entAllowed = False
+                            if maxp > 2:
+                                sp += 1
+                                cnt += 1
+                                break
+                            else:
+                                cnt += 1
+                                sp -= 1
+                                break
+                        elif sp == 3:
+                            sp3c = 805
+                            entAllowed = False
+                            if maxp > 3:
+                                sp += 1
+                                cnt += 1
+                                break
+                            else:
+                                sp = 1
+                                cnt += 1
+                                break
+                        elif sp == 4:
+                            sp4c = 805
+                            sp = 1
+                            entAllowed = False
+                            cnt += 1
+                            break
+                    else:
+                        pass
+                if hisAllowed == True:
+                    if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1550 and mouse[0] < 1750 and mouse[1] > 370 and mouse[1] < 560:
+                        if sp == 1:
+                            sp1c = 925
+                            hisAllowed = False
+                            sp += 1
+                            cnt += 1
+                            break
+                        elif sp == 2:
+                            sp2c = 925
+                            hisAllowed = False
+                            if maxp > 2:
+                                sp += 1
+                                cnt += 1
+                                break
+                            else:
+                                sp -= 1
+                                cnt += 1
+                                break
+                        elif sp == 3:
+                            sp3c = 925
+                            hisAllowed = False
+                            if maxp > 3:
+                                sp += 1
+                                cnt += 1
+                                break
+                            else:
+                                sp = 1
+                                cnt += 1
+                                break
+                        elif sp == 4:
+                            sp4c = 925
+                            sp = 1
+                            hisAllowed = False
+                            cnt += 1
+                            break
+                    else:
+                        pass
+                if sportAllowed:
+                    if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1300 and mouse[0] < 1500 and mouse[1] > 620 and mouse[1] < 820:
+                        if sp == 1:
+                            sp1c = 1165
+                            sportAllowed = False
+                            sp += 1
+                            cnt += 1
+                            break
+                        elif sp == 2:
+                            sp2c = 1165
+                            sportAllowed = False
+                            if maxp > 2:
+                                sp += 1
+                                cnt += 1
+                                break
+                            else:
+                                sp -= 1
+                                cnt += 1
+                                break
+                        elif sp == 3:
+                            sp3c = 1165
+                            sportAllowed = False
+                            if maxp > 3:
+                                sp += 1
+                                cnt += 1
+                                break
+                            else:
+                                sp = 1
+                                cnt += 1
+                                break
+                        elif sp == 4:
+                            sp4c = 1165
+                            sp = 1
+                            sportAllowed = False
+                            cnt += 1
+                            break
+                    else:
+                        pass
+                if geoAllowed == True:
+                    if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1550 and mouse[0] < 1750 and mouse[1] > 620 and mouse[1] < 820:
+                        if sp == 1:
+                            sp1c = 1045
+                            geoAllowed = False
+                            sp += 1
+                            cnt += 1
+                            break
+                        elif sp == 2:
+                            sp2c = 1045
+                            geoAllowed = False
+                            if maxp > 2:
+                                sp += 1
+                                cnt += 1
+                                break
+                            else:
+                                sp -= 1
+                                cnt += 1
+                                break
+                        elif sp == 3:
+                            sp3c = 1045
+                            geoAllowed = False
+                            if maxp > 3:
+                                sp += 1
+                                cnt += 1
+                                break
+                            else:
+                                sp = 1
+                                cnt += 1
+                                break
+                        elif sp == 4:
+                            sp4c = 1045
+                            sp = 1
+                            geoAllowed = False
+                            cnt += 1
+                            break
+                    else:
+                        pass
+        else:
+            assignCat = False
 
 
     if maxp >= 2:
-        playerOne = Player(805, 990, img1, player1name) #805, 990
-        playerTwo = Player(925, 990, img2, player2name) #925, 990
+        playerOne = Player(sp1c, 990, img1, player1name) #805, 990
+        playerTwo = Player(sp2c, 990, img2, player2name) #925, 990
     if maxp >= 3:
-        playerThree = Player(1045, 990, img3, player3name) #1045, 990
+        playerThree = Player(sp3c, 990, img3, player3name) #1045, 990
     if maxp == 4:
-        playerFour = Player(1165, 990, img4, player4name) #1165, 990
+        playerFour = Player(sp4c, 990, img4, player4name) #1165, 990
 
     winnerfound = False
     mainloop = True
