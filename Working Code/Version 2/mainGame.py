@@ -10,6 +10,16 @@ from database import *
 import sys
 from multipleLines import *
 from textInput import *
+import ctypes
+import pygame
+from pygame.locals import *
+import time
+import random
+import psycopg2
+from database import *
+import sys
+from multipleLines import *
+from textInput import *
 
 clock = pygame.time.Clock()
 # Fix voor het voorkomen van stretchen wat je resolutie verpest
@@ -119,7 +129,6 @@ def program(maxp):
     width = 1920
     height = 1080
     size = (width, height)
-    Rollingdice = pygame.mixer.Sound("Geluiden/Rollingdice.wav")
     QuestionRight = pygame.mixer.Sound("Geluiden/Ding.wav")
     QuestionWrong = pygame.mixer.Sound("Geluiden/buzzer.wav")
     background1 = pygame.image.load("Afbeeldingen/gamebackgroundred.png")
@@ -419,7 +428,6 @@ def program(maxp):
 
         #Unlock de dobbelsteen
         while dobbelloop == True:
-            Rollingdice.play()
             #Mainloop voor dobbelsteen
             k = pygame.key.get_pressed()
             for event in pygame.event.get():
