@@ -1061,6 +1061,18 @@ def program(maxp):
             screen.blit(scoreP2, (130, 540))
             screen.blit(scoreP3, (130, 580))
             screen.blit(scoreP4, (130, 620))
+        if winner == 1:
+            winner = font2.render("De winnaar is: " + playerOne.name, True, black)
+            screen.blit(winner, (130, 320))
+        elif winner == 2:
+            winner = font2.render("De winnaar is: " + playerTwo.name, True, white)
+            screen.blit(winner, (130, 320))
+        elif winner == 3:
+            winner = font2.render("De winnaar is: " + playerThree.name, True, white)
+            screen.blit(winner, (130, 320))
+        elif winner == 4:
+            winner = font2.render("De winnaar is: " + playerFour.name, True, white)
+            screen.blit(winner, (130, 320))
         if uploadScore == True:
             if winner == 1:
                 playerOne.winnerScore()
@@ -1117,16 +1129,17 @@ def program(maxp):
                 score(playerFour.name, playerFour.score, 1, 0)
                 uploadScore = False
         pygame.display.update()
-        for event in pygame.event.get():
-                mouse = pygame.mouse.get_pos()
-                k = pygame.key.get_pressed()
-                if k[pygame.K_ESCAPE]:
-                    sys.exit("Escape was pressed")
-                elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1530 and mouse[0] < 1950 and mouse[1] > 300 and mouse[1] < 460:
-                        pygame.quit()
-                        sys.exit()
-                elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1530 and mouse[0] < 1950 and mouse[1] > 100 and mouse[1] < 250:
-                        program(maxp)
+        while True:
+            for event in pygame.event.get():
+                    mouse = pygame.mouse.get_pos()
+                    k = pygame.key.get_pressed()
+                    if k[pygame.K_ESCAPE]:
+                        sys.exit("Escape was pressed")
+                    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1530 and mouse[0] < 1950 and mouse[1] > 300 and mouse[1] < 460:
+                            pygame.quit()
+                            sys.exit()
+                    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1530 and mouse[0] < 1950 and mouse[1] > 100 and mouse[1] < 250:
+                            program(maxp)
 
 
 
