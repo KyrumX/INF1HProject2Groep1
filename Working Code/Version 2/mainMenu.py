@@ -33,7 +33,7 @@ terug = False
 terug2 = False
 highscore = False
 instellingen = False
-MenuMusic = pygame.mixer.Sound("Geluiden/Menu.wav")
+MenuMusic = pygame.mixer.Sound("Geluiden/menu.wav")
 
 
 while True:

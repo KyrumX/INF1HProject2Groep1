@@ -119,6 +119,7 @@ def program(maxp):
     width = 1920
     height = 1080
     size = (width, height)
+    Rollingdice = pygame.mixer.Sound("Geluiden/Rollingdice.wav")
     QuestionRight = pygame.mixer.Sound("Geluiden/Ding.wav")
     QuestionWrong = pygame.mixer.Sound("Geluiden/buzzer.wav")
     background1 = pygame.image.load("Afbeeldingen/gamebackgroundred.png")
@@ -418,6 +419,7 @@ def program(maxp):
 
         #Unlock de dobbelsteen
         while dobbelloop == True:
+            Rollingdice.play()
             #Mainloop voor dobbelsteen
             k = pygame.key.get_pressed()
             for event in pygame.event.get():
@@ -1135,10 +1137,10 @@ def program(maxp):
                     k = pygame.key.get_pressed()
                     if k[pygame.K_ESCAPE]:
                         sys.exit("Escape was pressed")
-                    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1530 and mouse[0] < 1950 and mouse[1] > 300 and mouse[1] < 460:
+                    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 180 and mouse[0] < 1895 and mouse[1] > 180 and mouse[1] < 280:
                             pygame.quit()
                             sys.exit()
-                    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1530 and mouse[0] < 1950 and mouse[1] > 100 and mouse[1] < 250:
+                    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1580 and mouse[0] < 1895 and mouse[1] > 30 and mouse[1] < 130:
                             program(maxp)
 
 
