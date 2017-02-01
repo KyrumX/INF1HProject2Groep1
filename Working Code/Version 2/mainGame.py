@@ -198,7 +198,7 @@ def program(maxp):
                 break
 
     if maxp >= 2:
-        playerOne = Player(805, 999, img1, player1name) #805, 990
+        playerOne = Player(805, 990, img1, player1name) #805, 990
         playerTwo = Player(925, 990, img2, player2name) #925, 990
     if maxp >= 3:
         playerThree = Player(1045, 990, img3, player3name) #1045, 990
