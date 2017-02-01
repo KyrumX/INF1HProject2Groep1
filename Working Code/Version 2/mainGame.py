@@ -213,23 +213,55 @@ def program(maxp, timer):
     pl3throw = 0
     pl2throw = 0
     pl1throw = 0
+    screen.blit(orderPlayers, (0, 0))
+    if maxp == 2:
+        screen.blit(dn, (100,470))
+        screen.blit(dn, (400,470))
+    if maxp == 3:
+        screen.blit(dn, (100,470))
+        screen.blit(dn, (400,470))
+        screen.blit(dn, (700,470))
+    if maxp == 4:
+        screen.blit(dn, (100,470))
+        screen.blit(dn, (400,470))
+        screen.blit(dn, (700,470))
+        screen.blit(dn, (1000,470))
+    gooiBericht = font.render("Gooi nu de dobbelsteen. Wie het hoogste gooit mag beginnen", True, red)
+    screen.blit(gooiBericht, (30, 30))
     for i in range(1, maxp+1):
-        screen.blit(orderPlayers, (0, 0))
-        screen.blit(dn, (1510,470))
         pygame.display.update()
         getorder = True
         if dtp == 1:
-            gooiBericht = font.render("Gooi nu de dobbelsteen. Wie het hoogste gooit mag beginnen", True, red)
-            screen.blit(gooiBericht, (30,30))
             while getorder == True:
                 k = pygame.key.get_pressed()
                 for event in pygame.event.get():
                     mouse = pygame.mouse.get_pos()
+                    print(mouse)
                     if k[pygame.K_ESCAPE]:
                         sys.exit("Escape was pressed")
-                    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1516 and mouse[0] < 1705 and mouse[1] > 471 and mouse[1] < 664:
+                    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 100 and mouse[0] < 290 and mouse[1] > 470 and mouse[1] < 660:
+                        keren = [5, 6, 7, 8, 9, 10]
+                        dobbelsteenZijde = [d1, d2, d3, d4, d5, d6]
+                        aantalKeer = random.choice(keren)
+                        for i in range(0, aantalKeer):
+                            zijde = random.choice(dobbelsteenZijde)
+                            screen.blit(zijde, (100, 470))
+                            pygame.display.update()
+                            time.sleep(0.5)
                         pl1throw = diceThrow()
                         print(pl1throw)
+                        if pl1throw == 2:
+                            screen.blit(d2, (100, 470))
+                        elif pl1throw == 4:
+                            screen.blit(d4, (100, 470))
+                        elif pl1throw == 6:
+                            screen.blit(d6, (100, 470))
+                        elif pl1throw == 1:
+                            screen.blit(d1, (100, 470))
+                        elif pl1throw == 3:
+                            screen.blit(d3, (100, 470))
+                        elif pl1throw == 5:
+                            screen.blit(d5, (100, 470))
                         getorder = False
         elif dtp == 2:
             gooiBericht = font.render("Gooi nu de dobbelsteen. Wie het hoogste gooit mag beginnen", True, red)
@@ -240,9 +272,29 @@ def program(maxp, timer):
                     mouse = pygame.mouse.get_pos()
                     if k[pygame.K_ESCAPE]:
                         sys.exit("Escape was pressed")
-                    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1516 and mouse[0] < 1705 and mouse[1] > 471 and mouse[1] < 664:
+                    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 400 and mouse[0] < 590 and mouse[1] > 470 and mouse[1] < 660:
+                        keren = [5, 6, 7, 8, 9, 10]
+                        dobbelsteenZijde = [d1, d2, d3, d4, d5, d6]
+                        aantalKeer = random.choice(keren)
+                        for i in range(0, aantalKeer):
+                            zijde = random.choice(dobbelsteenZijde)
+                            screen.blit(zijde, (400, 470))
+                            pygame.display.update()
+                            time.sleep(0.5)
                         pl2throw = diceThrow()
                         print(pl2throw)
+                        if pl2throw == 2:
+                            screen.blit(d2, (400, 470))
+                        elif pl2throw == 4:
+                            screen.blit(d4, (400, 470))
+                        elif pl2throw == 6:
+                            screen.blit(d6, (400, 470))
+                        elif pl2throw == 1:
+                            screen.blit(d1, (400, 470))
+                        elif pl2throw == 3:
+                            screen.blit(d3, (400, 470))
+                        elif pl2throw == 5:
+                            screen.blit(d5, (400, 470))
                         getorder = False
         if dtp == 3:
             gooiBericht = font.render("Gooi nu de dobbelsteen. Wie het hoogste gooit mag beginnen", True, red)
@@ -253,9 +305,29 @@ def program(maxp, timer):
                     mouse = pygame.mouse.get_pos()
                     if k[pygame.K_ESCAPE]:
                         sys.exit("Escape was pressed")
-                    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1516 and mouse[0] < 1705 and mouse[1] > 471 and mouse[1] < 664:
+                    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 700 and mouse[0] < 890 and mouse[1] > 470 and mouse[1] < 660:
+                        keren = [5, 6, 7, 8, 9, 10]
+                        dobbelsteenZijde = [d1, d2, d3, d4, d5, d6]
+                        aantalKeer = random.choice(keren)
+                        for i in range(0, aantalKeer):
+                            zijde = random.choice(dobbelsteenZijde)
+                            screen.blit(zijde, (700, 470))
+                            pygame.display.update()
+                            time.sleep(0.5)
                         pl3throw = diceThrow()
                         print(pl3throw)
+                        if pl3throw == 2:
+                            screen.blit(d2, (700, 470))
+                        elif pl3throw == 4:
+                            screen.blit(d4, (700, 470))
+                        elif pl3throw == 6:
+                            screen.blit(d6, (700, 470))
+                        elif pl3throw == 1:
+                            screen.blit(d1, (700, 470))
+                        elif pl3throw == 3:
+                            screen.blit(d3, (700, 470))
+                        elif pl3throw == 5:
+                            screen.blit(d5, (700, 470))
                         getorder = False
         if dtp == 4:
             while getorder == True:
@@ -264,9 +336,29 @@ def program(maxp, timer):
                     mouse = pygame.mouse.get_pos()
                     if k[pygame.K_ESCAPE]:
                         sys.exit("Escape was pressed")
-                    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1516 and mouse[0] < 1705 and mouse[1] > 471 and mouse[1] < 664:
+                    elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1000 and mouse[0] < 1190 and mouse[1] > 470 and mouse[1] < 660:
+                        keren = [5, 6, 7, 8, 9, 10]
+                        dobbelsteenZijde = [d1, d2, d3, d4, d5, d6]
+                        aantalKeer = random.choice(keren)
+                        for i in range(0, aantalKeer):
+                            zijde = random.choice(dobbelsteenZijde)
+                            screen.blit(zijde, (1000, 470))
+                            pygame.display.update()
+                            time.sleep(0.5)
                         pl4throw = diceThrow()
                         print(pl4throw)
+                        if pl4throw == 2:
+                            screen.blit(d2, (1000, 470))
+                        elif pl4throw == 4:
+                            screen.blit(d4, (1000, 470))
+                        elif pl4throw == 6:
+                            screen.blit(d6, (1000, 470))
+                        elif pl4throw == 1:
+                            screen.blit(d1, (1000, 470))
+                        elif pl4throw == 3:
+                            screen.blit(d3, (1000, 470))
+                        elif pl4throw == 5:
+                            screen.blit(d5, (1000, 470))
                         getorder = False
         dtp +=1
     maxThrow = max(pl1throw, pl2throw, pl3throw, pl4throw)
@@ -278,11 +370,12 @@ def program(maxp, timer):
         cp = 3
     elif pl4throw == maxThrow:
         cp = 4
+    pygame.time.wait(5000)
     #EINDE VAN BEPALEN 1E SPELER
 
 
     if maxp >= 2:
-        playerOne = Player(805, 48, img1, player1name) #805, 990
+        playerOne = Player(805, 990, img1, player1name) #805, 990
         playerTwo = Player(925, 990, img2, player2name) #925, 990
     if maxp >= 3:
         playerThree = Player(1045, 990, img3, player3name) #1045, 990
