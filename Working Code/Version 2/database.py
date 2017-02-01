@@ -138,4 +138,4 @@ def highscore():
         print(str(returns[x][0]) + " " + str(returns[x][1]) + " " + str(returns[x][2]) + " " + str(returns[x][3]))
         x += 1
 
-highscore()
+#highscore()

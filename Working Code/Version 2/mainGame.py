@@ -135,7 +135,7 @@ def program(maxp):
     d5 = pygame.image.load("Afbeeldingen/DS5.png")
     d6 = pygame.image.load("Afbeeldingen/DS6.png")
     dn = pygame.image.load("Afbeeldingen/DS0.png")
-    terminationscreen = pygame.image.load("Afbeeldingen/TerminationScreen.png")
+    terminationscreen = pygame.image.load("Afbeeldingen/gameover.png")
 
 
     screen = pygame.display.set_mode(size, pygame.FULLSCREEN)
