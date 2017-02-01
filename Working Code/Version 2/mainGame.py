@@ -198,7 +198,7 @@ def program(maxp):
                 break
 
     if maxp >= 2:
-        playerOne = Player(805, 990, img1, player1name) #805, 990
+        playerOne = Player(805, 48, img1, player1name) #805, 990
         playerTwo = Player(925, 990, img2, player2name) #925, 990
     if maxp >= 3:
         playerThree = Player(1045, 990, img3, player3name) #1045, 990
@@ -705,25 +705,25 @@ def program(maxp):
                 elif richting == "omhoog":
                     if cp == 1:
                         playerOne.updatef(cg)
-                        if playerOne.y == 48:
+                        if playerOne.y <= 48:
                             winner = 1
                             termination = True
                             mainloop = False
                     elif cp == 2:
                         playerTwo.updatef(cg)
-                        if playerTwo.y == 48:
+                        if playerTwo.y <= 48:
                             winner = 2
                             termination = True
                             mainloop = False
                     elif cp == 3:
                         playerThree.updatef(cg)
-                        if playerThree.y == 48:
+                        if playerThree.y <= 48:
                             winner = 3
                             termination = True
                             mainloop = False
                     elif cp == 4:
                         playerFour.updatef(cg)
-                        if playerFour.y == 48:
+                        if playerFour.y <= 48:
                             winner = 4
                             termination = True
                             mainloop = False
@@ -1035,33 +1035,32 @@ def program(maxp):
     uploadScore = True
     while termination == True:
         screen.blit(terminationscreen, (0, 0))
-        labelScore = font.render("Scores:", True, black)
-        screen.blit(labelScore, (1446, 43))
+        labelScore = font2.render("Eindscore:", True, white)
+        screen.blit(labelScore, (130, 450))
         if maxp == 2:
-            scoreP1 = font.render(playerOne.name + ": " + str(playerOne.score), True, black)
-            scoreP2 = font.render(playerTwo.name + ": " + str(playerTwo.score), True, black)
+            scoreP1 = font2.render(playerOne.name + ": " + str(playerOne.score), True, white)
+            scoreP2 = font2.render(playerTwo.name + ": " + str(playerTwo.score), True, white)
         elif maxp == 3:
-            scoreP1 = font.render(playerOne.name + ": " + str(playerOne.score), True, black)
-            scoreP2 = font.render(playerTwo.name + ": " + str(playerTwo.score), True, black)
-            scoreP3 = font.render(playerThree.name + ": " + str(playerThree.score), True, black)
+            scoreP1 = font2.render(playerOne.name + ": " + str(playerOne.score), True, white)
+            scoreP2 = font2.render(playerTwo.name + ": " + str(playerTwo.score), True, white)
+            scoreP3 = font2.render(playerThree.name + ": " + str(playerThree.score), True, white)
         elif maxp == 4:
-            scoreP1 = font.render(playerOne.name + ": " + str(playerOne.score), True, black)
-            scoreP2 = font.render(playerTwo.name + ": " + str(playerTwo.score), True, black)
-            scoreP3 = font.render(playerThree.name + ": " + str(playerThree.score), True, black)
-            scoreP4 = font.render(playerFour.name + ": " + str(playerFour.score), True, black)
+            scoreP1 = font2.render(playerOne.name + ": " + str(playerOne.score), True, white)
+            scoreP2 = font2.render(playerTwo.name + ": " + str(playerTwo.score), True, white)
+            scoreP3 = font2.render(playerThree.name + ": " + str(playerThree.score), True, white)
+            scoreP4 = font2.render(playerFour.name + ": " + str(playerFour.score), True, white)
         if maxp <= 2:
-            screen.blit(scoreP1, (1446, 63))
-            screen.blit(scoreP2, (1446, 83))
+            screen.blit(scoreP1, (130, 500))
+            screen.blit(scoreP2, (130, 540))
         elif maxp == 3:
-            screen.blit(scoreP1, (1446, 63))
-            screen.blit(scoreP2, (1446, 83))
-            screen.blit(scoreP3, (1446, 103))
+            screen.blit(scoreP1, (130, 500))
+            screen.blit(scoreP2, (130, 540))
+            screen.blit(scoreP3, (130, 580))
         else:
-            screen.blit(scoreP1, (1446, 63))
-            screen.blit(scoreP2, (1446, 83))
-            screen.blit(scoreP3, (1446, 103))
-            screen.blit(scoreP4, (1446, 123))
-        pygame.display.update()
+            screen.blit(scoreP1, (130, 500))
+            screen.blit(scoreP2, (130, 540))
+            screen.blit(scoreP3, (130, 580))
+            screen.blit(scoreP4, (130, 620))
         if uploadScore == True:
             if winner == 1:
                 playerOne.winnerScore()
@@ -1117,7 +1116,7 @@ def program(maxp):
                 score(playerThree.name, playerThree.score, 0, 1)
                 score(playerFour.name, playerFour.score, 1, 0)
                 uploadScore = False
-
+        pygame.display.update()
         for event in pygame.event.get():
                 mouse = pygame.mouse.get_pos()
                 k = pygame.key.get_pressed()
