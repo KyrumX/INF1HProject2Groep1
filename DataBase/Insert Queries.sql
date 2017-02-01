@@ -72,7 +72,7 @@ VALUES
 (70, 'OPEN', 'Entertainment', 'Welk kunstwerk wordt ook wel de Nederlandse versie van de sixtijnse kapel genoemd', NULL, NULL, NULL, 'de markthal', 'markthal', NULL, NULL),
 (71, 'OPEN', 'Entertainment', 'Wat is de populairste straat in Rotterdam om uit te gaan', NULL, NULL, NULL, 'witte de withstraat', 'de withstraat', 'witte de with straat', 'witte de witstraat'),
 (72, 'OPEN', 'Entertainment', 'Bij welke brug in Rotterdam vindt “het nationale vuurwerk” plaats', NULL, NULL, NULL, 'erasmusbrug', 'de erasmusbrug', 'erasmus brug', NULL),
-(73, 'OPEN', 'Entertainment', 'Bij welk station is het start punt van de Rotterdam street art route', NULL, NULL, NULL, 'centraal station', NULL, NULL, NULL),
+(73, 'OPEN', 'Entertainment', 'Bij welk station is het start punt van de Rotterdam street art route', NULL, NULL, NULL, 'centraal station', 'centraal', 'station centraal', NULL),
 (74, 'OPEN', 'Entertainment', 'Hoe heet het theater dat zich naast Pathe schouwburg bevindt', NULL, NULL, NULL, 'rotterdam schouwburg', 'de schouwburg', 'schouwburg', NULL),
 (75, 'OPEN', 'Entertainment', 'Bij welke haven bevindt zich het drijvend paviljoen', NULL, NULL, NULL, 'rotterdamse rijnhaven', 'rijnhaven', 'de rijnhaven', NULL),
 (76, 'OPEN', 'Entertainment', 'In welke maand vinden de wereldhavendagen plaats', NULl, NULL, NULL, 'september', '9de maand', 'de 9de maand', '09'),
