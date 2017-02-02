@@ -23,10 +23,17 @@ resolution = (1920, 1080)
 screen = pygame.display.set_mode(resolution, pygame.FULLSCREEN)
 pygame.display.set_caption("Euromast Spel")
 
+def text(msg, pos, size=30):
+    white = (255, 255, 255)
+    font = pygame.font.Font(None, size)
+    label = font.render(msg, True, white)
+    screen.blit(label, pos)
+
 
 prachtig = (66, 170, 244)
 screen.fill(prachtig)
 menu = True
+statusbar = pygame.image.load("Afbeeldingen/statusbar.png")
 Play = False
 Rules = False
 BackRules = False
@@ -73,14 +80,33 @@ while True:
             menu = False
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 150 and mouse[0] < 550 and mouse[1] > 677 and mouse[1] < 777 and Settings == True:
             Hard = True
+            screen.blit(statusbar, (310, 0))
+            text("De spelmodus staat nu op moeilijk!", (500, 12))
+            pygame.display.update()
+            pygame.time.delay(1500)
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 150 and mouse[0] < 550 and mouse[1] > 386 and mouse[1] < 488 and Settings == True:
             Easy = True
+            screen.blit(statusbar, (310, 0))
+            text("De spelmodus staat nu op makkelijk!", (500, 12))
+            pygame.display.update()
+            pygame.time.delay(1500)
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 150 and mouse[0] < 550 and mouse[1] > 530 and mouse[1] < 630 and Settings == True:
-            Normal = True
+            screen.blit(statusbar, (310, 0))
+            text("De spelmodus staat nu op normaal!", (500, 12))
+            pygame.display.update()
+            pygame.time.delay(1500)
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 981 and mouse[0] < 1190 and mouse[1] > 380 and mouse[1] < 525 and Settings == True:
             MusicOn = True
+            screen.blit(statusbar, (310, 0))
+            text("Geluid staat nu aan!", (600, 12))
+            pygame.display.update()
+            pygame.time.delay(1500)
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 983 and mouse[0] < 1190 and mouse[1] > 627 and mouse[1] < 769 and Settings == True:
             MusicOff = True
+            screen.blit(statusbar, (310, 0))
+            text("Geluid staat nu uit!", (600, 12))
+            pygame.display.update()
+            pygame.time.delay(1500)
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 175 and mouse[0] < 540 and mouse[1] > 700 and mouse[1] < 830 and menu == False and Settings == False:
             program(2, timer)
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 770 and mouse[0] < 1130 and mouse[1] > 700 and mouse[1] < 830 and menu == False and Settings == False:
