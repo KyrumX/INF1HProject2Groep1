@@ -49,7 +49,7 @@ VALUES
 (47, 'OPEN', 'History', 'Hoe heet het schip dat in dienst was van de Holland Amerika Lijn?', NULL, NULL, NULL, 'ss rotterdam', 'de rotterdam', 'rotterdam', NULL),
 (48, 'OPEN', 'History', 'Wat is de grootste politieke partij van Rotterdam?', NULL, NULL, NULL, 'leefbaar rotterdam', 'leefbaar', NULL, NULL),
 (49, 'OPEN', 'History', 'Welke politicus uit Rotterdam werd vermoord in 2002?', NULL, NULL, NULL, 'pim fortuyn', 'pim', 'fortuyn', NULL),
-(50, 'OPEN', 'History', 'Hoe heet het beeld dat Ossip Zadkine ontwierp naar aanleiding van het bombardement in Rotterdam? het is onthuld in 1953 en staat aan de Leuvenshaven naast het Maritiem Museum.', NULL, NULL, NULL, 'de verwoeste stad', 'verwoeste stad', NULL, NULL),
+(50, 'OPEN', 'History', 'Hoe heet het beeld dat Ossip Zadkine ontwierp naar aanleiding van het bombardement in Rotterdam?', NULL, NULL, NULL, 'de verwoeste stad', 'verwoeste stad', NULL, NULL),
 (51, 'OPEN', 'History', 'Wat was Erasmus?', NULL, NULL, NULL, 'filosoof', 'humanist', 'auteur', 'priester'),
 (52, 'OPEN', 'History', 'noem een van de twee bekendste bruggen in Rotterdam?', NULL, NULL, NULL, 'willemsbrug', 'erasmusbrug', 'willems brug', 'erasmus brug'),
 (53, 'OPEN', 'History', 'Hoe heette het Loods in het havengebied dat in 1942 als verzamelpunt voor de deportatie van de Joodse inwoners?', NULL, NULL, NULL, 'loods24', 'loods 24', NULL, NULL),
