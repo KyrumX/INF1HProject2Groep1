@@ -44,6 +44,64 @@ def getQuestion(questionCat, cg):
         questionID = questionPicked[0]
         return questionID
 
+def program(maxp, timer):
+    black = (0, 0, 0)
+    red = (255, 0, 0)
+    green = (0, 255, 0)
+    white = (255, 255, 255)
+    width = 1920
+    height = 1080
+    size = (width, height)
+    QuestionRight = pygame.mixer.Sound("Geluiden/Ding.wav")
+    QuestionWrong = pygame.mixer.Sound("Geluiden/buzzer.wav")
+    background1 = pygame.image.load("Afbeeldingen/gamebackgroundred.png")
+    background2 = pygame.image.load("Afbeeldingen/gamebackgroundyellow.png")
+    background3 = pygame.image.load("Afbeeldingen/gamebackgroundgreen.png")
+    background4 = pygame.image.load("Afbeeldingen/gamebackgroundblue.png")
+    nameInputBack = pygame.image.load("Afbeeldingen/avatarks.png")
+    img1 = pygame.image.load("Afbeeldingen/SP1.png")
+    img2 = pygame.image.load("Afbeeldingen/SP2.png")
+    img3 = pygame.image.load("Afbeeldingen/SP3.png")
+    img4 = pygame.image.load("Afbeeldingen/SP4.png")
+    brownbar = pygame.image.load("Afbeeldingen/brownbar.png")
+    buttoncover = pygame.image.load("Afbeeldingen/buttoncover.png")
+    d1 = pygame.image.load("Afbeeldingen/DS1.png")
+    d2 = pygame.image.load("Afbeeldingen/DS2.png")
+    d3 = pygame.image.load("Afbeeldingen/DS3.png")
+    d4 = pygame.image.load("Afbeeldingen/DS4.png")
+    d5 = pygame.image.load("Afbeeldingen/DS5.png")
+    d6 = pygame.image.load("Afbeeldingen/DS6.png")
+    dn = pygame.image.load("Afbeeldingen/DS0.png")
+    dz1 = pygame.image.load("Afbeeldingen/diceOne.png")
+    dz2 = pygame.image.load("Afbeeldingen/diceTwo.png")
+    dz3 = pygame.image.load("Afbeeldingen/diceThree.png")
+    dz4 = pygame.image.load("Afbeeldingen/diceFour.png")
+    dz5 = pygame.image.load("Afbeeldingen/diceFive.png")
+    dz6 = pygame.image.load("Afbeeldingen/diceSix.png")
+    dz0 = pygame.image.load("Afbeeldingen/diceZero.png")
+    terminationscreen = pygame.image.load("Afbeeldingen/gameover.png")
+    orderPlayers2 = pygame.image.load("Afbeeldingen/2persoonstart.png")
+    orderPlayers3 = pygame.image.load("Afbeeldingen/3persoonstart.png")
+    orderPlayers4 = pygame.image.load("Afbeeldingen/4persoonstart.png")
+    dobbelBeurt = pygame.image.load("Afbeeldingen/gooidobbelsteen.png")
+    keuzeimg = pygame.image.load("Afbeeldingen/kiezen.png")
+    gekozen = pygame.image.load("Afbeeldingen/gekozen.png")
+    gekozen2 = pygame.image.load("Afbeeldingen/gekozen2.png")
+    gekozen3 = pygame.image.load("Afbeeldingen/gekozen3.png")
+    gekozen4 = pygame.image.load("Afbeeldingen/gekozen4.png")
+    kiecat = pygame.image.load("Afbeeldingen/kiescategorie.png")
+
+    screen = pygame.display.set_mode(size, pygame.FULLSCREEN)
+    font = pygame.font.Font(None, 30)
+    font2 = pygame.font.Font(None, 50)
+
+    def text(msg, pos, size=30):
+        white = (255, 255, 255)
+        font = pygame.font.Font(None, size)
+        label = font.render(msg, True, white)
+        screen.blit(label, pos)
+
+    
 
 class Player:
     def __init__(self, x, y, image, name):
@@ -112,71 +170,24 @@ class Player:
 
     def draw(self, screen):
         screen.blit(self.image, (self.x, self.y))
+        txt = ""
+        cnt = 0
+        if len(self.name) > 5:
+            for x in range(5):
+                txt += "{}".format(self.name[cnt])
+                cnt += 1
+        else:
+            txt += "{}".format(self.name)
+
+        text("{}".format(txt), ((self.x + 10), (self.y - 20)), 20)
 
     def addScore(self):
         self.score += 10
 
 
     def winnerScore(self):
-        self.score += 100
-
-def program(maxp, timer):
-    black = (0, 0, 0)
-    red = (255, 0, 0)
-    green = (0, 255, 0)
-    white = (255, 255, 255)
-    width = 1920
-    height = 1080
-    size = (width, height)
-    QuestionRight = pygame.mixer.Sound("Geluiden/Ding.wav")
-    QuestionWrong = pygame.mixer.Sound("Geluiden/buzzer.wav")
-    background1 = pygame.image.load("Afbeeldingen/gamebackgroundred.png")
-    background2 = pygame.image.load("Afbeeldingen/gamebackgroundyellow.png")
-    background3 = pygame.image.load("Afbeeldingen/gamebackgroundgreen.png")
-    background4 = pygame.image.load("Afbeeldingen/gamebackgroundblue.png")
-    nameInputBack = pygame.image.load("Afbeeldingen/avatarks.png")
-    img1 = pygame.image.load("Afbeeldingen/SP1.png")
-    img2 = pygame.image.load("Afbeeldingen/SP2.png")
-    img3 = pygame.image.load("Afbeeldingen/SP3.png")
-    img4 = pygame.image.load("Afbeeldingen/SP4.png")
-    brownbar = pygame.image.load("Afbeeldingen/brownbar.png")
-    buttoncover = pygame.image.load("Afbeeldingen/buttoncover.png")
-    d1 = pygame.image.load("Afbeeldingen/DS1.png")
-    d2 = pygame.image.load("Afbeeldingen/DS2.png")
-    d3 = pygame.image.load("Afbeeldingen/DS3.png")
-    d4 = pygame.image.load("Afbeeldingen/DS4.png")
-    d5 = pygame.image.load("Afbeeldingen/DS5.png")
-    d6 = pygame.image.load("Afbeeldingen/DS6.png")
-    dn = pygame.image.load("Afbeeldingen/DS0.png")
-    dz1 = pygame.image.load("Afbeeldingen/diceOne.png")
-    dz2 = pygame.image.load("Afbeeldingen/diceTwo.png")
-    dz3 = pygame.image.load("Afbeeldingen/diceThree.png")
-    dz4 = pygame.image.load("Afbeeldingen/diceFour.png")
-    dz5 = pygame.image.load("Afbeeldingen/diceFive.png")
-    dz6 = pygame.image.load("Afbeeldingen/diceSix.png")
-    dz0 = pygame.image.load("Afbeeldingen/diceZero.png")
-    terminationscreen = pygame.image.load("Afbeeldingen/gameover.png")
-    orderPlayers2 = pygame.image.load("Afbeeldingen/2persoonstart.png")
-    orderPlayers3 = pygame.image.load("Afbeeldingen/3persoonstart.png")
-    orderPlayers4 = pygame.image.load("Afbeeldingen/4persoonstart.png")
-    dobbelBeurt = pygame.image.load("Afbeeldingen/gooidobbelsteen.png")
-    keuzeimg = pygame.image.load("Afbeeldingen/kiezen.png")
-    gekozen = pygame.image.load("Afbeeldingen/gekozen.png")
-    gekozen2 = pygame.image.load("Afbeeldingen/gekozen2.png")
-    gekozen3 = pygame.image.load("Afbeeldingen/gekozen3.png")
-    gekozen4 = pygame.image.load("Afbeeldingen/gekozen4.png")
-    kiecat = pygame.image.load("Afbeeldingen/kiescategorie.png")
-
-    screen = pygame.display.set_mode(size, pygame.FULLSCREEN)
-    font = pygame.font.Font(None, 30)
-    font2 = pygame.font.Font(None, 50)
-
-    def text(msg, pos, size=30):
-        white = (255, 255, 255)
-        font = pygame.font.Font(None, size)
-        label = font.render(msg, True, white)
-        screen.blit(label, pos)
-
+        self.score += 100    
+    
     screen.blit(nameInputBack, (0, 0))
 
     player1name = (ask(screen, "Naam speler 1"))
