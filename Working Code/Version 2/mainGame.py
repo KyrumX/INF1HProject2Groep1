@@ -149,7 +149,9 @@ def program(maxp, timer):
     d6 = pygame.image.load("Afbeeldingen/DS6.png")
     dn = pygame.image.load("Afbeeldingen/DS0.png")
     terminationscreen = pygame.image.load("Afbeeldingen/gameover.png")
-    orderPlayers = pygame.image.load("Afbeeldingen/dobbelbackground.png")
+    orderPlayers2 = pygame.image.load("Afbeeldingen/2persoonstart.png")
+    orderPlayers3 = pygame.image.load("Afbeeldingen/3persoonstart.png")
+    orderPlayers4 = pygame.image.load("Afbeeldingen/4persoonstart.png")
     entButton = pygame.image.load("Afbeeldingen/KiesEnt.png")
     sportButton = pygame.image.load("Afbeeldingen/KiesSport.png")
     geoButton = pygame.image.load("Afbeeldingen/KiesGeo.png")
@@ -159,6 +161,7 @@ def program(maxp, timer):
     gekozen2 = pygame.image.load("Afbeeldingen/gekozen2.png")
     gekozen3 = pygame.image.load("Afbeeldingen/gekozen3.png")
     gekozen4 = pygame.image.load("Afbeeldingen/gekozen4.png")
+    kiecat = pygame.image.load("Afbeeldingen/kiescategorie.png")
 
     screen = pygame.display.set_mode(size, pygame.FULLSCREEN)
     font = pygame.font.Font(None, 30)
@@ -222,20 +225,22 @@ def program(maxp, timer):
     p4choosing = False
     choosing = True
     beginning = True
+    xk = 0
+    xg = 0
+    screen.blit(keuzeimg, (100, 420))
+    screen.blit(keuzeimg, (437, 420))
+    screen.blit(keuzeimg, (800, 420))
+    screen.blit(keuzeimg, (1170, 420))
+    pygame.display.update()
     while choosing:
         mouse = pygame.mouse.get_pos()
         print(mouse)
         if p1choosing == True:
             pygame.display.update()
             text("{}, kies je avatar".format(player1name), (200, 320))
-            screen.blit(keuzeimg, (100, 420))
-            screen.blit(keuzeimg, (437, 420))
-            screen.blit(keuzeimg, (800, 420))
-            screen.blit(keuzeimg, (1170, 420))
-            pygame.display.update()
             for event in pygame.event.get():
                 if event.type == MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 114 and mouse[0] < 281 and mouse[1] > 429 and mouse[1] < 486:
-                    playerOne = Player(805, 990, img1, player1name)
+                    playerOneAfb = img1
                     char1chosen = True
                     char2chosen = False
                     char3chosen = False
@@ -243,7 +248,7 @@ def program(maxp, timer):
                     p1choosing = False
                     p2choosing = True
                 elif event.type == MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 445 and mouse[0] < 623 and mouse[1] > 422 and mouse[1] < 474:
-                    playerOne = Player(805, 990, img2, player1name)
+                    playerOneAfb = img2
                     char1chosen = False
                     char2chosen = True
                     char3chosen = False
@@ -251,7 +256,7 @@ def program(maxp, timer):
                     p1choosing = False
                     p2choosing = True
                 elif event.type == MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 813 and mouse[0] < 986 and mouse[1] > 422 and mouse[1] < 474:
-                    playerOne = Player(805, 990, img3, player1name)
+                    playerOneAfb = img3
                     char1chosen = False
                     char2chosen = False
                     char3chosen = True
@@ -259,7 +264,7 @@ def program(maxp, timer):
                     p1choosing = False
                     p2choosing = True
                 elif event.type == MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1183 and mouse[0] < 1356 and mouse[1] > 422 and mouse[1] < 474:
-                    playerOne = Player(805, 990, img4, player1name)
+                    playerOneAfb = img4
                     char1chosen = False
                     char2chosen = False
                     char3chosen = False
@@ -269,37 +274,39 @@ def program(maxp, timer):
 
 
         elif p2choosing == True:
-            screen.blit(nameInputBack, (0, 0))
-            pygame.display.update()
-            text("{}, kies je avatar".format(player2name), (200, 320))
-            if char1chosen:
-                screen.blit(gekozen2, (100, 420))
-                screen.blit(keuzeimg, (437, 420))
-                screen.blit(keuzeimg, (800, 420))
-                screen.blit(keuzeimg, (1170, 420))
+            if xk == 0:
+                screen.blit(nameInputBack, (0, 0))
                 pygame.display.update()
-            elif char2chosen:
-                screen.blit(keuzeimg, (100, 420))
-                screen.blit(gekozen3, (437, 420))
-                screen.blit(keuzeimg, (800, 420))
-                screen.blit(keuzeimg, (1170, 420))
-                pygame.display.update()
-            elif char3chosen:
-                screen.blit(keuzeimg, (100, 420))
-                screen.blit(keuzeimg, (437, 420))
-                screen.blit(gekozen, (800, 420))
-                screen.blit(keuzeimg, (1170, 420))
-                pygame.display.update()
-            elif char4chosen:
-                screen.blit(keuzeimg, (100, 420))
-                screen.blit(keuzeimg, (437, 420))
-                screen.blit(keuzeimg, (800, 420))
-                screen.blit(gekozen4, (1170, 420))
-                pygame.display.update()
+                text("{}, kies je avatar".format(player2name), (200, 320))
+                if char1chosen:
+                    screen.blit(gekozen2, (100, 420))
+                    screen.blit(keuzeimg, (437, 420))
+                    screen.blit(keuzeimg, (800, 420))
+                    screen.blit(keuzeimg, (1170, 420))
+                    pygame.display.update()
+                elif char2chosen:
+                    screen.blit(keuzeimg, (100, 420))
+                    screen.blit(gekozen3, (437, 420))
+                    screen.blit(keuzeimg, (800, 420))
+                    screen.blit(keuzeimg, (1170, 420))
+                    pygame.display.update()
+                elif char3chosen:
+                    screen.blit(keuzeimg, (100, 420))
+                    screen.blit(keuzeimg, (437, 420))
+                    screen.blit(gekozen, (800, 420))
+                    screen.blit(keuzeimg, (1170, 420))
+                    pygame.display.update()
+                elif char4chosen:
+                    screen.blit(keuzeimg, (100, 420))
+                    screen.blit(keuzeimg, (437, 420))
+                    screen.blit(keuzeimg, (800, 420))
+                    screen.blit(gekozen4, (1170, 420))
+                    pygame.display.update()
+                xk += 1
 
             for event in pygame.event.get():
                 if event.type == MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 114 and mouse[0] < 276 and mouse[1] > 429 and mouse[1] < 486 and char1chosen == False:
-                    playerTwo = Player(925, 990, img1, player2name)
+                    playerTwoAfb = img1
                     char1chosen = True
                     if maxp > 2:
                         p3choosing = True
@@ -310,7 +317,7 @@ def program(maxp, timer):
                         pygame.time.delay(1000)
                         choosing = False
                 elif event.type == MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 445 and mouse[0] < 623 and mouse[1] > 422 and mouse[1] < 474 and char2chosen == False:
-                    playerTwo = Player(925, 990, img2, player2name)
+                    playerTwoAfb = img2
                     char2chosen = True
                     if maxp > 2:
                         p3choosing = True
@@ -321,7 +328,7 @@ def program(maxp, timer):
                         pygame.time.delay(1000)
                         choosing = False
                 elif event.type == MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 813 and mouse[0] < 986 and mouse[1] > 422 and mouse[1] < 474 and char3chosen == False:
-                    playerTwo = Player(925, 990, img3, player2name)
+                    playerTwoAfb = img3
                     char3chosen = True
                     if maxp > 2:
                         p3choosing = True
@@ -332,7 +339,7 @@ def program(maxp, timer):
                         pygame.time.delay(1000)
                         choosing = False
                 elif event.type == MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1183 and mouse[0] < 1356 and mouse[1] > 422 and mouse[1] < 474 and char4chosen == False:
-                    playerTwo = Player(925, 990, img4, player2name)
+                    playerTwoAfb = img4
                     char4chosen = True
                     if maxp > 2:
                         p3choosing = True
@@ -343,48 +350,50 @@ def program(maxp, timer):
                         pygame.time.delay(1000)
                         choosing = False
         elif p3choosing == True:
-            screen.blit(nameInputBack, (0, 0))
-            pygame.display.update()
-            text("{}, kies je avatar".format(player3name), (200, 320))
-            if char1chosen == True and char2chosen == True:
-                screen.blit(gekozen2, (100, 420))
-                screen.blit(gekozen3, (437, 420))
-                screen.blit(keuzeimg, (800, 420))
-                screen.blit(keuzeimg, (1170, 420))
+            if xg == 0:
+                screen.blit(nameInputBack, (0, 0))
                 pygame.display.update()
-            elif char1chosen and char3chosen:
-                screen.blit(gekozen2, (100, 420))
-                screen.blit(keuzeimg, (437, 420))
-                screen.blit(gekozen, (800, 420))
-                screen.blit(keuzeimg, (1170, 420))
-                pygame.display.update()
-            elif char1chosen and char4chosen:
-                screen.blit(gekozen2, (100, 420))
-                screen.blit(keuzeimg, (437, 420))
-                screen.blit(keuzeimg, (800, 420))
-                screen.blit(gekozen4, (1170, 420))
-                pygame.display.update()
-            elif char2chosen and char3chosen:
-                screen.blit(keuzeimg, (100, 420))
-                screen.blit(gekozen3, (437, 420))
-                screen.blit(gekozen, (800, 420))
-                screen.blit(keuzeimg, (1170, 420))
-                pygame.display.update()
-            elif char2chosen and char4chosen:
-                screen.blit(keuzeimg, (100, 420))
-                screen.blit(gekozen3, (437, 420))
-                screen.blit(keuzeimg, (800, 420))
-                screen.blit(gekozen4, (1170, 420))
-                pygame.display.update()
-            elif char3chosen and char4chosen:
-                screen.blit(keuzeimg, (100, 420))
-                screen.blit(keuzeimg, (437, 420))
-                screen.blit(gekozen, (800, 420))
-                screen.blit(gekozen4, (1170, 420))
-                pygame.display.update()
+                text("{}, kies je avatar".format(player3name), (200, 320))
+                if char1chosen == True and char2chosen == True:
+                    screen.blit(gekozen2, (100, 420))
+                    screen.blit(gekozen3, (437, 420))
+                    screen.blit(keuzeimg, (800, 420))
+                    screen.blit(keuzeimg, (1170, 420))
+                    pygame.display.update()
+                elif char1chosen and char3chosen:
+                    screen.blit(gekozen2, (100, 420))
+                    screen.blit(keuzeimg, (437, 420))
+                    screen.blit(gekozen, (800, 420))
+                    screen.blit(keuzeimg, (1170, 420))
+                    pygame.display.update()
+                elif char1chosen and char4chosen:
+                    screen.blit(gekozen2, (100, 420))
+                    screen.blit(keuzeimg, (437, 420))
+                    screen.blit(keuzeimg, (800, 420))
+                    screen.blit(gekozen4, (1170, 420))
+                    pygame.display.update()
+                elif char2chosen and char3chosen:
+                    screen.blit(keuzeimg, (100, 420))
+                    screen.blit(gekozen3, (437, 420))
+                    screen.blit(gekozen, (800, 420))
+                    screen.blit(keuzeimg, (1170, 420))
+                    pygame.display.update()
+                elif char2chosen and char4chosen:
+                    screen.blit(keuzeimg, (100, 420))
+                    screen.blit(gekozen3, (437, 420))
+                    screen.blit(keuzeimg, (800, 420))
+                    screen.blit(gekozen4, (1170, 420))
+                    pygame.display.update()
+                elif char3chosen and char4chosen:
+                    screen.blit(keuzeimg, (100, 420))
+                    screen.blit(keuzeimg, (437, 420))
+                    screen.blit(gekozen, (800, 420))
+                    screen.blit(gekozen4, (1170, 420))
+                    pygame.display.update()
+                xg += 1
             for event in pygame.event.get():
                 if event.type == MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 114 and mouse[0] < 276 and mouse[1] > 429 and mouse[1] < 486 and char1chosen == False:
-                    playerThree = Player(1045, 990, img1, player3name)
+                    playerThreeAfb = img1
                     char1chosen = True
                     if maxp > 3:
                         p4choosing = True
@@ -396,7 +405,7 @@ def program(maxp, timer):
                         pygame.display.update()
                         choosing = False
                 elif event.type == MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 445 and mouse[0] < 623 and mouse[1] > 422 and mouse[1] < 474 and char2chosen == False:
-                    playerThree = Player(1045, 990, img2, player3name)
+                    playerThreeAfb = img2
                     char2chosen = True
                     if maxp > 3:
                         p4choosing = True
@@ -408,7 +417,7 @@ def program(maxp, timer):
                         pygame.display.update()
                         choosing = False
                 elif event.type == MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 813 and mouse[0] < 986 and mouse[1] > 422 and mouse[1] < 474 and char3chosen == False:
-                    playerThree = Player(1045, 990, img3, player3name)
+                    playerThreeAfb = img3
                     char3chosen = True
                     if maxp > 3:
                         p4choosing = True
@@ -420,7 +429,7 @@ def program(maxp, timer):
                         pygame.display.update()
                         choosing = False
                 elif event.type == MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1183 and mouse[0] < 1356 and mouse[1] > 422 and mouse[1] < 474 and char4chosen == False:
-                    playerThree = Player(1045, 990, img4, player3name)
+                    playerThreeAfb = img4
                     char4chosen = True
                     if maxp > 3:
                         p4choosing = True
@@ -442,7 +451,7 @@ def program(maxp, timer):
                 screen.blit(gekozen3, (437, 420))
                 screen.blit(gekozen, (800, 420))
                 screen.blit(gekozen, (1170, 420))
-                playerFour = Player(1165, 990, img4, player4name)
+                playerFourAfb = img4
                 pygame.display.update()
                 pygame.time.delay(3000)
                 pygame.display.update()
@@ -452,7 +461,7 @@ def program(maxp, timer):
                 screen.blit(gekozen3, (437, 420))
                 screen.blit(gekozen, (800, 420))
                 screen.blit(gekozen4, (1170, 420))
-                playerFour = Player(1165, 990, img1, player4name)
+                playerFourAfb = img1
                 pygame.display.update()
                 pygame.time.delay(3000)
                 pygame.display.update()
@@ -462,7 +471,7 @@ def program(maxp, timer):
                 screen.blit(gekozen3, (437, 420))
                 screen.blit(gekozen, (800, 420))
                 screen.blit(gekozen4, (1170, 420))
-                playerFour = Player(1165, 990, img2, player4name)
+                playerFourAfb = img2
                 pygame.display.update()
                 pygame.time.delay(3000)
                 pygame.display.update()
@@ -472,7 +481,7 @@ def program(maxp, timer):
                 screen.blit(gekozen3, (437, 420))
                 screen.blit(gekozen, (800, 420))
                 screen.blit(gekozen4, (1170, 420))
-                playerFour = Player(1165, 990, img3, player4name)
+                playerFourAfb = img3
                 pygame.display.update()
                 pygame.time.delay(3000)
                 pygame.display.update()
@@ -492,7 +501,12 @@ def program(maxp, timer):
     pl3throw = 0
     pl2throw = 0
     pl1throw = 0
-    screen.blit(orderPlayers, (0, 0))
+    if maxp == 2:
+        screen.blit(orderPlayers2, (0, 0))
+    if maxp == 3:
+        screen.blit(orderPlayers3, (0, 0))
+    if maxp == 4:
+        screen.blit(orderPlayers4, (0, 0))
     if maxp == 2:
         screen.blit(dn, (100,470))
         screen.blit(dn, (400,470))
@@ -661,10 +675,7 @@ def program(maxp, timer):
 
     sp = cp
 
-    screen.blit(entButton, (1300, 370))
-    screen.blit(sportButton, (1300, 620))
-    screen.blit(hisButton, (1550, 370))
-    screen.blit(geoButton, (1550, 620))
+    screen.blit(kiecat, (0,0))
     pygame.display.update()
     entAllowed = True
     sportAllowed = True
@@ -672,6 +683,7 @@ def program(maxp, timer):
     geoAllowed = True
     assignCat = True
     cnt = 0
+
 
     while assignCat == True:
         while not cnt == maxp:
@@ -681,14 +693,20 @@ def program(maxp, timer):
                 if k[pygame.K_ESCAPE]:
                     sys.exit("Escape was pressed")
                 elif entAllowed == True:
-                    if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1300 and mouse[0] < 1500 and mouse[1] > 370 and mouse[1] < 560:
+                    if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1012 and mouse[0] < 1405 and mouse[1] > 449 and mouse[1] < 883:
                         if sp == 1:
+                            kiezCat = font.render("Gekozen door Speler 1", True, black)
+                            screen.blit(kiezCat, (1045, 600))
+                            pygame.display.update()
                             sp1c = 805
                             entAllowed = False
                             sp += 1
                             cnt += 1
                             break
                         elif sp == 2:
+                            kiezCat = font.render("Gekozen door Speler 2", True,black)
+                            screen.blit(kiezCat, (1045, 600))
+                            pygame.display.update()
                             sp2c = 805
                             entAllowed = False
                             if maxp > 2:
@@ -700,6 +718,9 @@ def program(maxp, timer):
                                 sp -= 1
                                 break
                         elif sp == 3:
+                            kiezCat = font.render("Gekozen door Speler 3", True,black)
+                            screen.blit(kiezCat, (1045, 600))
+                            pygame.display.update()
                             sp3c = 805
                             entAllowed = False
                             if maxp > 3:
@@ -711,6 +732,9 @@ def program(maxp, timer):
                                 cnt += 1
                                 break
                         elif sp == 4:
+                            kiezCat = font.render("Gekozen door Speler 4", True,black)
+                            screen.blit(kiezCat, (1045, 600))
+                            pygame.display.update()
                             sp4c = 805
                             sp = 1
                             entAllowed = False
@@ -719,14 +743,20 @@ def program(maxp, timer):
                     else:
                         pass
                 if hisAllowed == True:
-                    if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1550 and mouse[0] < 1750 and mouse[1] > 370 and mouse[1] < 560:
+                    if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 35 and mouse[0] < 437 and mouse[1] > 445 and mouse[1] < 885:
                         if sp == 1:
+                            kiezCat = font.render("Gekozen door Speler 1", True,black)
+                            screen.blit(kiezCat, (75, 600))
+                            pygame.display.update()
                             sp1c = 925
                             hisAllowed = False
                             sp += 1
                             cnt += 1
                             break
                         elif sp == 2:
+                            kiezCat = font.render("Gekozen door Speler 2", True,black)
+                            screen.blit(kiezCat, (75, 600))
+                            pygame.display.update()
                             sp2c = 925
                             hisAllowed = False
                             if maxp > 2:
@@ -738,6 +768,9 @@ def program(maxp, timer):
                                 cnt += 1
                                 break
                         elif sp == 3:
+                            kiezCat = font.render("Gekozen door Speler 3", True,black)
+                            screen.blit(kiezCat, (75, 600))
+                            pygame.display.update()
                             sp3c = 925
                             hisAllowed = False
                             if maxp > 3:
@@ -749,6 +782,9 @@ def program(maxp, timer):
                                 cnt += 1
                                 break
                         elif sp == 4:
+                            kiezCat = font.render("Gekozen door Speler 4", True,black)
+                            screen.blit(kiezCat, (75, 600))
+                            pygame.display.update()
                             sp4c = 925
                             sp = 1
                             hisAllowed = False
@@ -757,14 +793,20 @@ def program(maxp, timer):
                     else:
                         pass
                 if sportAllowed:
-                    if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1300 and mouse[0] < 1500 and mouse[1] > 620 and mouse[1] < 820:
+                    if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1487 and mouse[0] < 1882 and mouse[1] > 444 and mouse[1] < 833:
                         if sp == 1:
+                            kiezCat = font.render("Gekozen door Speler 1", True,black)
+                            screen.blit(kiezCat, (1520, 600))
+                            pygame.display.update()
                             sp1c = 1165
                             sportAllowed = False
                             sp += 1
                             cnt += 1
                             break
                         elif sp == 2:
+                            kiezCat = font.render("Gekozen door Speler 2", True,black)
+                            screen.blit(kiezCat, (1520, 600))
+                            pygame.display.update()
                             sp2c = 1165
                             sportAllowed = False
                             if maxp > 2:
@@ -776,6 +818,9 @@ def program(maxp, timer):
                                 cnt += 1
                                 break
                         elif sp == 3:
+                            kiezCat = font.render("Gekozen door Speler 3", True,black)
+                            screen.blit(kiezCat, (1520, 600))
+                            pygame.display.update()
                             sp3c = 1165
                             sportAllowed = False
                             if maxp > 3:
@@ -787,6 +832,9 @@ def program(maxp, timer):
                                 cnt += 1
                                 break
                         elif sp == 4:
+                            kiezCat = font.render("Gekozen door Speler 4", True,black)
+                            screen.blit(kiezCat, (1520, 600))
+                            pygame.display.update()
                             sp4c = 1165
                             sp = 1
                             sportAllowed = False
@@ -795,14 +843,20 @@ def program(maxp, timer):
                     else:
                         pass
                 if geoAllowed == True:
-                    if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1550 and mouse[0] < 1750 and mouse[1] > 620 and mouse[1] < 820:
+                    if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 525 and mouse[0] < 920 and mouse[1] > 466  and mouse[1] < 887:
                         if sp == 1:
+                            kiezCat = font.render("Gekozen door Speler 1", True,black)
+                            screen.blit(kiezCat, (550, 600))
+                            pygame.display.update()
                             sp1c = 1045
                             geoAllowed = False
                             sp += 1
                             cnt += 1
                             break
                         elif sp == 2:
+                            kiezCat = font.render("Gekozen door Speler 1", True,black)
+                            screen.blit(kiezCat, (550, 600))
+                            pygame.display.update()
                             sp2c = 1045
                             geoAllowed = False
                             if maxp > 2:
@@ -814,6 +868,9 @@ def program(maxp, timer):
                                 cnt += 1
                                 break
                         elif sp == 3:
+                            kiezCat = font.render("Gekozen door Speler 1", True,black)
+                            screen.blit(kiezCat, (550, 600))
+                            pygame.display.update()
                             sp3c = 1045
                             geoAllowed = False
                             if maxp > 3:
@@ -825,6 +882,9 @@ def program(maxp, timer):
                                 cnt += 1
                                 break
                         elif sp == 4:
+                            kiezCat = font.render("Gekozen door Speler 1", True,black)
+                            screen.blit(kiezCat, (550, 600))
+                            pygame.display.update()
                             sp4c = 1045
                             sp = 1
                             geoAllowed = False
@@ -833,16 +893,17 @@ def program(maxp, timer):
                     else:
                         pass
         else:
+            time.sleep(5)
             assignCat = False
 
 
     if maxp >= 2:
-        playerOne = Player(sp1c, 990, img1, player1name) #805, 990
-        playerTwo = Player(sp2c, 990, img2, player2name) #925, 990
+        playerOne = Player(sp1c, 990, playerOneAfb, player1name) #805, 990
+        playerTwo = Player(sp2c, 990, playerTwoAfb, player2name) #925, 990
     if maxp >= 3:
-        playerThree = Player(sp3c, 990, img3, player3name) #1045, 990
+        playerThree = Player(sp3c, 990, playerThreeAfb, player3name) #1045, 990
     if maxp == 4:
-        playerFour = Player(sp4c, 990, img4, player4name) #1165, 990
+        playerFour = Player(sp4c, 990, playerFourAfb, player4name) #1165, 990
 
     winnerfound = False
     mainloop = True

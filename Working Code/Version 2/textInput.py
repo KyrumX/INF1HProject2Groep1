@@ -84,7 +84,7 @@ def ask(screen, question):
             current_string.append("_")
         elif inkey <= 127:
             x = len(current_string)
-            if x > 27:
+            if x > 20:
                 pass
             else:
                 current_string.append(chr(inkey))
