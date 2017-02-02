@@ -1346,7 +1346,7 @@ def program(maxp, timer):
 
         while questionOPEN == True:
             questionCorrect = interact_with_database("SELECT correct_answer FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
-            cpKeuze = ask2(screen, "Antwoord", font, brownbar, white)
+            cpKeuze = ask2(screen, "Antwoord", font, brownbar, white, timer)
             if questionCorrect1 == cpKeuze or questionCorrect2 == cpKeuze or questionCorrect3 == cpKeuze or questionCorrect4 == cpKeuze:
                 cpKeuze = interact_with_database("SELECT correct_answer FROM QnA WHERE Question_ID = {}".format(randomQuestionID))
             else:

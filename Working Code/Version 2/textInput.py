@@ -3,13 +3,13 @@ from pygame.locals import *
 import sys
 
 #Timed, voor openvragen:
-def get_key2(start_ticks, screen, font, brownbar, white):
+def get_key2(start_ticks, screen, font, brownbar, white, timer):
     while 1:
-        mils = 50 - ((pygame.time.get_ticks() - start_ticks) / 1000)
+        mils = timer - ((pygame.time.get_ticks() - start_ticks) / 1000)
         seconds = int(mils)
         if seconds == -1:
             return K_RETURN
-        elif seconds < 50:
+        elif seconds < timer:
             screen.blit(brownbar, (216, 460))
             timerLabel = font.render("Timer: " + str(seconds), True, white)
             screen.blit(timerLabel, (216, 465))
@@ -27,13 +27,13 @@ def display_box2(screen, message):
         screen.blit(fontobject.render(message, 1, (255,255,255)), (39,520))
         pygame.display.flip()
 
-def ask2(screen, question, font, greenbar, black):
+def ask2(screen, question, font, greenbar, black, timer):
     start_ticks = pygame.time.get_ticks()
     pygame.font.init()
     current_string = []
     display_box2(screen, question + ": " + "".join(current_string))
     while 1:
-        inkey = get_key2(start_ticks, screen, font, greenbar, black)
+        inkey = get_key2(start_ticks, screen, font, greenbar, black, timer)
         if inkey == K_BACKSPACE:
             current_string = current_string[0:-1]
         elif inkey == K_ESCAPE:
