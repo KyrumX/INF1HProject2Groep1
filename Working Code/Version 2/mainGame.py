@@ -100,95 +100,92 @@ def program(maxp, timer):
         font = pygame.font.Font(None, size)
         label = font.render(msg, True, white)
         screen.blit(label, pos)
-
-    
-
-class Player:
-    def __init__(self, x, y, image, name):
-        self.x = x
-        self.y = y
-        self.name = name
-        self.image = image
-        self.score = 0
-
-    def updatef(self, cg):
-        while cg > 0 and self.y > 0:
-            if self.y == 477:
-                if self.x == 805 or self.x == 865:
-                    self.x = 926
-                    self.y = 333
-                elif self.x == 925 or self.x == 985:
-                    self.x = 986
-                    self.y = 333
-                elif self.x == 1045 or self.x == 1105:
-                    self.x = 1046
-                    self.y = 333
-                elif self.x == 1165 or self.x == 1225:
-                    self.x = 1106
-                    self.y = 333
-            else:
-                self.y -= 57
-            cg -= 1
-
-    def updatel(self, cg):
-        while cg > 0:
-            self.x -= 60
-            if self.x == 745 and self.y > 333:
-                self.x = 1225
-            elif self.x == 866 and self.y <= 333:
-                self.x = 1106
-            cg -= 1
-
-    def updater(self, cg):
-        while cg > 0:
-            self.x += 60
-            if self.x == 1285 and self.y > 333:
-                self.x = 805
-            elif self.x == 1166 and self.y <= 333:
-                self.x = 926
-            cg -= 1
-
-    def updateb(self, cg):
-        while cg > 0:
-            if self.y == 990:
-                break
-            self.y += 57
-            if self.y > 333:
-                if self.x == 926:
-                    self.x = 805
-                    self.y = 477
-                elif self.x == 987:
-                    self.x = 925
-                    self.y = 477
-                elif self.x == 1046:
-                    self.x = 1045
-                    self.y = 477
-                elif self.x == 1106:
-                    self.x = 1165
-                    self.y = 477
-            cg -= 1
-
-    def draw(self, screen):
-        screen.blit(self.image, (self.x, self.y))
-        txt = ""
-        cnt = 0
-        if len(self.name) > 5:
-            for x in range(5):
-                txt += "{}".format(self.name[cnt])
-                cnt += 1
-        else:
-            txt += "{}".format(self.name)
-
-        text("{}".format(txt), ((self.x + 10), (self.y - 20)), 20)
-
-    def addScore(self):
-        self.score += 10
-
-
-    def winnerScore(self):
-        self.score += 100    
     
     screen.blit(nameInputBack, (0, 0))
+
+    class Player:
+        def __init__(self, x, y, image, name):
+            self.x = x
+            self.y = y
+            self.name = name
+            self.image = image
+            self.score = 0
+
+        def updatef(self, cg):
+            while cg > 0 and self.y > 0:
+                if self.y == 477:
+                    if self.x == 805 or self.x == 865:
+                        self.x = 926
+                        self.y = 333
+                    elif self.x == 925 or self.x == 985:
+                        self.x = 986
+                        self.y = 333
+                    elif self.x == 1045 or self.x == 1105:
+                        self.x = 1046
+                        self.y = 333
+                    elif self.x == 1165 or self.x == 1225:
+                        self.x = 1106
+                        self.y = 333
+                else:
+                    self.y -= 57
+                cg -= 1
+
+        def updatel(self, cg):
+            while cg > 0:
+                self.x -= 60
+                if self.x == 745 and self.y > 333:
+                    self.x = 1225
+                elif self.x == 866 and self.y <= 333:
+                    self.x = 1106
+                cg -= 1
+
+        def updater(self, cg):
+            while cg > 0:
+                self.x += 60
+                if self.x == 1285 and self.y > 333:
+                    self.x = 805
+                elif self.x == 1166 and self.y <= 333:
+                    self.x = 926
+                cg -= 1
+
+        def updateb(self, cg):
+            while cg > 0:
+                if self.y == 990:
+                    break
+                self.y += 57
+                if self.y > 333:
+                    if self.x == 926:
+                        self.x = 805
+                        self.y = 477
+                    elif self.x == 987:
+                        self.x = 925
+                        self.y = 477
+                    elif self.x == 1046:
+                        self.x = 1045
+                        self.y = 477
+                    elif self.x == 1106:
+                        self.x = 1165
+                        self.y = 477
+                cg -= 1
+
+        def draw(self, screen):
+            screen.blit(self.image, (self.x, self.y))
+            txt = ""
+            cnt = 0
+            if len(self.name) > 5:
+                for x in range(5):
+                    txt += "{}".format(self.name[cnt])
+                    cnt += 1
+            else:
+                txt += "{}".format(self.name)
+
+            text("{}".format(txt), ((self.x + 10), (self.y - 20)), 20)
+
+        def addScore(self):
+            self.score += 10
+
+        def winnerScore(self):
+            self.score += 100
 
     player1name = (ask(screen, "Naam speler 1"))
     screen.blit(nameInputBack, (0, 0))
@@ -1476,7 +1473,7 @@ class Player:
                     movement = False
                 elif richting == "omhoog":
                     if cp == 1:
-                        playerOne.updatef(cg)
+                        playerOne.updatef(16)
                         if playerOne.y <= 48:
                             winner = 1
                             termination = True
@@ -1834,17 +1831,17 @@ class Player:
             screen.blit(scoreP3, (130, 580))
             screen.blit(scoreP4, (130, 620))
         if winner == 1:
-            winner = font2.render("De winnaar is: " + playerOne.name, True, black)
-            screen.blit(winner, (130, 320))
+            winnerLabel = font2.render("De winnaar is: " + playerOne.name, True, black)
+            screen.blit(winnerLabel, (130, 320))
         elif winner == 2:
-            winner = font2.render("De winnaar is: " + playerTwo.name, True, white)
-            screen.blit(winner, (130, 320))
+            winnerLabel = font2.render("De winnaar is: " + playerTwo.name, True, white)
+            screen.blit(winnerLabel, (130, 320))
         elif winner == 3:
-            winner = font2.render("De winnaar is: " + playerThree.name, True, white)
-            screen.blit(winner, (130, 320))
+            winnerLabel = font2.render("De winnaar is: " + playerThree.name, True, white)
+            screen.blit(winnerLabel, (130, 320))
         elif winner == 4:
-            winner = font2.render("De winnaar is: " + playerFour.name, True, white)
-            screen.blit(winner, (130, 320))
+            winnerLabel = font2.render("De winnaar is: " + playerFour.name, True, white)
+            screen.blit(winnerLabel, (130, 320))
         if uploadScore == True:
             if winner == 1:
                 playerOne.winnerScore()
