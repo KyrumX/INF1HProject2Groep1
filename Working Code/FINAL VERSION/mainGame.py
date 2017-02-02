@@ -193,8 +193,6 @@ def program(maxp, timer):
 
     while len(player1name) < 1:
         player1name = (ask(screen, "Naam te kort. Naam speler 1"))
-        screen.blit(nameInputBack, (0, 0))
-        pygame.display.update()
     screen.blit(nameInputBack, (0, 0))
     pygame.display.update()
 
@@ -719,7 +717,7 @@ def program(maxp, timer):
         screen.blit(xhx, (690, 340))
         xhx = font.render(player3name + " gooide: " + str(pl3throw), True, white)
         screen.blit(xhx, (690, 370))
-        xhx = font.render(player3name + " gooide: " + str(pl3throw), True, white)
+        xhx = font.render(player4name + " gooide: " + str(pl4throw), True, white)
         screen.blit(xhx, (690, 400))
         pygame.display.update()
 
