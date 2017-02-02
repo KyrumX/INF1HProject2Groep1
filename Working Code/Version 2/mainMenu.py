@@ -68,7 +68,7 @@ while True:
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1516 and mouse[0] < 1920 and mouse[1] > 0 and mouse[1] < 150 and menu == True:
             pygame.quit()
             sys.exit()
-        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 0 and mouse[0] < 400 and mouse[1] > 350 and mouse[1] < 450 and menu == True:
+        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1516 and mouse[0] < 1920 and mouse[1] > 390 and mouse[1] < 530 and menu == True:
             Settings = True
             menu = False
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 150 and mouse[0] < 550 and mouse[1] > 677 and mouse[1] < 777 and Settings == True:
