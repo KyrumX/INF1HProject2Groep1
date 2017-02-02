@@ -27,16 +27,16 @@ pygame.display.set_caption("Euromast Spel")
 prachtig = (66, 170, 244)
 screen.fill(prachtig)
 menu = True
-clicked = False
-rules = False
-terug = False
-terug2 = False
-terug3 = False
-highscore = False
-instellingen = False
-moeilijk = False
-makkelijk = False
-normaal = False
+Play = False
+Rules = False
+BackRules = False
+BackHighscore = False
+BackSettings = False
+Highscore = False
+Settings = False
+Hard = False
+Easy = False
+Normal = False
 MusicOff= False
 MusicOn = False
 timer = 50
@@ -51,44 +51,41 @@ while True:
             pygame.quit()
             sys.exit()
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 0 and mouse[0] < 400 and mouse[1] > 0 and mouse[1] < 150 and menu == True:
-            clicked = True
+            Play = True
             menu = False
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1516 and mouse[0] < 1920 and mouse[1] > 200 and mouse[1] < 350 and menu == True:
-            rules = True
+            Rules = True
             menu = False
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 0 and mouse[0] < 400 and mouse[1] > 195 and mouse[1] < 340 and menu == True:
-            highscore = True
+            Highscore = True
             menu = False
-        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 30 and mouse[0] < 300 and mouse[1] > 1000 and mouse[1] < 1080 and rules == True:
-            terug = True
-        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1670 and mouse[0] < 1910 and mouse[1] > 980 and mouse[1] < 1060 and highscore == True:
-            terug2 = True
-        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1140 and mouse[0] < 1390 and mouse[1] > 380 and mouse[1] < 550 and instellingen == True:
-            terug3 = True
+        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 30 and mouse[0] < 300 and mouse[1] > 1000 and mouse[1] < 1080 and Rules == True:
+            BackRules = True
+        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1670 and mouse[0] < 1910 and mouse[1] > 980 and mouse[1] < 1060 and Highscore == True:
+            BackHighscore = True
+        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1570 and mouse[0] < 1890 and mouse[1] > 965 and mouse[1] < 1060 and Settings == True:
+            BackSettings = True
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1516 and mouse[0] < 1920 and mouse[1] > 0 and mouse[1] < 150 and menu == True:
             pygame.quit()
             sys.exit()
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 0 and mouse[0] < 400 and mouse[1] > 350 and mouse[1] < 450 and menu == True:
-            instellingen = True
+            Settings = True
             menu = False
-        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1160 and mouse[0] < 1420 and mouse[1] > 140 and mouse[1] < 240 and instellingen == True:
-            moeilijk = True
-        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 380 and mouse[0] < 650 and mouse[1] > 140 and mouse[1] < 240 and instellingen == True:
-            makkelijk = True
-        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 740 and mouse[0] < 1000 and mouse[1] > 140 and mouse[1] < 240 and instellingen == True:
-            normaal = True
-        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 875 and mouse[0] < 955 and mouse[1] > 445 and mouse[1] < 500 and instellingen == True:
+        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 150 and mouse[0] < 550 and mouse[1] > 677 and mouse[1] < 777 and Settings == True:
+            Hard = True
+        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 150 and mouse[0] < 550 and mouse[1] > 386 and mouse[1] < 488 and Settings == True:
+            Easy = True
+        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 150 and mouse[0] < 550 and mouse[1] > 530 and mouse[1] < 630 and Settings == True:
+            Normal = True
+        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 981 and mouse[0] < 1190 and mouse[1] > 380 and mouse[1] < 525 and Settings == True:
             MusicOn = True
-        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 740 and mouse[0] < 820 and mouse[1] > 445 and mouse[1] < 500 and instellingen == True:
+        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 983 and mouse[0] < 1190 and mouse[1] > 627 and mouse[1] < 769 and Settings == True:
             MusicOff = True
-        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 175 and mouse[0] < 540 and mouse[1] > 700 and mouse[1] < 830 and menu == False:
-            MenuMusic.stop()
+        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 175 and mouse[0] < 540 and mouse[1] > 700 and mouse[1] < 830 and menu == False and Settings == False:
             program(2, timer)
-        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 770 and mouse[0] < 1130 and mouse[1] > 700 and mouse[1] < 830 and menu == False:
-            MenuMusic.stop()
+        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 770 and mouse[0] < 1130 and mouse[1] > 700 and mouse[1] < 830 and menu == False and Settings == False:
             program(3, timer)
-        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1360 and mouse[0] < 1770 and mouse[1] > 700 and mouse[1] < 830 and menu == False:
-            MenuMusic.stop()
+        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1360 and mouse[0] < 1770 and mouse[1] > 700 and mouse[1] < 830 and menu == False and Settings == False:
             program(4, timer)
 
 
@@ -100,39 +97,39 @@ while True:
         background = pygame.image.load('Afbeeldingen/euromastspelbgwtext.png')
         background = pygame.transform.scale(background, (1920, 1080))
         screen.blit(background, (0, 0))
-    elif rules == True:
+    elif Rules == True:
         background = pygame.image.load('Afbeeldingen/spelregelsbg.png')
         background = pygame.transform.scale(background, (1920, 1080))
         screen.blit(background, (0, 0))
-        if terug == True:
-           terug = False
-           rules = False
+        if BackRules == True:
+           BackRules = False
+           Rules = False
            menu = True
-    elif highscore == True:
+    elif Highscore == True:
         background = pygame.image.load('Afbeeldingen/highscoresbg.png')
         background = pygame.transform.scale(background, (1920, 1080))
         screen.blit(background, (0, 0))
         highscoreRetrieve(screen)
-        if terug2 == True:
-           terug2 = False
-           highscore = False
+        if BackHighscore == True:
+           BackHighscore = False
+           Highscore = False
            menu = True
-    elif instellingen == True:
+    elif Settings == True:
         background = pygame.image.load('Afbeeldingen/instellingen.png')
         background = pygame.transform.scale(background, (1920, 1080))
         screen.blit(background, (0, 0))
-        if normaal == True:
+        if Normal == True:
             timer = 50
-            normaal = False
-        elif moeilijk == True:
+            Normal = False
+        elif Hard == True:
             timer = 30
-            moeilijk = False
-        elif makkelijk == True:
-            makkelijk = 80
-            makkelijk = False
-        elif terug3 == True:
-           terug3 = False
-           instellingen = False
+            Hard = False
+        elif Easy == True:
+            timer = 80
+            Easy = False
+        elif BackSettings == True:
+           BackSettings = False
+           Settings = False
            menu = True
         elif MusicOn == True:
             MenuMusic.play()
