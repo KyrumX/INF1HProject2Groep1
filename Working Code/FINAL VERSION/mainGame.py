@@ -1473,7 +1473,7 @@ def program(maxp, timer):
                     movement = False
                 elif richting == "omhoog":
                     if cp == 1:
-                        playerOne.updatef(16)
+                        playerOne.updatef(cg)
                         if playerOne.y <= 48:
                             winner = 1
                             termination = True
