@@ -47,7 +47,7 @@ Normal = False
 MusicOff= False
 MusicOn = False
 timer = 50
-MenuMusic = pygame.mixer.Sound("Geluiden/menu.wav")
+MenuMusic = pygame.mixer.Sound("Geluiden/City Noise.wav")
 
 
 while True:
@@ -158,7 +158,7 @@ while True:
            Settings = False
            menu = True
         elif MusicOn == True:
-            MenuMusic.play()
+            MenuMusic.play(-1)
             MusicOn = False
         elif MusicOff == True:
             MenuMusic.stop()

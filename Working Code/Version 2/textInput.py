@@ -22,7 +22,7 @@ def get_key2(start_ticks, screen, font, brownbar, white, timer):
 
 def display_box2(screen, message):
     fontobject = pygame.font.Font(None,30)
-    pygame.draw.rect(screen, (74, 110, 134), (37,518,560,30), 0)
+    pygame.draw.rect(screen, (74, 110, 134), (37,518,550,30), 0)
     if len(message) != 0:
         screen.blit(fontobject.render(message, 1, (255,255,255)), (39,520))
         pygame.display.flip()
@@ -44,7 +44,7 @@ def ask2(screen, question, font, greenbar, black, timer):
             current_string.append("_")
         elif inkey <= 127:
             x = len(current_string)
-            if x > 27:
+            if x > 26:
                 pass
             else:
                 current_string.append(chr(inkey))

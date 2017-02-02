@@ -520,17 +520,17 @@ def program(maxp, timer):
         screen.blit(dz0, (1430,507))
     for i in range(1, maxp+1):
         if i is 1:
-            gooiBericht = font2.render(player1name + " mag nu gooien.", True, white)
-            screen.blit(gooiBericht, (35, 470))
+            gooiBericht = font.render(player1name + " mag nu gooien.", True, white)
+            screen.blit(gooiBericht, (55, 470))
         elif i is 2:
-            gooiBericht = font2.render(player2name + " mag nu gooien.", True, white)
-            screen.blit(gooiBericht, (500, 470))
+            gooiBericht = font.render(player2name + " mag nu gooien.", True, white)
+            screen.blit(gooiBericht, (520, 940))
         elif i is 3:
-            gooiBericht = font2.render(player3name + " mag nu gooien.", True, white)
-            screen.blit(gooiBericht, (965, 470))
+            gooiBericht = font.render(player3name + " mag nu gooien.", True, white)
+            screen.blit(gooiBericht, (985, 470))
         elif i is 4:
-            gooiBericht = font2.render(player4name + " mag nu gooien.", True, white)
-            screen.blit(gooiBericht, (1430, 470))
+            gooiBericht = font.render(player4name + " mag nu gooien.", True, white)
+            screen.blit(gooiBericht, (1450, 940))
         pygame.display.update()
         getorder = True
         if dtp == 1:
@@ -542,7 +542,7 @@ def program(maxp, timer):
                     if k[pygame.K_ESCAPE]:
                         sys.exit("Escape was pressed")
                     elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 35 and mouse[0] < 451 and mouse[1] > 507 and mouse[1] < 923:
-                        keren = [5, 6, 7, 8, 9, 10]
+                        keren = [5, 6, 7]
                         dobbelsteenZijde = [dz1, dz2, dz3, dz4, dz5, dz6]
                         aantalKeer = random.choice(keren)
                         for i in range(0, aantalKeer):
@@ -659,6 +659,8 @@ def program(maxp, timer):
                             screen.blit(dz5, (1430, 507))
                         getorder = False
         dtp +=1
+    pygame.display.update()
+    time.sleep(2)
     maxThrow = max(pl1throw, pl2throw, pl3throw, pl4throw)
     if pl1throw == maxThrow:
         cp = 1
@@ -688,7 +690,30 @@ def program(maxp, timer):
     geoAllowed = True
     assignCat = True
     cnt = 0
-
+    if maxp == 2:
+        xhx = font.render(player1name + " gooide: " + str(pl1throw), True, white)
+        screen.blit(xhx, (690, 310))
+        xhx = font.render(player2name + " gooide: " + str(pl2throw), True, white)
+        screen.blit(xhx, (690, 340))
+        pygame.display.update()
+    elif maxp == 3:
+        xhx = font.render(player1name + " gooide: " + str(pl1throw), True, white)
+        screen.blit(xhx, (690, 310))
+        xhx = font.render(player2name + " gooide: " + str(pl2throw), True, white)
+        screen.blit(xhx, (690, 340))
+        xhx = font.render(player3name + " gooide: " + str(pl3throw), True, white)
+        screen.blit(xhx, (690, 370))
+        pygame.display.update()
+    elif maxp == 4:
+        xhx = font.render(player1name + " gooide: " + str(pl1throw), True, white)
+        screen.blit(xhx, (690, 310))
+        xhx = font.render(player2name + " gooide: " + str(pl2throw), True, white)
+        screen.blit(xhx, (690, 340))
+        xhx = font.render(player3name + " gooide: " + str(pl3throw), True, white)
+        screen.blit(xhx, (690, 370))
+        xhx = font.render(player3name + " gooide: " + str(pl3throw), True, white)
+        screen.blit(xhx, (690, 400))
+        pygame.display.update()
 
     while assignCat == True:
         while not cnt == maxp:
@@ -700,8 +725,10 @@ def program(maxp, timer):
                 elif entAllowed == True:
                     if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1012 and mouse[0] < 1405 and mouse[1] > 449 and mouse[1] < 883:
                         if sp == 1:
-                            kiezCat = font.render("Gekozen door Speler 1", True, black)
+                            kiezCat = font.render("Gekozen door:", True, black)
                             screen.blit(kiezCat, (1045, 600))
+                            kiezCat = font.render(player1name, True, black)
+                            screen.blit(kiezCat, (1045, 630))
                             pygame.display.update()
                             sp1c = 805
                             entAllowed = False
@@ -709,8 +736,10 @@ def program(maxp, timer):
                             cnt += 1
                             break
                         elif sp == 2:
-                            kiezCat = font.render("Gekozen door Speler 2", True,black)
+                            kiezCat = font.render("Gekozen door:", True,black)
                             screen.blit(kiezCat, (1045, 600))
+                            kiezCat = font.render(player2name, True, black)
+                            screen.blit(kiezCat, (1045, 630))
                             pygame.display.update()
                             sp2c = 805
                             entAllowed = False
@@ -723,8 +752,10 @@ def program(maxp, timer):
                                 sp -= 1
                                 break
                         elif sp == 3:
-                            kiezCat = font.render("Gekozen door Speler 3", True,black)
+                            kiezCat = font.render("Gekozen door:", True,black)
                             screen.blit(kiezCat, (1045, 600))
+                            kiezCat = font.render(player3name, True, black)
+                            screen.blit(kiezCat, (1045, 630))
                             pygame.display.update()
                             sp3c = 805
                             entAllowed = False
@@ -739,6 +770,8 @@ def program(maxp, timer):
                         elif sp == 4:
                             kiezCat = font.render("Gekozen door Speler 4", True,black)
                             screen.blit(kiezCat, (1045, 600))
+                            kiezCat = font.render(player4name, True, black)
+                            screen.blit(kiezCat, (1045, 630))
                             pygame.display.update()
                             sp4c = 805
                             sp = 1
@@ -750,8 +783,10 @@ def program(maxp, timer):
                 if hisAllowed == True:
                     if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 35 and mouse[0] < 437 and mouse[1] > 445 and mouse[1] < 885:
                         if sp == 1:
-                            kiezCat = font.render("Gekozen door Speler 1", True,black)
+                            kiezCat = font.render("Gekozen door:", True,black)
                             screen.blit(kiezCat, (75, 600))
+                            kiezCat = font.render(player1name, True, black)
+                            screen.blit(kiezCat, (75, 630))
                             pygame.display.update()
                             sp1c = 925
                             hisAllowed = False
@@ -759,8 +794,10 @@ def program(maxp, timer):
                             cnt += 1
                             break
                         elif sp == 2:
-                            kiezCat = font.render("Gekozen door Speler 2", True,black)
+                            kiezCat = font.render("Gekozen door:", True,black)
                             screen.blit(kiezCat, (75, 600))
+                            kiezCat = font.render(player2name, True, black)
+                            screen.blit(kiezCat, (75, 630))
                             pygame.display.update()
                             sp2c = 925
                             hisAllowed = False
@@ -773,9 +810,11 @@ def program(maxp, timer):
                                 cnt += 1
                                 break
                         elif sp == 3:
-                            kiezCat = font.render("Gekozen door Speler 3", True,black)
+                            kiezCat = font.render("Gekozen door:", True,black)
                             screen.blit(kiezCat, (75, 600))
                             pygame.display.update()
+                            kiezCat = font.render(player3name, True, black)
+                            screen.blit(kiezCat, (75, 630))
                             sp3c = 925
                             hisAllowed = False
                             if maxp > 3:
@@ -787,8 +826,10 @@ def program(maxp, timer):
                                 cnt += 1
                                 break
                         elif sp == 4:
-                            kiezCat = font.render("Gekozen door Speler 4", True,black)
+                            kiezCat = font.render("Gekozen door:", True,black)
                             screen.blit(kiezCat, (75, 600))
+                            kiezCat = font.render(player4name, True, black)
+                            screen.blit(kiezCat, (75, 630))
                             pygame.display.update()
                             sp4c = 925
                             sp = 1
@@ -800,8 +841,10 @@ def program(maxp, timer):
                 if sportAllowed:
                     if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1487 and mouse[0] < 1882 and mouse[1] > 444 and mouse[1] < 833:
                         if sp == 1:
-                            kiezCat = font.render("Gekozen door Speler 1", True,black)
+                            kiezCat = font.render("Gekozen door:", True,black)
                             screen.blit(kiezCat, (1520, 600))
+                            kiezCat = font.render(player1name, True, black)
+                            screen.blit(kiezCat, (1520, 630))
                             pygame.display.update()
                             sp1c = 1165
                             sportAllowed = False
@@ -809,8 +852,10 @@ def program(maxp, timer):
                             cnt += 1
                             break
                         elif sp == 2:
-                            kiezCat = font.render("Gekozen door Speler 2", True,black)
+                            kiezCat = font.render("Gekozen door:", True,black)
                             screen.blit(kiezCat, (1520, 600))
+                            kiezCat = font.render(player2name, True, black)
+                            screen.blit(kiezCat, (1520, 630))
                             pygame.display.update()
                             sp2c = 1165
                             sportAllowed = False
@@ -823,8 +868,10 @@ def program(maxp, timer):
                                 cnt += 1
                                 break
                         elif sp == 3:
-                            kiezCat = font.render("Gekozen door Speler 3", True,black)
+                            kiezCat = font.render("Gekozen door:", True,black)
                             screen.blit(kiezCat, (1520, 600))
+                            kiezCat = font.render(player3name, True, black)
+                            screen.blit(kiezCat, (1520, 630))
                             pygame.display.update()
                             sp3c = 1165
                             sportAllowed = False
@@ -837,8 +884,10 @@ def program(maxp, timer):
                                 cnt += 1
                                 break
                         elif sp == 4:
-                            kiezCat = font.render("Gekozen door Speler 4", True,black)
+                            kiezCat = font.render("Gekozen door:", True,black)
                             screen.blit(kiezCat, (1520, 600))
+                            kiezCat = font.render(player4name, True, black)
+                            screen.blit(kiezCat, (1520, 630))
                             pygame.display.update()
                             sp4c = 1165
                             sp = 1
@@ -850,8 +899,10 @@ def program(maxp, timer):
                 if geoAllowed == True:
                     if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 525 and mouse[0] < 920 and mouse[1] > 466  and mouse[1] < 887:
                         if sp == 1:
-                            kiezCat = font.render("Gekozen door Speler 1", True,black)
+                            kiezCat = font.render("Gekozen door:", True,black)
                             screen.blit(kiezCat, (550, 600))
+                            kiezCat = font.render(player1name, True, black)
+                            screen.blit(kiezCat, (550, 630))
                             pygame.display.update()
                             sp1c = 1045
                             geoAllowed = False
@@ -859,8 +910,10 @@ def program(maxp, timer):
                             cnt += 1
                             break
                         elif sp == 2:
-                            kiezCat = font.render("Gekozen door Speler 2", True,black)
+                            kiezCat = font.render("Gekozen door:", True,black)
                             screen.blit(kiezCat, (550, 600))
+                            kiezCat = font.render(player2name, True, black)
+                            screen.blit(kiezCat, (550, 630))
                             pygame.display.update()
                             sp2c = 1045
                             geoAllowed = False
@@ -873,8 +926,10 @@ def program(maxp, timer):
                                 cnt += 1
                                 break
                         elif sp == 3:
-                            kiezCat = font.render("Gekozen door Speler 3", True,black)
+                            kiezCat = font.render("Gekozen door:", True,black)
                             screen.blit(kiezCat, (550, 600))
+                            kiezCat = font.render(player3name, True, black)
+                            screen.blit(kiezCat, (550, 630))
                             pygame.display.update()
                             sp3c = 1045
                             geoAllowed = False
@@ -887,8 +942,10 @@ def program(maxp, timer):
                                 cnt += 1
                                 break
                         elif sp == 4:
-                            kiezCat = font.render("Gekozen door Speler 4", True,black)
+                            kiezCat = font.render("Gekozen door:", True,black)
                             screen.blit(kiezCat, (550, 600))
+                            kiezCat = font.render(player4name, True, black)
+                            screen.blit(kiezCat, (550, 630))
                             pygame.display.update()
                             sp4c = 1045
                             sp = 1
@@ -898,7 +955,7 @@ def program(maxp, timer):
                     else:
                         pass
         else:
-            time.sleep(5)
+            time.sleep(2)
             assignCat = False
 
 
@@ -1843,7 +1900,7 @@ def program(maxp, timer):
                             pygame.quit()
                             sys.exit()
                     elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and mouse[0] > 1580 and mouse[0] < 1895 and mouse[1] > 30 and mouse[1] < 130:
-                            program(maxp)
+                            program(maxp, timer)
 
 
 
