@@ -47,7 +47,7 @@ Normal = False
 MusicOff= False
 MusicOn = False
 timer = 50
-MenuMusic = pygame.mixer.Sound("Geluiden/City Noise.wav")
+MenuMusic = pygame.mixer.Sound("Geluiden/Backgroundmusic.wav")
 
 
 while True:
